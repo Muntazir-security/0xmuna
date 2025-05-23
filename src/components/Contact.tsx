@@ -1,8 +1,30 @@
-
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+// Lucide imports will be removed if no custom SVGs are used for all three
+// import { Github, Linkedin, Twitter as LucideTwitterIcon } from 'lucide-react'; 
+
+const socialLinksData = [
+  {
+    name: "GitHub",
+    url: "https://github.com/Muntazir-security",
+    icon: null, // No Lucide icon
+    logoSrc: "/assets/images/github.svg", // Path to custom SVG
+  },
+  {
+    name: "LinkedIn",
+    url: "https://www.linkedin.com/in/muntaz1r9/",
+    icon: null, // No Lucide icon
+    logoSrc: "/assets/images/linkedin.svg", // Path to custom SVG
+  },
+  {
+    name: "X",
+    url: "https://x.com/muntaz1r9",
+    icon: null, // No Lucide icon
+    logoSrc: "/assets/images/X.svg", // Path to custom SVG
+  },
+];
 
 const Contact: React.FC = () => {
   return (
@@ -73,15 +95,32 @@ const Contact: React.FC = () => {
         </div>
         
         <div className="mt-20 text-center">
-          <p className="text-white/60 mb-2">Or connect with me</p>
-          <div className="flex justify-center space-x-6">
-            {["GitHub", "LinkedIn", "Twitter", "Dribbble"].map((platform) => (
+          <p className="text-white/60 mb-4 md:mb-6">Or connect with me</p>
+          <div className="flex justify-center space-x-4 md:space-x-6">
+            {socialLinksData.map((platform) => (
               <a 
-                key={platform} 
-                href="#" 
-                className="text-white/80 hover:text-[#9b87f5] transition-colors"
+                key={platform.name} 
+                href={platform.url} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                aria-label={platform.name}
+                className="group relative bg-white/10 p-3 md:p-4 rounded-full transition-all duration-300 ease-in-out hover:bg-[#9b87f5] hover:scale-110 focus-visible:ring-2 focus-visible:ring-[#9b87f5] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0B1E] outline-none"
               >
-                {platform}
+                {platform.logoSrc ? (
+                  <img 
+                    src={platform.logoSrc} 
+                    alt={`${platform.name} logo`} 
+                    className="w-5 h-5 md:w-6 md:h-6 object-contain group-hover:brightness-0 group-hover:invert transition-all duration-300" 
+                  />
+                ) : platform.icon ? (
+                  // This part would effectively not be used if all have logoSrc
+                  <platform.icon className="w-5 h-5 md:w-6 md:h-6 text-white/80 group-hover:text-white transition-colors duration-300" />
+                ) : null}
+                <span 
+                  className="absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-800 text-white text-xs rounded-md opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none shadow-lg"
+                >
+                  {platform.name}
+                </span>
               </a>
             ))}
           </div>
