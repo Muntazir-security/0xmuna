@@ -53,22 +53,22 @@ const Hero: React.FC = () => {
             data-aos-delay="700" 
             className="my-6 md:my-8"
           >
-            <div className="flex flex-wrap justify-center md:justify-start gap-3 md:gap-4">
-              <div className="flex items-center space-x-2 bg-white/5 border border-white/10 px-3 py-1.5 md:px-4 md:py-2 rounded-lg hover:bg-white/10 hover:border-[#9b87f5]/50 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#9b87f5]/20" data-aos="zoom-in" data-aos-delay="800">
-                <ShieldCheck className="w-4 h-4 md:w-5 md:h-5 text-[#9b87f5]" />
-                <span className="text-white/90 text-xs md:text-sm font-inter">SOC Analyst</span>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+              <div className="flex items-center justify-center space-x-2 bg-gradient-to-r from-white/10 to-white/5 backdrop-blur-sm border border-white/20 px-4 py-3 rounded-xl hover:from-[#6366f1]/20 hover:to-[#9b87f5]/20 hover:border-[#9b87f5]/40 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#9b87f5]/25" data-aos="fade-up" data-aos-delay="800">
+                <ShieldCheck className="w-5 h-5 text-[#9b87f5]" />
+                <span className="text-white/90 text-sm font-medium font-inter">SOC Analyst</span>
               </div>
-              <div className="flex items-center space-x-2 bg-white/5 border border-white/10 px-3 py-1.5 md:px-4 md:py-2 rounded-lg hover:bg-white/10 hover:border-[#9b87f5]/50 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#9b87f5]/20" data-aos="zoom-in" data-aos-delay="900">
-                <ScanSearch className="w-4 h-4 md:w-5 md:h-5 text-[#9b87f5]" />
-                <span className="text-white/90 text-xs md:text-sm font-inter">Vulnerability Assessment</span>
+              <div className="flex items-center justify-center space-x-2 bg-gradient-to-r from-white/10 to-white/5 backdrop-blur-sm border border-white/20 px-4 py-3 rounded-xl hover:from-[#6366f1]/20 hover:to-[#9b87f5]/20 hover:border-[#9b87f5]/40 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#9b87f5]/25" data-aos="fade-up" data-aos-delay="900">
+                <ScanSearch className="w-5 h-5 text-[#9b87f5]" />
+                <span className="text-white/90 text-sm font-medium font-inter">Vulnerability Assessment</span>
               </div>
-              <div className="flex items-center space-x-2 bg-white/5 border border-white/10 px-3 py-1.5 md:px-4 md:py-2 rounded-lg hover:bg-white/10 hover:border-[#9b87f5]/50 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#9b87f5]/20" data-aos="zoom-in" data-aos-delay="1000">
-                <Fingerprint className="w-4 h-4 md:w-5 md:h-5 text-[#9b87f5]" />
-                <span className="text-white/90 text-xs md:text-sm font-inter">Penetration Tester</span>
+              <div className="flex items-center justify-center space-x-2 bg-gradient-to-r from-white/10 to-white/5 backdrop-blur-sm border border-white/20 px-4 py-3 rounded-xl hover:from-[#6366f1]/20 hover:to-[#9b87f5]/20 hover:border-[#9b87f5]/40 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#9b87f5]/25" data-aos="fade-up" data-aos-delay="1000">
+                <Fingerprint className="w-5 h-5 text-[#9b87f5]" />
+                <span className="text-white/90 text-sm font-medium font-inter">Penetration Tester</span>
               </div>
-              <div className="flex items-center space-x-2 bg-white/5 border border-white/10 px-3 py-1.5 md:px-4 md:py-2 rounded-lg hover:bg-white/10 hover:border-[#9b87f5]/50 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#9b87f5]/20" data-aos="zoom-in" data-aos-delay="1100">
-                <AlertOctagon className="w-4 h-4 md:w-5 md:h-5 text-[#9b87f5]" />
-                <span className="text-white/90 text-xs md:text-sm font-inter">Incident Response</span>
+              <div className="flex items-center justify-center space-x-2 bg-gradient-to-r from-white/10 to-white/5 backdrop-blur-sm border border-white/20 px-4 py-3 rounded-xl hover:from-[#6366f1]/20 hover:to-[#9b87f5]/20 hover:border-[#9b87f5]/40 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#9b87f5]/25" data-aos="fade-up" data-aos-delay="1100">
+                <AlertOctagon className="w-5 h-5 text-[#9b87f5]" />
+                <span className="text-white/90 text-sm font-medium font-inter">Incident Response</span>
               </div>
             </div>
           </div>
@@ -81,7 +81,7 @@ const Hero: React.FC = () => {
             <Button
               asChild
               size="lg"
-              className="group bg-gradient-to-r from-[#6366f1] to-[#9b87f5] text-white border-none px-6 py-3 rounded-lg shadow-md hover:shadow-xl hover:shadow-[#6366f1]/40 hover:scale-[1.05] transform transition-all duration-300 ease-in-out flex items-center justify-center space-x-2 animate-pulse-slow font-inter"
+              className="group bg-gradient-to-r from-[#6366f1] to-[#9b87f5] text-white border-none px-6 py-3 rounded-lg shadow-md hover:shadow-xl hover:shadow-[#6366f1]/40 hover:scale-[1.05] transform transition-all duration-300 ease-in-out flex items-center justify-center space-x-2 font-inter"
             >
               <a href="#portfolio">
                 <span>View My Work</span>
