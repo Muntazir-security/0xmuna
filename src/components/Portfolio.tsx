@@ -110,6 +110,7 @@ const Portfolio: React.FC = () => {
   const [selectedCertImage, setSelectedCertImage] = useState<string | null>(null);
   const [showAllProjects, setShowAllProjects] = useState(false);
   const [imagesLoaded, setImagesLoaded] = useState(false);
+  const [techStackVisible, setTechStackVisible] = useState(false);
 
   // Preload certificate images
   useEffect(() => {
@@ -126,6 +127,18 @@ const Portfolio: React.FC = () => {
       .then(() => setImagesLoaded(true))
       .catch(() => setImagesLoaded(true)); // Still set to true even if some fail
   }, []);
+
+  // Add effect to trigger tech stack animations when section becomes active
+  useEffect(() => {
+    if (activeSubSection === 'techstack') {
+      const timer = setTimeout(() => {
+        setTechStackVisible(true);
+      }, 100);
+      return () => clearTimeout(timer);
+    } else {
+      setTechStackVisible(false);
+    }
+  }, [activeSubSection]);
 
   const projectsInput: ProjectInputData[] = [
     {
@@ -397,26 +410,64 @@ const Portfolio: React.FC = () => {
 
         {activeSubSection === 'techstack' && (
           <div className="pt-4 pb-8">
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 md:gap-8">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 md:gap-6">
               {techStackData.map((tech, index) => (
                 <motion.div
                   key={tech.id}
-                  initial={{ opacity: 0, scale: 0.8, y: 20 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: index * 0.05 }}
-                  className="group relative flex flex-col items-center justify-center bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-6 aspect-square transition-all duration-300 ease-in-out hover:bg-white/10 hover:border-purple-400/70 hover:shadow-2xl hover:shadow-purple-400/20"
+                  initial={{ opacity: 0, scale: 0.5, y: 30 }}
+                  animate={techStackVisible ? { 
+                    opacity: 1, 
+                    scale: 1, 
+                    y: 0,
+                    transition: {
+                      duration: 0.5,
+                      delay: index * 0.03,
+                      ease: [0.25, 0.25, 0, 1]
+                    }
+                  } : {}}
+                  whileHover={{ 
+                    scale: 1.08, 
+                    y: -8,
+                    transition: { duration: 0.2, ease: "easeOut" }
+                  }}
+                  className="group relative flex flex-col items-center justify-center bg-gradient-to-br from-white/8 via-white/5 to-white/2 backdrop-blur-md border border-white/10 rounded-2xl p-4 md:p-6 aspect-square transition-all duration-300 ease-out hover:bg-gradient-to-br hover:from-[#6366f1]/15 hover:via-[#9b87f5]/10 hover:to-purple-500/5 hover:border-[#9b87f5]/40 hover:shadow-2xl hover:shadow-[#9b87f5]/25"
                 >
-                  <img 
-                    src={tech.logoSrc} 
-                    alt={`${tech.name} logo`} 
-                    className="w-16 h-16 md:w-20 md:h-20 object-contain transition-transform duration-300 group-hover:scale-110"
-                  />
-                  <p className="absolute bottom-4 text-center text-xs md:text-sm text-white/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-y-2 group-hover:translate-y-0">
-                    {tech.name}
-                  </p>
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#6366f1]/0 to-[#a855f7]/0 group-hover:from-[#6366f1]/10 group-hover:to-[#a855f7]/10 rounded-2xl transition-all duration-300"></div>
+                  
+                  <div className="relative z-10 flex flex-col items-center justify-center h-full">
+                    <div className="mb-2 p-2 rounded-xl bg-white/5 group-hover:bg-white/10 transition-all duration-300">
+                      <img 
+                        src={tech.logoSrc} 
+                        alt={`${tech.name} logo`} 
+                        className="w-8 h-8 md:w-12 md:h-12 object-contain transition-all duration-300 group-hover:scale-110 filter brightness-90 group-hover:brightness-110"
+                      />
+                    </div>
+                    
+                    <div className="absolute inset-x-0 bottom-2 flex flex-col items-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                      <div className="bg-gray-900/95 backdrop-blur-sm text-white text-xs px-2 py-1 rounded-lg border border-white/10 whitespace-nowrap shadow-lg">
+                        {tech.name}
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#9b87f5]/0 via-transparent to-transparent group-hover:from-[#9b87f5]/5 rounded-2xl transition-all duration-300 pointer-events-none"></div>
                 </motion.div>
               ))}
             </div>
+            
+            <motion.div 
+              className="mt-12 text-center"
+              initial={{ opacity: 0, y: 20 }}
+              animate={techStackVisible ? { 
+                opacity: 1, 
+                y: 0,
+                transition: { delay: techStackData.length * 0.03 + 0.2, duration: 0.5 }
+              } : {}}
+            >
+              <p className="text-white/60 text-lg">
+                Technologies I work with to build secure and robust solutions
+              </p>
+            </motion.div>
           </div>
         )}
       </div>

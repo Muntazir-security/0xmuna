@@ -14,14 +14,12 @@ const MainTitle = memo(() => (
   <div className="space-y-2" data-aos="fade-up" data-aos-delay="300">
     <h1 className="text-5xl sm:text-6xl md:text-6xl lg:text-6xl xl:text-7xl font-bold tracking-tight font-inter">
       <span className="relative inline-block">
-        <span className="absolute -inset-2 bg-gradient-to-r from-[#6366f1] to-[#a855f7] blur-2xl opacity-20 animate-pulse-slow"></span>
         <span className="relative bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent animate-fade-in">
           Muntazir
         </span>
       </span>
       <br />
       <span className="relative inline-block mt-2">
-        <span className="absolute -inset-2 bg-gradient-to-r from-[#6366f1] to-[#a855f7] blur-2xl opacity-20 animate-pulse-slow"></span>
         <span className="relative bg-gradient-to-r from-[#6366f1] to-[#a855f7] bg-clip-text text-transparent animate-fade-in">
           Mehdi
         </span>
@@ -81,21 +79,21 @@ const Hero: React.FC = () => {
             <Button
               asChild
               size="lg"
-              className="group bg-gradient-to-r from-[#6366f1] to-[#9b87f5] text-white border-none px-6 py-3 rounded-lg shadow-md hover:shadow-xl hover:shadow-[#6366f1]/40 hover:scale-[1.05] transform transition-all duration-300 ease-in-out flex items-center justify-center space-x-2 font-inter"
+              className="group bg-gradient-to-r from-[#6366f1] to-[#9b87f5] text-white border-none px-6 py-3 rounded-lg shadow-md hover:shadow-xl hover:shadow-[#6366f1]/40 hover:scale-[1.05] transform transition-all duration-300 ease-in-out flex items-center justify-center font-inter overflow-hidden"
             >
-              <a href="#portfolio" className="flex items-center space-x-2">
-                <span>View My Work</span>
-                <ArrowRight className="w-5 h-5 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300 ease-in-out" />
+              <a href="#portfolio" className="flex items-center justify-center transition-all duration-300 group-hover:pr-2">
+                <span className="transition-all duration-300">View My Work</span>
+                <ArrowRight className="w-5 h-5 ml-0 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 group-hover:ml-2 transition-all duration-300 ease-in-out" />
               </a>
             </Button>
             <Button
               asChild
               variant="outline"
               size="lg"
-              className="group text-white bg-transparent border-white/40 hover:border-[#9b87f5] hover:bg-[#9b87f5]/20 px-6 py-3 rounded-lg shadow-md hover:shadow-xl hover:shadow-[#9b87f5]/30 hover:scale-[1.05] transform transition-all duration-300 ease-in-out flex items-center justify-center space-x-2 font-inter"
+              className="group text-white bg-transparent border-white/40 hover:border-[#9b87f5] hover:bg-[#9b87f5]/20 px-6 py-3 rounded-lg shadow-md hover:shadow-xl hover:shadow-[#9b87f5]/30 hover:scale-[1.05] transform transition-all duration-300 ease-in-out flex items-center justify-center font-inter"
             >
-              <a href="#contact">
-                <Mail className="w-5 h-5" />
+              <a href="#contact" className="flex items-center justify-center">
+                <Mail className="w-5 h-5 mr-2" />
                 <span>Contact Me</span>
               </a>
             </Button>

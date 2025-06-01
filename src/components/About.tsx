@@ -70,11 +70,11 @@ const AboutMe: React.FC = () => {
         <div className="flex flex-col lg:flex-row gap-12 md:gap-16 items-start">
           <div className="lg:w-2/5 flex justify-center lg:justify-start lg:sticky lg:top-24">
             <motion.div 
-              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-full p-1 relative overflow-hidden hover:border-[#9b87f5] hover:shadow-2xl hover:shadow-[#9b87f5]/50 transition-all duration-300 ease-out w-48 h-48 md:w-56 md:h-56 lg:w-64 lg:h-64"
+              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-full p-1 relative overflow-hidden hover:border-[#9b87f5] hover:shadow-2xl hover:shadow-[#9b87f5]/50 transition-all duration-300 ease-out w-40 h-40 md:w-48 md:h-48"
               whileHover={{ scale: 1.03 }}
               transition={{ type: "spring", stiffness: 400, damping: 15 }}
               data-aos="fade-up"
-              data-aos-delay="300"
+              data-aos-delay="100"
             >
               <div className="absolute -top-20 -left-20 w-40 h-40 bg-[#6366f1]/20 rounded-full blur-2xl"></div>
               <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-[#a855f7]/20 rounded-full blur-2xl"></div>
@@ -118,15 +118,15 @@ const AboutMe: React.FC = () => {
               <Button 
                 asChild 
                 size="lg" 
-                className="bg-gradient-to-r from-[#6366f1] to-[#9b87f5] text-white border-none px-8 py-3 rounded-lg shadow-md hover:shadow-xl hover:shadow-[#9b87f5]/40 hover:scale-[1.03] transform transition-all duration-300 ease-in-out group inline-flex items-center justify-center space-x-2 sm:w-auto"
+                className="group bg-gradient-to-r from-[#6366f1] to-[#9b87f5] text-white border-none px-8 py-3 rounded-lg shadow-md hover:shadow-xl hover:shadow-[#9b87f5]/40 hover:scale-[1.03] transform transition-all duration-300 ease-in-out inline-flex items-center justify-center sm:w-auto overflow-hidden"
               >
                 <a 
                   href="/assets/documents/Syed_Muntazir_Mehd_CV.pdf" 
                   download="Syed_Muntazir_Mehdi_CV.pdf" 
-                  className="flex items-center space-x-2"
+                  className="flex items-center justify-center transition-all duration-300 group-hover:pr-2"
                 >
-                  <span>Download CV</span>
-                  <Download className="w-5 h-5 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300" />
+                  <span className="transition-all duration-300">Download CV</span>
+                  <Download className="w-5 h-5 ml-0 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 group-hover:ml-2 transition-all duration-300 ease-in-out" />
                 </a>
               </Button>
             </div>
