@@ -1,4 +1,7 @@
-import React from "react";
+
+import React, { useEffect } from "react";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import PageBackground from "@/components/PageBackground";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
@@ -7,9 +10,18 @@ import Portfolio from "@/components/Portfolio";
 import Contact from "@/components/Contact";
 
 const Index: React.FC = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      easing: 'ease-out-cubic',
+      once: true,
+      offset: 100,
+    });
+  }, []);
+
   return (
-    <div className="min-h-screen relative overflow-x-hidden">
-      {/* Background with animated orbs */}
+    <div className="min-h-screen relative overflow-x-hidden font-inter">
+      {/* Background with animated starfield */}
       <PageBackground />
       
       {/* Navigation */}
