@@ -1,4 +1,3 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import { Download } from 'lucide-react';
@@ -67,65 +66,79 @@ const AboutMe: React.FC = () => {
   return (
     <section id="about" className="py-24 md:py-32 relative">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="flex flex-col lg:flex-row gap-12 md:gap-16 items-start">
-          <div className="lg:w-2/5 flex justify-center lg:justify-start lg:sticky lg:top-24">
-            <motion.div 
-              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-full p-1 relative overflow-hidden hover:border-[#9b87f5] hover:shadow-2xl hover:shadow-[#9b87f5]/50 transition-all duration-300 ease-out w-40 h-40 md:w-48 md:h-48"
+        <div className="flex flex-col lg:flex-row gap-12 md:gap-16 items-center">
+          <div className="lg:w-2/5 flex justify-center">
+            <motion.div
+              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-full p-1 relative overflow-hidden hover:border-[#9b87f5] hover:shadow-2xl hover:shadow-[#9b87f5]/50 transition-all duration-300 ease-out w-80 h-80 md:w-96 md:h-96"
               whileHover={{ scale: 1.03 }}
               transition={{ type: "spring", stiffness: 400, damping: 15 }}
               data-aos="fade-up"
               data-aos-delay="100"
             >
-              <div className="absolute -top-20 -left-20 w-40 h-40 bg-[#6366f1]/20 rounded-full blur-2xl"></div>
-              <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-[#a855f7]/20 rounded-full blur-2xl"></div>
+              {/* Animated blur circles for profile picture glow */}
+              <div className="absolute -top-40 -left-40 w-80 h-80 bg-[#6366f1]/20 rounded-full blur-2xl animate-pulse-glow-slow"></div>
+              <div className="absolute -bottom-40 -right-40 w-80 h-80 bg-[#a855f7]/20 rounded-full blur-2xl animate-pulse-glow-slow delay-500"></div> {/* Added delay for staggered effect */}
               <div className="w-full h-full rounded-full overflow-hidden relative z-10">
-                <img 
-                  src="/assets/images/profile.png" 
-                  alt="Muntazir Mehdi - Profile Picture" 
-                  className="w-full h-full object-cover" 
+                <img
+                  src="/assets/images/profile.png"
+                  alt="Muntazir Mehdi - Profile Picture"
+                  className="w-full h-full object-cover"
                 />
               </div>
             </motion.div>
           </div>
-          
+
           <div className="lg:w-3/5">
-            <h2 
+            <h2
               className="text-3xl md:text-4xl font-bold text-white mb-4"
-              data-aos="fade-up" 
+              data-aos="fade-up"
               data-aos-delay="100"
             >
               About <span className="text-[#9b87f5]">Me</span>
             </h2>
-            <div 
+            <div
               className="w-16 h-1.5 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-full mb-6"
-              data-aos="fade-up" 
+              data-aos="fade-up"
               data-aos-delay="200"
             ></div>
-            
-            <p 
-              className="text-white/80 text-lg mb-8 leading-relaxed text-justify" 
-              data-aos="fade-up" 
+
+            <p
+              className="text-white/80 text-lg mb-8 leading-relaxed text-justify"
+              data-aos="fade-up"
               data-aos-delay="300"
             >
-              A Cybersecurity Engineer with a passion for securing digital environments. I hold a degree in Computer Science, specializing in Cybersecurity, from Asia Pacific University of Technology & Innovation. With hands-on experience in SOC analysis, vulnerability assessment, and penetration testing, I've developed a strong foundation in identifying and mitigating security risks. My expertise in SIEM implementation, threat detection, and security documentation is further strengthened by industry certifications, including eJPT and ICCA. I blend technical expertise with analytical thinking to build robust security solutions, always staying ahead of emerging threats to protect critical infrastructure.
+              A Cybersecurity Engineer with a passion for securing digital
+              environments. I hold a degree in Computer Science, specializing
+              in Cybersecurity, from Asia Pacific University of Technology &
+              Innovation. With hands-on experience in SOC analysis,
+              vulnerability assessment, and penetration testing, I've developed
+              a strong foundation in identifying and mitigating security risks.
+              My expertise in SIEM implementation, threat detection, and
+              security documentation is further strengthened by industry
+              certifications, including eJPT and ICCA. I blend technical
+              expertise with analytical thinking to build robust security
+              solutions, always staying ahead of emerging threats to protect
+              critical infrastructure.
             </p>
-            
-            <div 
-              className="mt-8 text-center md:text-left" 
-              data-aos="fade-up" 
+
+            <div
+              className="mt-8 text-center md:text-left"
+              data-aos="fade-up"
               data-aos-delay="400"
             >
-              <Button 
-                asChild 
-                size="lg" 
+              <Button
+                asChild
+                size="lg"
                 className="group bg-gradient-to-r from-[#6366f1] to-[#9b87f5] text-white border-none px-8 py-3 rounded-lg shadow-md hover:shadow-xl hover:shadow-[#9b87f5]/40 hover:scale-[1.03] transform transition-all duration-300 ease-in-out inline-flex items-center justify-center sm:w-auto overflow-hidden"
               >
-                <a 
-                  href="/assets/documents/Syed_Muntazir_Mehd_CV.pdf" 
-                  download="Syed_Muntazir_Mehdi_CV.pdf" 
+                <a
+                  href="/assets/documents/Syed_Muntazir_Mehd_CV.pdf"
+                  download="Syed_Muntazir_Mehdi_CV.pdf"
                   className="flex items-center justify-center transition-all duration-300 group-hover:pr-2"
                 >
-                  <span className="transition-all duration-300">Download CV</span>
+                  <span className="transition-all duration-300">
+                    Download CV
+                  </span>
                   <Download className="w-5 h-5 ml-0 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 group-hover:ml-2 transition-all duration-300 ease-in-out" />
                 </a>
               </Button>
@@ -138,7 +151,11 @@ const AboutMe: React.FC = () => {
             Work <span className="text-[#9b87f5]">Experience</span>
           </h2>
           <div className="relative">
-            <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-white/10 transform -translate-x-1/2 hidden md:block" style={{ zIndex: 0 }}></div>
+            {/* Main vertical line for timeline */}
+            <div
+              className="absolute left-1/2 top-0 bottom-0 w-1 bg-white/10 transform -translate-x-1/2 hidden md:block"
+              style={{ zIndex: 0 }}
+            ></div>
 
             {workExperience.map((job, index) => (
               <motion.div
@@ -149,21 +166,48 @@ const AboutMe: React.FC = () => {
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.6, delay: 0.1 * index }}
               >
-                <div className={`md:w-1/2 ${index % 2 === 0 ? 'md:order-2' : 'md:order-1'}`}>
-                  <div className={`relative ${index % 2 === 0 ? 'md:pl-12' : 'md:pr-12'}`}>
-                    <div className={`absolute top-2 w-4 h-4 bg-[#9b87f5] rounded-full border-4 border-[#0B0B1E] hidden md:block ${index % 2 === 0 ? 'left-0 -translate-x-1/2' : 'right-0 translate-x-1/2'}`} style={{ zIndex: 2 }}></div>
-                    <div className="absolute left-0 top-2 bottom-0 ml-[0.4rem] w-0.5 bg-[#9b87f5] md:hidden" style={{ height: 'calc(100% - 0.5rem)', zIndex: 1 }}></div>
+                <div
+                  className={`md:w-1/2 ${
+                    index % 2 === 0 ? "md:order-2" : "md:order-1"
+                  }`}
+                >
+                  <div className={`relative ${index % 2 === 0 ? "md:pl-12" : "md:pr-12"}`}>
+                    {/* Circle marker for desktop timeline */}
+                    <div
+                      className={`absolute top-2 w-4 h-4 bg-[#9b87f5] rounded-full border-4 border-[#0B0B1E] hidden md:block ${
+                        index % 2 === 0 ? "left-0 -translate-x-1/2" : "right-0 translate-x-1/2"
+                      }`}
+                      style={{ zIndex: 2 }}
+                    ></div>
+                    {/* Vertical line for mobile timeline */}
+                    <div
+                      className="absolute left-0 top-2 bottom-0 ml-[0.4rem] w-0.5 bg-[#9b87f5] md:hidden"
+                      style={{ height: "calc(100% - 0.5rem)", zIndex: 1 }}
+                    ></div>
 
-                    <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 ml-6 md:ml-0 relative z-10 hover:border-[#9b87f5]/80 transition-colors duration-300">
-                      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-2">
-                        <h3 className="text-xl font-semibold text-white mb-1 sm:mb-0">{job.title}</h3>
-                        <span className="text-sm text-[#9b87f5] whitespace-nowrap mt-1 sm:mt-0">{job.dateRange}</span>
+                    {/* Timeline card - UPDATED WITH GRADIENT BORDER EFFECT */}
+                    <div className="bg-white/5 backdrop-blur-sm border border-transparent rounded-xl p-6 ml-6 md:ml-0 relative z-10 group overflow-hidden hover:bg-white/10 hover:scale-[1.01] transition-all duration-300">
+                      {/* Gradient border overlay */}
+                      <div className="absolute inset-0 rounded-xl p-[2px] opacity-0
+                                      bg-gradient-to-r from-[#6366f1] to-[#a855f7]
+                                      group-hover:opacity-100 group-focus-within:opacity-100
+                                      transition-opacity duration-300 ease-in-out">
+                        <div className="bg-[#0B0B1E] rounded-[calc(0.75rem-2px)] w-full h-full"></div>
                       </div>
-                      <p className="text-md text-white/90 mb-1">{job.institution}</p>
-                      <p className="text-sm text-white/70 mb-3">{job.location}</p>
-                      <ul className="list-disc list-outside ml-5 text-white/80 space-y-1.5 text-sm leading-relaxed">
-                        {job.responsibilities.map((point, i) => <li key={i}>{point}</li>)}
-                      </ul>
+
+                      {/* Content wrapper */}
+                      <div className="relative z-10">
+                        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-2">
+                          <h3 className="text-xl font-semibold text-white mb-1 sm:mb-0">{job.title}</h3>
+                          <span className="text-sm text-[#9b87f5] whitespace-nowrap mt-1 sm:mt-0">{job.dateRange}</span>
+                        </div>
+                        <p className="text-md text-white/90 mb-1">{job.institution}</p>
+                        {/* LOCATION COLOR CHANGE HERE */}
+                        <p className="text-sm text-blue-300 mb-3">{job.location}</p>
+                        <ul className="list-disc list-outside ml-5 text-white/80 space-y-1.5 text-sm leading-relaxed">
+                          {job.responsibilities.map((point, i) => <li key={i}>{point}</li>)}
+                        </ul>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -178,7 +222,11 @@ const AboutMe: React.FC = () => {
             Edu<span className="text-[#9b87f5]">cation</span>
           </h2>
           <div className="relative">
-            <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-white/10 transform -translate-x-1/2 hidden md:block" style={{ zIndex: 0 }}></div>
+            {/* Main vertical line for timeline */}
+            <div
+              className="absolute left-1/2 top-0 bottom-0 w-1 bg-white/10 transform -translate-x-1/2 hidden md:block"
+              style={{ zIndex: 0 }}
+            ></div>
 
             {educationHistory.map((edu, index) => (
               <motion.div
@@ -189,21 +237,60 @@ const AboutMe: React.FC = () => {
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.6, delay: 0.1 * index }}
               >
-                <div className={`md:w-1/2 ${index % 2 === 0 ? 'md:order-2' : 'md:order-1'}`}>
-                  <div className={`relative ${index % 2 === 0 ? 'md:pl-12' : 'md:pr-12'}`}>
-                    <div className={`absolute top-2 w-4 h-4 bg-[#6366f1] rounded-full border-4 border-[#0B0B1E] hidden md:block ${index % 2 === 0 ? 'left-0 -translate-x-1/2' : 'right-0 translate-x-1/2'}`} style={{ zIndex: 2 }}></div>
-                    <div className="absolute left-0 top-2 bottom-0 ml-[0.4rem] w-0.5 bg-[#6366f1] md:hidden" style={{ height: 'calc(100% - 0.5rem)', zIndex: 1 }}></div>
-                    <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 ml-6 md:ml-0 relative z-10 hover:border-[#6366f1]/80 transition-colors duration-300">
-                      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-2">
-                        <h3 className="text-xl font-semibold text-white mb-1 sm:mb-0">{edu.degree}</h3>
-                        <span className="text-sm text-[#6366f1] whitespace-nowrap mt-1 sm:mt-0">{edu.dateRange}</span>
+                <div
+                  className={`md:w-1/2 ${
+                    index % 2 === 0 ? "md:order-2" : "md:order-1"
+                  }`}
+                >
+                  <div className={`relative ${index % 2 === 0 ? "md:pl-12" : "md:pr-12"}`}>
+                    {/* Circle marker for desktop timeline - CONSISTENT COLOR */}
+                    <div
+                      className={`absolute top-2 w-4 h-4 bg-[#9b87f5] rounded-full border-4 border-[#0B0B1E] hidden md:block ${
+                        index % 2 === 0 ? "left-0 -translate-x-1/2" : "right-0 translate-x-1/2"
+                      }`}
+                      style={{ zIndex: 2 }}
+                    ></div>
+                    {/* Vertical line for mobile timeline - CONSISTENT COLOR */}
+                    <div
+                      className="absolute left-0 top-2 bottom-0 ml-[0.4rem] w-0.5 bg-[#9b87f5] md:hidden"
+                      style={{ height: "calc(100% - 0.5rem)", zIndex: 1 }}
+                    ></div>
+                    {/* Timeline card - UPDATED WITH GRADIENT BORDER EFFECT */}
+                    <div className="bg-white/5 backdrop-blur-sm border border-transparent rounded-xl p-6 ml-6 md:ml-0 relative z-10 group overflow-hidden hover:bg-white/10 hover:scale-[1.01] transition-all duration-300">
+                      {/* Gradient border overlay */}
+                      <div className="absolute inset-0 rounded-xl p-[2px] opacity-0
+                                      bg-gradient-to-r from-[#6366f1] to-[#a855f7]
+                                      group-hover:opacity-100 group-focus-within:opacity-100
+                                      transition-opacity duration-300 ease-in-out">
+                        <div className="bg-[#0B0B1E] rounded-[calc(0.75rem-2px)] w-full h-full"></div>
                       </div>
-                      <p className="text-md text-white/90 mb-1">{edu.institution}</p>
-                      <p className="text-sm text-white/70 mb-3">{edu.location}</p>
+                      {/* Content wrapper */}
+                      <div className="relative z-10">
+                        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-2">
+                          <h3 className="text-xl font-semibold text-white mb-1 sm:mb-0">
+                            {edu.degree}
+                          </h3>
+                          {/* Date range color - CONSISTENT COLOR */}
+                          <span className="text-sm text-[#9b87f5] whitespace-nowrap mt-1 sm:mt-0">
+                            {edu.dateRange}
+                          </span>
+                        </div>
+                        <p className="text-md text-white/90 mb-1">
+                          {edu.institution}
+                        </p>
+                        {/* LOCATION COLOR CHANGE HERE */}
+                        <p className="text-sm text-blue-300 mb-3">
+                          {edu.location}
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
-                <div className={`md:w-1/2 ${index % 2 === 0 ? 'md:order-1' : 'md:order-2'}`}></div>
+                <div
+                  className={`md:w-1/2 ${
+                    index % 2 === 0 ? "md:order-1" : "md:order-2"
+                  }`}
+                ></div>
               </motion.div>
             ))}
           </div>
