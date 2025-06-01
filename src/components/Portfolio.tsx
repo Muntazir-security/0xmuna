@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -109,6 +109,23 @@ const Portfolio: React.FC = () => {
   const [activeSubSection, setActiveSubSection] = useState('projects');
   const [selectedCertImage, setSelectedCertImage] = useState<string | null>(null);
   const [showAllProjects, setShowAllProjects] = useState(false);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
+
+  // Preload certificate images
+  useEffect(() => {
+    const imagePromises = certificationsData.map((cert) => {
+      return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.onload = resolve;
+        img.onerror = reject;
+        img.src = cert.imageSrc;
+      });
+    });
+
+    Promise.all(imagePromises)
+      .then(() => setImagesLoaded(true))
+      .catch(() => setImagesLoaded(true)); // Still set to true even if some fail
+  }, []);
 
   const projectsInput: ProjectInputData[] = [
     {
@@ -342,7 +359,13 @@ const Portfolio: React.FC = () => {
 
         {activeSubSection === 'certifications' && (
           <div className="pt-4 pb-8">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {!imagesLoaded && (
+              <div className="flex justify-center items-center py-12">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#9b87f5]"></div>
+                <span className="ml-3 text-white/70">Loading certificates...</span>
+              </div>
+            )}
+            <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 transition-opacity duration-500 ${imagesLoaded ? 'opacity-100' : 'opacity-0'}`}>
               {currentCertificationsData.map((cert, index) => (
                 <motion.div
                   key={cert.id}
@@ -358,6 +381,7 @@ const Portfolio: React.FC = () => {
                         src={cert.imageSrc} 
                         alt={`${cert.title} Certificate`}
                         className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300 p-2 md:p-4 bg-black/10"
+                        loading="eager"
                       />
                     </div>
                     <CardContent className="p-5 flex flex-col flex-grow">

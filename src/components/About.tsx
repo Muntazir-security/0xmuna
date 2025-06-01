@@ -67,10 +67,10 @@ const AboutMe: React.FC = () => {
   return (
     <section id="about" className="py-24 md:py-32 relative">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="flex flex-col lg:flex-row gap-12 md:gap-16">
-          <div className="lg:w-2/5 flex justify-center lg:justify-start">
+        <div className="flex flex-col lg:flex-row gap-12 md:gap-16 items-start">
+          <div className="lg:w-2/5 flex justify-center lg:justify-start lg:sticky lg:top-24">
             <motion.div 
-              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-full p-1 relative overflow-hidden hover:border-[#9b87f5] hover:shadow-2xl hover:shadow-[#9b87f5]/50 transition-all duration-300 ease-out w-64 h-64"
+              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-full p-1 relative overflow-hidden hover:border-[#9b87f5] hover:shadow-2xl hover:shadow-[#9b87f5]/50 transition-all duration-300 ease-out w-48 h-48 md:w-56 md:h-56 lg:w-64 lg:h-64"
               whileHover={{ scale: 1.03 }}
               transition={{ type: "spring", stiffness: 400, damping: 15 }}
               data-aos="fade-up"
@@ -92,20 +92,20 @@ const AboutMe: React.FC = () => {
             <h2 
               className="text-3xl md:text-4xl font-bold text-white mb-4"
               data-aos="fade-up" 
-              data-aos-delay="400"
+              data-aos-delay="100"
             >
               About <span className="text-[#9b87f5]">Me</span>
             </h2>
             <div 
               className="w-16 h-1.5 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-full mb-6"
               data-aos="fade-up" 
-              data-aos-delay="500"
+              data-aos-delay="200"
             ></div>
             
             <p 
               className="text-white/80 text-lg mb-8 leading-relaxed text-justify" 
               data-aos="fade-up" 
-              data-aos-delay="600"
+              data-aos-delay="300"
             >
               A Cybersecurity Engineer with a passion for securing digital environments. I hold a degree in Computer Science, specializing in Cybersecurity, from Asia Pacific University of Technology & Innovation. With hands-on experience in SOC analysis, vulnerability assessment, and penetration testing, I've developed a strong foundation in identifying and mitigating security risks. My expertise in SIEM implementation, threat detection, and security documentation is further strengthened by industry certifications, including eJPT and ICCA. I blend technical expertise with analytical thinking to build robust security solutions, always staying ahead of emerging threats to protect critical infrastructure.
             </p>
@@ -113,7 +113,7 @@ const AboutMe: React.FC = () => {
             <div 
               className="mt-8 text-center md:text-left" 
               data-aos="fade-up" 
-              data-aos-delay="700"
+              data-aos-delay="400"
             >
               <Button 
                 asChild 
@@ -123,9 +123,10 @@ const AboutMe: React.FC = () => {
                 <a 
                   href="/assets/documents/Syed_Muntazir_Mehd_CV.pdf" 
                   download="Syed_Muntazir_Mehdi_CV.pdf" 
+                  className="flex items-center space-x-2"
                 >
-                  <Download className="w-5 h-5 mr-2 opacity-80 group-hover:opacity-100 transition-opacity" />
                   <span>Download CV</span>
+                  <Download className="w-5 h-5 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300" />
                 </a>
               </Button>
             </div>

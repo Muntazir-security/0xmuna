@@ -83,9 +83,9 @@ const Hero: React.FC = () => {
               size="lg"
               className="group bg-gradient-to-r from-[#6366f1] to-[#9b87f5] text-white border-none px-6 py-3 rounded-lg shadow-md hover:shadow-xl hover:shadow-[#6366f1]/40 hover:scale-[1.05] transform transition-all duration-300 ease-in-out flex items-center justify-center space-x-2 font-inter"
             >
-              <a href="#portfolio">
+              <a href="#portfolio" className="flex items-center space-x-2">
                 <span>View My Work</span>
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300 ease-in-out" />
+                <ArrowRight className="w-5 h-5 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300 ease-in-out" />
               </a>
             </Button>
             <Button
