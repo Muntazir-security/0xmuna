@@ -1,6 +1,5 @@
+
 import React from "react";
-// Badge import will be removed if no longer used after this change
-// import { Badge } from "@/components/ui/badge"; 
 import { motion } from "framer-motion";
 import { Download } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -65,21 +64,21 @@ const educationHistory = [
 ];
 
 const AboutMe: React.FC = () => {
-  // const skills = [...] array will be removed
-
   return (
     <section id="about" className="py-24 md:py-32 relative">
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex flex-col lg:flex-row gap-12 md:gap-16">
-          <div className="lg:w-2/5">
+          <div className="lg:w-2/5 flex justify-center lg:justify-start">
             <motion.div 
-              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-1 relative overflow-hidden hover:border-[#9b87f5] hover:shadow-2xl hover:shadow-[#9b87f5]/50 transition-all duration-300 ease-out"
-              whileHover={{ scale: 1.03, rotate: 0.5 }}
+              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-full p-1 relative overflow-hidden hover:border-[#9b87f5] hover:shadow-2xl hover:shadow-[#9b87f5]/50 transition-all duration-300 ease-out w-64 h-64"
+              whileHover={{ scale: 1.03 }}
               transition={{ type: "spring", stiffness: 400, damping: 15 }}
+              data-aos="fade-up"
+              data-aos-delay="300"
             >
               <div className="absolute -top-20 -left-20 w-40 h-40 bg-[#6366f1]/20 rounded-full blur-2xl"></div>
               <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-[#a855f7]/20 rounded-full blur-2xl"></div>
-              <div className="aspect-square rounded-xl overflow-hidden relative z-10">
+              <div className="w-full h-full rounded-full overflow-hidden relative z-10">
                 <img 
                   src="/assets/images/profile.png" 
                   alt="Muntazir Mehdi - Profile Picture" 
@@ -90,16 +89,32 @@ const AboutMe: React.FC = () => {
           </div>
           
           <div className="lg:w-3/5">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            <h2 
+              className="text-3xl md:text-4xl font-bold text-white mb-4"
+              data-aos="fade-up" 
+              data-aos-delay="400"
+            >
               About <span className="text-[#9b87f5]">Me</span>
             </h2>
-            <div className="w-16 h-1.5 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-full mb-6"></div>
+            <div 
+              className="w-16 h-1.5 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-full mb-6"
+              data-aos="fade-up" 
+              data-aos-delay="500"
+            ></div>
             
-            <p className="text-white/80 text-lg mb-8 leading-relaxed text-justify" data-aos="fade-up" data-aos-delay="800">
+            <p 
+              className="text-white/80 text-lg mb-8 leading-relaxed text-justify" 
+              data-aos="fade-up" 
+              data-aos-delay="600"
+            >
               A Cybersecurity Engineer with a passion for securing digital environments. I hold a degree in Computer Science, specializing in Cybersecurity, from Asia Pacific University of Technology & Innovation. With hands-on experience in SOC analysis, vulnerability assessment, and penetration testing, I've developed a strong foundation in identifying and mitigating security risks. My expertise in SIEM implementation, threat detection, and security documentation is further strengthened by industry certifications, including eJPT and ICCA. I blend technical expertise with analytical thinking to build robust security solutions, always staying ahead of emerging threats to protect critical infrastructure.
             </p>
             
-            <div className="mt-8 text-center md:text-left" data-aos="fade-up" data-aos-delay="900">
+            <div 
+              className="mt-8 text-center md:text-left" 
+              data-aos="fade-up" 
+              data-aos-delay="700"
+            >
               <Button 
                 asChild 
                 size="lg" 

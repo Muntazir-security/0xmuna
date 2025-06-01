@@ -51,9 +51,9 @@ const Hero: React.FC = () => {
           <div 
             data-aos="fade-up" 
             data-aos-delay="700" 
-            className="my-6 md:my-8"
+            className="my-6 md:my-8 max-w-2xl"
           >
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div className="flex items-center justify-center space-x-2 bg-gradient-to-r from-white/10 to-white/5 backdrop-blur-sm border border-white/20 px-4 py-3 rounded-xl hover:from-[#6366f1]/20 hover:to-[#9b87f5]/20 hover:border-[#9b87f5]/40 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#9b87f5]/25" data-aos="fade-up" data-aos-delay="800">
                 <ShieldCheck className="w-5 h-5 text-[#9b87f5]" />
                 <span className="text-white/90 text-sm font-medium font-inter">SOC Analyst</span>
