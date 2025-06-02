@@ -1,6 +1,5 @@
-
 import React, { useEffect } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowLeft, ExternalLink, Github } from 'lucide-react';
@@ -157,7 +156,15 @@ const ProjectDetail: React.FC = () => {
           <Button 
             variant="outline" 
             className="border-white/20 text-white hover:bg-white/10"
-            onClick={() => navigate('/#portfolio')}
+            onClick={() => {
+              navigate('/');
+              setTimeout(() => {
+                const portfolioElement = document.getElementById('portfolio');
+                if (portfolioElement) {
+                  portfolioElement.scrollIntoView({ behavior: 'smooth' });
+                }
+              }, 100);
+            }}
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Portfolio
@@ -170,7 +177,13 @@ const ProjectDetail: React.FC = () => {
   const IconComponent = iconMap[project.iconName] || Briefcase;
 
   const handleBackToPortfolio = () => {
-    navigate('/#portfolio');
+    navigate('/');
+    setTimeout(() => {
+      const portfolioElement = document.getElementById('portfolio');
+      if (portfolioElement) {
+        portfolioElement.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
   };
 
   return (
