@@ -1,3 +1,4 @@
+
 import React, { memo } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -7,13 +8,8 @@ import {
   ScanSearch,
   Fingerprint,
   AlertOctagon,
-  Sparkle, // <--- Sparkle is imported now
+  Sparkle,
 } from "lucide-react";
-
-// You will likely integrate Lottie Player here if you decide to use it.
-// import { Player } from "@lottiefiles/react-lottie-player";
-// const CYBERSECURITY_LOTTIE_URL = "https://lottie.host/YOUR_LOTTIE_JSON_URL_HERE";
-
 
 type Skill = {
   icon: React.ElementType;
@@ -27,7 +23,6 @@ const skills: Skill[] = [
   { icon: AlertOctagon, name: "Incident Response" },
 ];
 
-// --- Status Badge component copied from your previous code ---
 const StatusBadge = memo(() => (
   <div className="inline-block animate-float lg:mx-0" data-aos="zoom-in" data-aos-delay="400">
     <div className="relative group">
@@ -43,22 +38,16 @@ const StatusBadge = memo(() => (
 ));
 StatusBadge.displayName = 'StatusBadge';
 
-
-// Main Title component (remains as per last agreed-upon version)
 const MainTitle = memo(() => (
-  <div className="space-y-2" data-aos="fade-up" data-aos-delay="600"> {/* Delay adjusted */}
+  <div className="space-y-2" data-aos="fade-up" data-aos-delay="600">
     <h1 className="text-5xl sm:text-6xl md:text-6xl lg:text-6xl xl:text-7xl font-bold tracking-tight">
       <span className="relative inline-block">
-        {/* Glow effect for Muntazir */}
-        <span className="absolute -inset-2 bg-gradient-to-r from-[#6366f1] to-[#a855f7] blur-2xl opacity-20"></span>
         <span className="relative bg-gradient-to-r from-[#6366f1] to-[#a855f7] bg-clip-text text-transparent">
           Muntazir
         </span>
       </span>
       <br />
       <span className="relative inline-block mt-2">
-        {/* Glow effect for Mehdi */}
-        <span className="absolute -inset-2 bg-gradient-to-r from-[#6366f1] to-[#a855f7] blur-2xl opacity-20"></span>
         <span className="relative bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent">
           Mehdi
         </span>
@@ -71,24 +60,20 @@ MainTitle.displayName = "MainTitle";
 const Hero: React.FC = () => {
   return (
     <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Container for main content, positioned above any background animations */}
       <div className="container mx-auto px-4 md:px-6 py-24 md:py-32 relative z-10">
         <div className="max-w-3xl mx-auto md:mx-0">
-          {/* Status Badge - Now correctly rendered here */}
-          <div className="mb-4"> {/* Added a div for spacing */}
+          <div className="mb-4">
             <StatusBadge />
           </div>
 
-          {/* Main Title (Muntazir Mehdi) */}
           <div className="mb-8">
             <MainTitle />
           </div>
 
-          {/* About Me Paragraph */}
           <p
-            className="text-xl md:text-2xl text-white/80 mb-8 max-w-2xl leading-relaxed text-left font-inter"
+            className="text-xl md:text-2xl text-white/80 mb-8 max-w-2xl leading-relaxed text-left"
             data-aos="fade-up"
-            data-aos-delay="800" // Delay adjusted
+            data-aos-delay="800"
           >
             Hi, I'm a Cybersecurity Engineer with hands-on experience in SOC
             analysis, vulnerability assessment, and penetration testing. I
@@ -97,7 +82,6 @@ const Hero: React.FC = () => {
             threats.
           </p>
 
-          {/* Skill Cards Grid (remains as per last agreed-upon version) */}
           <div className="my-6 md:my-8 max-w-2xl">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4">
               {skills.map((skill, index) => (
@@ -108,10 +92,9 @@ const Hero: React.FC = () => {
                              transition-all duration-300 ease-in-out
                              hover:bg-transparent hover:border-transparent
                              focus-within:border-transparent`}
-                  data-aos="fade-up" // AOS for skill cards
-                  data-aos-delay={900 + index * 100} // Staggered delay for each card
+                  data-aos="fade-up"
+                  data-aos-delay={900 + index * 100}
                 >
-                  {/* Gradient border on hover/focus-within */}
                   <div className="absolute inset-0 rounded-lg p-[2px] opacity-0
                                   bg-gradient-to-r from-[#6366f1] to-[#a855f7]
                                   group-hover:opacity-100 group-focus-within:opacity-100
@@ -121,7 +104,7 @@ const Hero: React.FC = () => {
 
                   <div className="relative z-10 flex items-center space-x-3 w-full">
                     <skill.icon className="w-6 h-6 text-[#9b87f5] group-hover:text-purple-300 transition-colors duration-300" />
-                    <span className="text-white text-base font-medium font-inter">
+                    <span className="text-white text-base font-medium">
                       {skill.name}
                     </span>
                   </div>
@@ -130,13 +113,11 @@ const Hero: React.FC = () => {
             </div>
           </div>
 
-          {/* Call to Action Buttons (remains as per last agreed-upon version) */}
           <div
             className="flex flex-col sm:flex-row gap-4"
             data-aos="fade-up"
-            data-aos-delay="1400" // Delay adjusted
+            data-aos-delay="1400"
           >
-            {/* Primary Button: View My Work */}
             <Button
               asChild
               size="lg"
@@ -145,14 +126,14 @@ const Hero: React.FC = () => {
                          border-none px-6 py-3 rounded-lg
                          shadow-md hover:shadow-xl hover:shadow-[#6366f1]/40
                          transform transition-all duration-300 ease-in-out
-                         flex items-center justify-center font-inter
+                         flex items-center justify-center
                          focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#9b87f5] focus-visible:ring-offset-background"
             >
               <a
                 href="#portfolio"
-                className="flex items-center justify-center relative z-10 py-1"
+                className="flex items-center justify-center relative z-10 py-1 transition-all duration-300 group-hover:w-auto w-[140px]"
               >
-                <span className="transition-all duration-300 group-hover:pr-2">
+                <span className="transition-all duration-300">
                   View My Work
                 </span>
                 <ArrowRight
@@ -164,7 +145,6 @@ const Hero: React.FC = () => {
               </a>
             </Button>
 
-            {/* Secondary Button: Contact Me */}
             <Button
               asChild
               variant="outline"
@@ -175,7 +155,7 @@ const Hero: React.FC = () => {
                          px-6 py-3 rounded-lg shadow-md
                          hover:shadow-xl hover:shadow-[#9b87f5]/30
                          transform transition-all duration-300 ease-in-out
-                         flex items-center justify-center font-inter
+                         flex items-center justify-center
                          focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#9b87f5] focus-visible:ring-offset-background"
             >
               <a
@@ -191,27 +171,10 @@ const Hero: React.FC = () => {
         </div>
       </div>
 
-      {/* Placeholder for Lottie Animation on the right (Uncomment and configure when ready) */}
-      {/* <div className="absolute top-1/2 right-0 transform -translate-y-1/2 translate-x-1/4
-                      w-[min(600px,80vw)] h-[min(600px,80vw)]
-                      lg:w-[700px] lg:h-[700px] xl:w-[800px] xl:h-[800px]
-                      pointer-events-none z-0"
-                      data-aos="fade-in" // AOS for the Lottie animation
-                      data-aos-delay="1800" // Delayed reveal
-                      data-aos-duration="1000">
-        <Player
-          autoplay
-          loop
-          src={CYBERSECURITY_LOTTIE_URL}
-          className="w-full h-full"
-        />
-      </div> */}
-
-      {/* Scroll indicator */}
       <div
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
         data-aos="fade-up"
-        data-aos-delay="2000" // Delay adjusted to appear last
+        data-aos-delay="2000"
       >
         <a
           href="#about"

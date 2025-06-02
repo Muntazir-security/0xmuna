@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -249,23 +248,49 @@ const Portfolio: React.FC = () => {
           </p>
         </div>
 
-        <div className="flex justify-center space-x-3 md:space-x-4 mb-16">
-          {subNavItems.map((item) => (
-            <Button
-              key={item.id}
-              variant={activeSubSection === item.id ? 'default' : 'outline'}
-              onClick={() => setActiveSubSection(item.id)}
-              className={`
-                px-4 py-2 md:px-6 md:py-2.5 rounded-lg text-sm md:text-base font-medium transition-all duration-300 ease-in-out
-                ${activeSubSection === item.id
-                  ? 'bg-gradient-to-r from-[#6366f1] to-[#9b87f5] text-white border-none shadow-lg shadow-[#9b87f5]/30'
-                  : 'bg-transparent text-white/60 border-white/20 hover:bg-white/5 hover:text-white hover:border-[#9b87f5]/50'
-                }
-              `}
-            >
-              {item.label}
-            </Button>
-          ))}
+        {/* Modern Navigation Tabs */}
+        <div className="flex justify-center mb-16">
+          <div className="relative bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-2">
+            <div className="flex space-x-2">
+              {subNavItems.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => setActiveSubSection(item.id)}
+                  className={`
+                    relative px-6 py-3 rounded-xl text-sm font-medium transition-all duration-300 ease-in-out
+                    ${activeSubSection === item.id
+                      ? 'text-white'
+                      : 'text-white/60 hover:text-white/80'
+                    }
+                  `}
+                >
+                  {/* Active indicator */}
+                  {activeSubSection === item.id && (
+                    <motion.div
+                      layoutId="activeTab"
+                      className="absolute inset-0 bg-gradient-to-r from-[#6366f1] to-[#9b87f5] rounded-xl"
+                      initial={false}
+                      transition={{
+                        type: "spring",
+                        stiffness: 500,
+                        damping: 30
+                      }}
+                    />
+                  )}
+                  
+                  {/* Tab label */}
+                  <span className="relative z-10">
+                    {item.label}
+                  </span>
+                  
+                  {/* Hover effect for inactive tabs */}
+                  {activeSubSection !== item.id && (
+                    <div className="absolute inset-0 bg-white/5 rounded-xl opacity-0 hover:opacity-100 transition-opacity duration-300" />
+                  )}
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
 
         {activeSubSection === 'projects' && (
@@ -326,8 +351,8 @@ const Portfolio: React.FC = () => {
                     scale: 1,
                     y: 0,
                     transition: {
-                      duration: 0.4,
-                      delay: index * 0.02,
+                      duration: 0.3,
+                      delay: index * 0.01,
                       ease: [0.23, 1, 0.32, 1]
                     }
                   } : {}}
