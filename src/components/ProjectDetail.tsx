@@ -1,6 +1,6 @@
 
-import React from 'react';
-import { useParams, Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowLeft, ExternalLink, Github } from 'lucide-react';
@@ -25,6 +25,12 @@ interface Project {
 
 const ProjectDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
+  
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   
   const iconMap: { [key: string]: React.ElementType } = {
     Shield, Building2, GraduationCap, DatabaseIcon, ShoppingCart, CheckSquare, Car, Home, Briefcase
@@ -148,12 +154,14 @@ const ProjectDetail: React.FC = () => {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold text-white mb-4">Project Not Found</h1>
-          <Link to="/#portfolio">
-            <Button variant="outline" className="border-white/20 text-white hover:bg-white/10">
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Portfolio
-            </Button>
-          </Link>
+          <Button 
+            variant="outline" 
+            className="border-white/20 text-white hover:bg-white/10"
+            onClick={() => navigate('/#portfolio')}
+          >
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Back to Portfolio
+          </Button>
         </div>
       </div>
     );
@@ -161,17 +169,23 @@ const ProjectDetail: React.FC = () => {
 
   const IconComponent = iconMap[project.iconName] || Briefcase;
 
+  const handleBackToPortfolio = () => {
+    navigate('/#portfolio');
+  };
+
   return (
     <div className="min-h-screen py-20">
       <div className="container mx-auto px-4 md:px-6">
         {/* Header */}
         <div className="mb-8">
-          <Link to="/#portfolio">
-            <Button variant="outline" className="border-white/20 text-white hover:bg-white/10 mb-6">
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Portfolio
-            </Button>
-          </Link>
+          <Button 
+            variant="outline" 
+            className="border-white/20 text-white hover:bg-white/10 mb-6"
+            onClick={handleBackToPortfolio}
+          >
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Back to Portfolio
+          </Button>
           
           <div className="flex items-center gap-6 mb-6">
             <div className="w-20 h-20 bg-gradient-to-br from-[#6366f1]/20 to-[#a855f7]/20 rounded-2xl flex items-center justify-center border border-white/10">

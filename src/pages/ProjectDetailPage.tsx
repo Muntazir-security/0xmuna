@@ -1,10 +1,15 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import PageBackground from '@/components/PageBackground';
 import Navbar from '@/components/Navbar';
 import ProjectDetail from '@/components/ProjectDetail';
 
 const ProjectDetailPage: React.FC = () => {
+  // Ensure page starts at top
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="min-h-screen relative overflow-x-hidden font-inter">
       <PageBackground />
