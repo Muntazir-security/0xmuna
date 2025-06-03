@@ -1,9 +1,9 @@
-
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import { motion } from "framer-motion";
 
 const socialLinksData = [
   {
@@ -11,21 +11,24 @@ const socialLinksData = [
     url: "https://github.com/Muntazir-security",
     icon: null,
     logoSrc: "/assets/images/github.svg",
-    hoverColor: "hover:bg-gray-700",
+    hoverColor: "hover:shadow-[0_0_30px_rgba(88,166,255,0.4)]",
+    description: "View my projects"
   },
   {
     name: "LinkedIn",
     url: "https://www.linkedin.com/in/muntaz1r9/",
     icon: null,
     logoSrc: "/assets/images/linkedin.svg",
-    hoverColor: "hover:bg-blue-600",
+    hoverColor: "hover:shadow-[0_0_30px_rgba(10,102,194,0.4)]",
+    description: "Connect with me"
   },
   {
     name: "X",
     url: "https://x.com/muntaz1r9",
     icon: null,
     logoSrc: "/assets/images/X.svg",
-    hoverColor: "hover:bg-gray-800",
+    hoverColor: "hover:shadow-[0_0_30px_rgba(255,255,255,0.3)]",
+    description: "Follow my updates"
   },
 ];
 
@@ -165,35 +168,80 @@ const Contact: React.FC = () => {
           </div>
         </div>
         
-        <div className="mt-20 text-center">
-          <p className="text-white/60 mb-6 text-lg">Connect with me</p>
-          <div className="flex justify-center space-x-6">
-            {socialLinksData.map((platform) => (
-              <a 
+        {/* Enhanced Social Links Section */}
+        <div className="mt-24">
+          <div className="text-center mb-12">
+            <h3 className="text-2xl font-bold text-white mb-4">Let's Connect</h3>
+            <p className="text-white/60 text-lg">Follow me on social media for updates and insights</p>
+          </div>
+          
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-8">
+            {socialLinksData.map((platform, index) => (
+              <motion.a 
                 key={platform.name} 
                 href={platform.url} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                aria-label={platform.name}
-                className={`group relative bg-white/5 backdrop-blur-md border border-white/20 p-4 rounded-2xl transition-all duration-300 ease-in-out hover:scale-110 hover:border-white/40 ${platform.hoverColor} focus-visible:ring-2 focus-visible:ring-[#9b87f5] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0B1E] outline-none hover:shadow-xl hover:shadow-black/20`}
+                className={`group relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md border border-white/20 rounded-2xl p-6 transition-all duration-500 ease-out hover:scale-105 hover:border-white/40 focus-visible:ring-2 focus-visible:ring-[#9b87f5] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0B1E] outline-none ${platform.hoverColor}`}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.2, duration: 0.6 }}
+                whileHover={{ y: -8 }}
+                whileTap={{ scale: 0.95 }}
               >
-                <div className="relative overflow-hidden">
-                  <img 
-                    src={platform.logoSrc} 
-                    alt={`${platform.name} logo`} 
-                    className="w-6 h-6 object-contain transition-all duration-300 group-hover:scale-110" 
-                  />
+                {/* Background glow effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1]/20 to-[#a855f7]/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"></div>
+                
+                {/* Content */}
+                <div className="relative z-10 flex flex-col items-center text-center space-y-4">
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-white/20 rounded-xl blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="relative bg-white/10 p-4 rounded-xl group-hover:bg-white/20 transition-colors duration-300">
+                      <img 
+                        src={platform.logoSrc} 
+                        alt={`${platform.name} logo`} 
+                        className="w-8 h-8 object-contain transition-transform duration-300 group-hover:scale-110" 
+                      />
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <h4 className="text-white font-semibold text-lg mb-1 group-hover:text-white transition-colors">
+                      {platform.name}
+                    </h4>
+                    <p className="text-white/60 text-sm group-hover:text-white/80 transition-colors">
+                      {platform.description}
+                    </p>
+                  </div>
                 </div>
-                <span 
-                  className="absolute -top-12 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-gray-900/90 backdrop-blur-sm text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none shadow-lg border border-white/10"
-                >
-                  {platform.name}
-                </span>
-              </a>
+                
+                {/* Animated border */}
+                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" 
+                     style={{
+                       background: 'linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%)',
+                       backgroundSize: '200% 200%',
+                       animation: 'shimmer 2s infinite'
+                     }}>
+                </div>
+              </motion.a>
             ))}
+          </div>
+          
+          {/* Additional contact info */}
+          <div className="text-center mt-12 p-6 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl max-w-md mx-auto">
+            <p className="text-white/80 text-sm">
+              <span className="text-[#9b87f5] font-medium">Email:</span> info@muntazirmehdi.com
+            </p>
           </div>
         </div>
       </div>
+      
+      <style jsx>{`
+        @keyframes shimmer {
+          0% { background-position: -200% -200%; }
+          100% { background-position: 200% 200%; }
+        }
+      `}</style>
     </section>
   );
 };
