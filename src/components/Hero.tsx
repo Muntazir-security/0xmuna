@@ -1,6 +1,7 @@
 
 import React, { memo } from "react";
 import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
 import {
   ArrowRight,
   Mail,
@@ -77,7 +78,7 @@ const Hero: React.FC = () => {
           >
             Hi, I'm a Cybersecurity Engineer with hands-on experience in SOC
             analysis, vulnerability assessment, and penetration testing. I
-            specialialize in identifying vulnerabilities and crafting robust
+            specialize in identifying vulnerabilities and crafting robust
             defense strategies to protect digital environments from emerging
             threats.
           </p>
