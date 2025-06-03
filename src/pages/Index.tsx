@@ -8,6 +8,7 @@ import Hero from "@/components/Hero";
 import AboutMe from "@/components/About";
 import Portfolio from "@/components/Portfolio";
 import Contact from "@/components/Contact";
+import { Toaster } from "@/components/ui/toaster";
 
 const Index: React.FC = () => {
   useEffect(() => {
@@ -41,6 +42,9 @@ const Index: React.FC = () => {
           <p>© 2024 Muntazir Mehdi. All rights reserved.</p>
         </div>
       </footer>
+      
+      {/* Toast notifications */}
+      <Toaster />
     </div>
   );
 };

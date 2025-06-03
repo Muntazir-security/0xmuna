@@ -1,7 +1,9 @@
-import React from "react";
+
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/hooks/use-toast";
 
 const socialLinksData = [
   {
@@ -28,6 +30,61 @@ const socialLinksData = [
 ];
 
 const Contact: React.FC = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { id, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [id]: value
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      // Simulate email sending (replace with actual implementation)
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      // For now, we'll show a success message
+      // In a real implementation, you would send this to your backend
+      console.log('Form submitted:', {
+        ...formData,
+        to: 'info@muntazirmehdi.com'
+      });
+
+      toast({
+        title: "Message Sent Successfully!",
+        description: "Thank you for your message. I'll get back to you soon.",
+      });
+
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <section id="contact" className="py-24 md:py-32 relative">
       <div className="container mx-auto px-4 md:px-6">
@@ -46,13 +103,16 @@ const Contact: React.FC = () => {
             <div className="absolute -top-20 -left-20 w-40 h-40 bg-[#6366f1]/20 rounded-full blur-3xl"></div>
             <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-[#a855f7]/20 rounded-full blur-3xl"></div>
             
-            <form className="relative z-10 space-y-6">
+            <form onSubmit={handleSubmit} className="relative z-10 space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label htmlFor="name" className="text-white/90 text-sm">Name</label>
                   <Input 
                     id="name" 
+                    value={formData.name}
+                    onChange={handleInputChange}
                     placeholder="Your name" 
+                    required
                     className="bg-white/10 border-white/10 text-white placeholder:text-white/50 focus-visible:ring-[#9b87f5]" 
                   />
                 </div>
@@ -61,7 +121,10 @@ const Contact: React.FC = () => {
                   <Input 
                     id="email" 
                     type="email" 
+                    value={formData.email}
+                    onChange={handleInputChange}
                     placeholder="Your email" 
+                    required
                     className="bg-white/10 border-white/10 text-white placeholder:text-white/50 focus-visible:ring-[#9b87f5]" 
                   />
                 </div>
@@ -71,7 +134,10 @@ const Contact: React.FC = () => {
                 <label htmlFor="subject" className="text-white/90 text-sm">Subject</label>
                 <Input 
                   id="subject" 
+                  value={formData.subject}
+                  onChange={handleInputChange}
                   placeholder="Subject" 
+                  required
                   className="bg-white/10 border-white/10 text-white placeholder:text-white/50 focus-visible:ring-[#9b87f5]" 
                 />
               </div>
@@ -80,16 +146,20 @@ const Contact: React.FC = () => {
                 <label htmlFor="message" className="text-white/90 text-sm">Message</label>
                 <Textarea 
                   id="message" 
+                  value={formData.message}
+                  onChange={handleInputChange}
                   placeholder="Your message" 
+                  required
                   className="bg-white/10 border-white/10 text-white placeholder:text-white/50 min-h-32 focus-visible:ring-[#9b87f5]" 
                 />
               </div>
               
               <Button 
                 type="submit" 
-                className="w-full bg-gradient-to-r from-[#6366f1] to-[#a855f7] hover:opacity-90 transition-opacity text-white border-none"
+                disabled={isSubmitting}
+                className="w-full bg-gradient-to-r from-[#6366f1] to-[#a855f7] hover:opacity-90 transition-opacity text-white border-none disabled:opacity-50"
               >
-                Send Message
+                {isSubmitting ? "Sending..." : "Send Message"}
               </Button>
             </form>
           </div>
