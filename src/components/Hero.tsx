@@ -26,10 +26,10 @@ const skills: Skill[] = [
 const StatusBadge = memo(() => (
   <div className="inline-block animate-float lg:mx-0" data-aos="zoom-in" data-aos-delay="400">
     <div className="relative group">
-      <div className="absolute -inset-0.5 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-full blur opacity-30 group-hover:opacity-50 transition duration-1000"></div>
-      <div className="relative px-3 sm:px-4 py-2 rounded-full bg-black/40 backdrop-blur-xl border border-white/10">
-        <span className="bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-transparent bg-clip-text sm:text-sm text-[0.7rem] font-medium flex items-center">
-          <Sparkle className="sm:w-4 sm:h-4 w-3 h-3 mr-2 text-blue-400" />
+      <div className="absolute -inset-1 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-full blur-lg opacity-40 group-hover:opacity-60 transition duration-1000"></div>
+      <div className="relative px-4 sm:px-6 py-3 rounded-full bg-black/50 backdrop-blur-xl border border-white/20 shadow-xl">
+        <span className="bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-transparent bg-clip-text sm:text-sm text-xs font-semibold flex items-center">
+          <Sparkle className="sm:w-4 sm:h-4 w-3 h-3 mr-2 text-blue-400 animate-pulse" />
           Safeguarding Digital Futures
         </span>
       </div>
@@ -39,7 +39,7 @@ const StatusBadge = memo(() => (
 StatusBadge.displayName = 'StatusBadge';
 
 const MainTitle = memo(() => (
-  <div className="space-y-2" data-aos="fade-up" data-aos-delay="600">
+  <div className="space-y-3" data-aos="fade-up" data-aos-delay="600">
     <h1 className="text-5xl sm:text-6xl md:text-6xl lg:text-6xl xl:text-7xl font-bold tracking-tight">
       <span className="relative inline-block">
         <span className="relative bg-gradient-to-r from-[#6366f1] to-[#a855f7] bg-clip-text text-transparent">
@@ -62,7 +62,7 @@ const Hero: React.FC = () => {
     <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
       <div className="container mx-auto px-4 md:px-6 py-24 md:py-32 relative z-10">
         <div className="max-w-3xl mx-auto md:mx-0">
-          <div className="mb-4">
+          <div className="mb-6">
             <StatusBadge />
           </div>
 
@@ -71,7 +71,7 @@ const Hero: React.FC = () => {
           </div>
 
           <p
-            className="text-xl md:text-2xl text-white/80 mb-8 max-w-2xl leading-relaxed text-left"
+            className="text-xl md:text-2xl text-white/80 mb-10 max-w-2xl leading-relaxed text-left"
             data-aos="fade-up"
             data-aos-delay="800"
           >
@@ -82,33 +82,41 @@ const Hero: React.FC = () => {
             threats.
           </p>
 
-          <div className="my-6 md:my-8 max-w-2xl">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4">
+          {/* Enhanced Skill Badges */}
+          <div className="my-8 md:my-12 max-w-2xl">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {skills.map((skill, index) => (
-                <div
+                <motion.div
                   key={skill.name}
-                  className={`flex items-center space-x-3 p-4 rounded-lg bg-transparent border border-white/10
-                             relative group overflow-hidden cursor-pointer
-                             transition-all duration-300 ease-in-out
-                             hover:bg-transparent hover:border-transparent
-                             focus-within:border-transparent`}
+                  className="group relative overflow-hidden cursor-pointer"
                   data-aos="fade-up"
                   data-aos-delay={900 + index * 100}
+                  whileHover={{ scale: 1.02, y: -2 }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
                 >
-                  <div className="absolute inset-0 rounded-lg p-[2px] opacity-0
-                                  bg-gradient-to-r from-[#6366f1] to-[#a855f7]
-                                  group-hover:opacity-100 group-focus-within:opacity-100
-                                  transition-opacity duration-300 ease-in-out">
-                    <div className="bg-slate-900 rounded-[calc(0.5rem-2px)] w-full h-full"></div>
+                  {/* Animated gradient border */}
+                  <div className="absolute -inset-0.5 bg-gradient-to-r from-[#6366f1] via-[#8b5cf6] to-[#a855f7] rounded-2xl blur-sm opacity-0 group-hover:opacity-100 transition-all duration-500 animate-pulse"></div>
+                  
+                  {/* Main content */}
+                  <div className="relative bg-gradient-to-br from-slate-900/80 to-slate-800/60 backdrop-blur-md border border-white/10 rounded-2xl p-5 transition-all duration-300 group-hover:border-white/30 group-hover:shadow-2xl group-hover:shadow-[#6366f1]/20">
+                    {/* Background glow effect */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#6366f1]/5 to-[#a855f7]/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    
+                    {/* Icon and text */}
+                    <div className="relative z-10 flex items-center space-x-4">
+                      <div className="p-3 rounded-xl bg-gradient-to-br from-[#6366f1]/20 to-[#a855f7]/20 group-hover:from-[#6366f1]/30 group-hover:to-[#a855f7]/30 transition-all duration-300">
+                        <skill.icon className="w-6 h-6 text-[#9b87f5] group-hover:text-purple-300 transition-colors duration-300" />
+                      </div>
+                      <span className="text-white text-base font-semibold group-hover:text-white transition-colors duration-300">
+                        {skill.name}
+                      </span>
+                    </div>
+                    
+                    {/* Floating particles effect */}
+                    <div className="absolute top-2 right-2 w-2 h-2 bg-[#6366f1]/40 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-ping"></div>
+                    <div className="absolute bottom-3 right-4 w-1.5 h-1.5 bg-[#a855f7]/40 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 animate-ping" style={{ animationDelay: '0.5s' }}></div>
                   </div>
-
-                  <div className="relative z-10 flex items-center space-x-3 w-full">
-                    <skill.icon className="w-6 h-6 text-[#9b87f5] group-hover:text-purple-300 transition-colors duration-300" />
-                    <span className="text-white text-base font-medium">
-                      {skill.name}
-                    </span>
-                  </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
