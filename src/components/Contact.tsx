@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -236,7 +237,7 @@ const Contact: React.FC = () => {
         </div>
       </div>
       
-      <style jsx>{`
+      <style>{`
         @keyframes shimmer {
           0% { background-position: -200% -200%; }
           100% { background-position: 200% 200%; }
