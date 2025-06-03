@@ -71,60 +71,52 @@ const Navbar: React.FC = () => {
   return (
     <nav 
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-700 ease-out",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-500 py-4 border-b backdrop-blur-lg",
         isScrolled 
-          ? "py-3 bg-[#0B0B1E]/90 backdrop-blur-xl shadow-2xl shadow-black/40 border-b border-white/10"
-          : "py-5 bg-transparent"
+          ? "bg-[#0B0B1E]/85 shadow-2xl shadow-black/30 border-white/20"
+          : "bg-transparent border-transparent"
       )}
     >
-      <div className="container mx-auto px-6 md:px-8 flex items-center justify-between">
-        {/* Enhanced Logo */}
+      <div className="container mx-auto px-4 md:px-6 flex items-center justify-between h-16">
         <motion.button 
           onClick={handleLogoClick}
-          className="relative group"
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
+          className="text-white font-bold text-2xl hover:opacity-80 transition-all duration-300 group relative overflow-hidden"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
         >
-          <div className="absolute -inset-2 bg-gradient-to-r from-[#6366f1]/30 to-[#a855f7]/30 rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
-          <div className="relative">
-            <span className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-[#6366f1] via-[#8b5cf6] to-[#a855f7] bg-clip-text text-transparent">
-              Muntazir
-            </span>
-            <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-[#6366f1] to-[#a855f7] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-          </div>
+          <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1]/20 to-[#a855f7]/20 rounded-lg blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <span className="relative bg-gradient-to-r from-[#6366f1] via-[#9b87f5] to-[#a855f7] text-transparent bg-clip-text">
+            Muntazir
+          </span>
         </motion.button>
         
-        {/* Enhanced Desktop Navigation */}
-        <div className="hidden md:flex items-center">
-          <div className="flex items-center space-x-2 bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-2 shadow-lg">
-            {navItems.map((item) => (
-              <motion.a 
-                key={item.id}
-                href={`#${item.id}`}
-                className={cn(
-                  "px-6 py-3 rounded-xl text-sm font-medium transition-all duration-300 ease-out relative group overflow-hidden",
-                  activeSection === item.id
-                    ? "bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-white shadow-lg shadow-[#6366f1]/30"
-                    : "text-white/80 hover:text-white hover:bg-white/10"
-                )}
-                onClick={() => setActiveSection(item.id)}
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-              >
-                <span className="relative z-10">{item.label}</span>
-                {activeSection !== item.id && (
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1]/20 to-[#a855f7]/20 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
-                )}
-              </motion.a>
-            ))}
-          </div>
+        <div className="hidden md:flex items-center space-x-1 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full p-1">
+          {navItems.map((item) => (
+            <motion.a 
+              key={item.id}
+              href={`#${item.id}`}
+              className={cn(
+                "px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ease-in-out relative group",
+                activeSection === item.id
+                  ? "bg-gradient-to-r from-[#6366f1] to-[#9b87f5] text-white shadow-lg shadow-[#9b87f5]/30"
+                  : "text-white/70 hover:text-white hover:bg-white/10"
+              )}
+              onClick={() => setActiveSection(item.id)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              {activeSection !== item.id && (
+                <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1]/10 to-[#9b87f5]/10 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              )}
+              <span className="relative z-10">{item.label}</span>
+            </motion.a>
+          ))}
         </div>
         
-        {/* Enhanced Mobile Menu Button */}
         <div className="md:hidden">
           <motion.button 
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="relative p-3 rounded-2xl bg-gradient-to-r from-white/10 to-white/5 backdrop-blur-md border border-white/20 text-white shadow-lg focus:outline-none focus:ring-2 focus:ring-[#6366f1]/50"
+            className="text-white p-3 rounded-xl hover:bg-white/10 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white/50 bg-white/5 backdrop-blur-sm border border-white/10"
             aria-label="Toggle menu"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -136,7 +128,7 @@ const Navbar: React.FC = () => {
                   initial={{ rotate: 0 }}
                   animate={{ rotate: 180 }}
                   exit={{ rotate: 0 }}
-                  transition={{ duration: 0.3 }}
+                  transition={{ duration: 0.2 }}
                 >
                   <XIcon size={24} />
                 </motion.div>
@@ -146,7 +138,7 @@ const Navbar: React.FC = () => {
                   initial={{ rotate: 0 }}
                   animate={{ rotate: 0 }}
                   exit={{ rotate: 180 }}
-                  transition={{ duration: 0.3 }}
+                  transition={{ duration: 0.2 }}
                 >
                   <MenuIcon size={24} />
                 </motion.div>
@@ -156,38 +148,37 @@ const Navbar: React.FC = () => {
         </div>
       </div>
 
-      {/* Enhanced Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -30, scale: 0.9 }}
+            initial={{ opacity: 0, y: -20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -30, scale: 0.9 }}
-            transition={{ duration: 0.4, ease: "easeInOut" }}
-            className="md:hidden fixed inset-x-0 top-20 bg-[#0B0B1E]/95 backdrop-blur-2xl shadow-2xl shadow-black/60 z-40 mx-4 rounded-3xl border border-white/30"
+            exit={{ opacity: 0, y: -20, scale: 0.95 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="md:hidden fixed inset-x-0 top-20 bg-[#0B0B1E]/95 backdrop-blur-lg shadow-2xl shadow-black/50 z-40 mx-4 rounded-2xl border border-white/20"
           >
-            <div className="container mx-auto px-8 flex flex-col space-y-3 py-8">
+            <div className="container mx-auto px-6 flex flex-col space-y-2 py-6">
               {navItems.map((item, index) => (
                 <motion.a
                   key={item.id}
                   href={`#${item.id}`}
                   className={cn(
-                    "px-8 py-5 rounded-2xl text-lg font-medium transition-all duration-300 ease-out text-center relative group overflow-hidden",
+                    "px-6 py-4 rounded-xl text-base font-medium transition-all duration-300 ease-in-out text-center relative group overflow-hidden",
                     activeSection === item.id
-                      ? "bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-white shadow-lg shadow-[#6366f1]/30"
-                      : "text-white/90 hover:bg-white/10 hover:text-white"
+                      ? "bg-gradient-to-r from-[#6366f1] to-[#9b87f5] text-white shadow-lg"
+                      : "text-white/80 hover:bg-white/10 hover:text-white"
                   )}
                   onClick={() => handleMobileLinkClick(item.id)}
-                  initial={{ opacity: 0, x: -30 }}
+                  initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.1 }}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <span className="relative z-10">{item.label}</span>
                   {activeSection !== item.id && (
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1]/10 to-[#a855f7]/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1]/10 to-[#9b87f5]/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   )}
+                  <span className="relative z-10">{item.label}</span>
                 </motion.a>
               ))}
             </div>
