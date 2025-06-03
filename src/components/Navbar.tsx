@@ -73,7 +73,7 @@ const Navbar: React.FC = () => {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         isScrolled 
-          ? "bg-[#0B0B1E]/95 backdrop-blur-md shadow-lg border-b border-white/5"
+          ? "bg-[#0B0B1E]/95 backdrop-blur-md shadow-lg"
           : "bg-transparent"
       )}
     >
@@ -98,7 +98,7 @@ const Navbar: React.FC = () => {
                 className={cn(
                   "px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200",
                   activeSection === item.id
-                    ? "bg-white/10 text-white border border-white/20"
+                    ? "bg-white/10 text-white"
                     : "text-white/70 hover:text-white hover:bg-white/5"
                 )}
                 onClick={() => setActiveSection(item.id)}
@@ -154,7 +154,7 @@ const Navbar: React.FC = () => {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-[#0B0B1E]/95 backdrop-blur-md border-t border-white/10"
+            className="md:hidden bg-[#0B0B1E]/95 backdrop-blur-md"
           >
             <div className="container mx-auto px-6 py-4 space-y-2">
               {navItems.map((item, index) => (
@@ -164,7 +164,7 @@ const Navbar: React.FC = () => {
                   className={cn(
                     "block px-4 py-3 rounded-lg text-base font-medium transition-all duration-200",
                     activeSection === item.id
-                      ? "bg-white/10 text-white border border-white/20"
+                      ? "bg-white/10 text-white"
                       : "text-white/70 hover:text-white hover:bg-white/5"
                   )}
                   onClick={() => handleMobileLinkClick(item.id)}
