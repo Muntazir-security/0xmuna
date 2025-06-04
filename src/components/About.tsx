@@ -1,3 +1,4 @@
+
 import React from "react";
 import { motion } from "framer-motion";
 import { Download, MapPin, Calendar, Award, GraduationCap, Briefcase } from 'lucide-react';
@@ -70,7 +71,7 @@ const educationHistory = [
 const AboutMe: React.FC = () => {
   return (
     <section id="about" className="py-24 md:py-32 relative overflow-hidden">
-      {/* Background Effects - Updated to match contact page */}
+      {/* Background Effects */}
       <div className="absolute inset-0 bg-[#0B0B1E]"></div>
       <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-[#6366f1]/10 rounded-full blur-3xl animate-pulse"></div>
       <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-[#a855f7]/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
@@ -125,7 +126,7 @@ const AboutMe: React.FC = () => {
             
 
             <p className="text-white/80 text-justify mb-8 leading-relaxed">
-            Throughout my academic and professional journey, I’ve worked on securing real-world systems, identifying critical vulnerabilities, 
+            Throughout my academic and professional journey, I've worked on securing real-world systems, identifying critical vulnerabilities, 
             and deploying effective mitigation strategies. 
             My focus areas include Network Defense, Ethical Hacking, SIEM analysis,
             and building proactive security measures across infrastructures.
@@ -133,8 +134,8 @@ const AboutMe: React.FC = () => {
 
             <p className="text-white/80 text-justify mb-8 leading-relaxed">
             I'm passionate about staying ahead of threats, learning new tools, and turning security knowledge into practical solutions. 
-            Whether I’m writing automation scripts, monitoring logs, or breaking down attack vectors — I approach cybersecurity with a problem-solver’s 
-            mindset and a defender’s responsibility.
+            Whether I'm writing automation scripts, monitoring logs, or breaking down attack vectors — I approach cybersecurity with a problem-solver's 
+            mindset and a defender's responsibility.
             </p>
 
             <motion.div
@@ -146,15 +147,16 @@ const AboutMe: React.FC = () => {
               <Button
                 asChild
                 size="lg"
-                className="group bg-gradient-to-r from-[#6366f1] to-[#a855f7] hover:from-[#5855eb] hover:to-[#9333ea] text-white border-none px-8 py-4 rounded-xl text-lg font-semibold shadow-lg hover:shadow-2xl hover:shadow-[#9b87f5]/40 hover:scale-105 transform transition-all duration-300"
+                className="group relative overflow-hidden bg-transparent border-2 border-[#9b87f5] text-white hover:bg-transparent px-8 py-4 rounded-2xl shadow-lg hover:shadow-[0_0_40px_rgba(155,135,245,0.5)] transform transition-all duration-500 ease-in-out hover:scale-105"
               >
                 <a
                   href="/assets/documents/Syed_Muntazir_Mehd_CV.pdf"
                   download="Syed_Muntazir_Mehdi_CV.pdf"
-                  className="flex items-center justify-center"
+                  className="flex items-center justify-center relative"
                 >
-                  <Download className="w-5 h-5 mr-2 group-hover:animate-bounce" />
-                  <span>Download CV</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1] to-[#a855f7] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
+                  <Download className="w-5 h-5 mr-3 relative z-10 group-hover:animate-bounce transition-transform duration-300" />
+                  <span className="relative z-10 font-semibold text-lg group-hover:text-white transition-colors duration-300">Access Credentials</span>
                 </a>
               </Button>
             </motion.div>
