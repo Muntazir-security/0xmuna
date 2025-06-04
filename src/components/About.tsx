@@ -10,7 +10,7 @@ const workExperience = [
     institution: "Asia Pacific University of Technology & Innovation",
     location: "Kuala Lumpur, Malaysia",
     dateRange: "Jan 2024 - April 2024",
-    type: "Full-time",
+    type: "Part-time",
     responsibilities: [
       "Conducted vulnerability assessments and penetration testing on university lab devices.",
       "Identified and resolved two critical vulnerabilities, preventing potential disruptions.",
@@ -55,7 +55,7 @@ const educationHistory = [
     institution: "Asia Pacific University of Technology & Innovation",
     location: "Kuala Lumpur, Malaysia",
     dateRange: "Sep 2021 - Aug 2024",
-    grade: "First Class Honours",
+    grade: "Second Class Honours",
   },
   {
     id: 2,
@@ -117,22 +117,24 @@ const AboutMe: React.FC = () => {
             </h2>
             <div className="w-24 h-1.5 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-full mb-8"></div>
 
-            <p className="text-white/80 text-lg mb-8 leading-relaxed">
-              A passionate <span className="text-[#9b87f5] font-semibold">Cybersecurity Engineer</span> with a strong foundation in securing digital
-              environments. I hold a degree in Computer Science, specializing
-              in Cybersecurity, from Asia Pacific University of Technology &
-              Innovation. With hands-on experience in SOC analysis,
-              vulnerability assessment, and penetration testing, I've developed
-              expertise in identifying and mitigating security risks.
+            <p className="text-white/80 text-justify mb-8 leading-relaxed">
+              I'm Syed Muntazir Mehdi, a <span className="text-[#9b87f5] font-semibold">Cybersecurity Graduate</span> with hands-on experience 
+              in vulnerability assessment, SOC operations, and penetration testing. 
+              I hold a dual-awarded B.Sc. (Hons) in Cybersecurity from both Asia Pacific University (Malaysia) and De Montfort University (UK).
+            </p>
+            
+
+            <p className="text-white/80 text-justify mb-8 leading-relaxed">
+            Throughout my academic and professional journey, I’ve worked on securing real-world systems, identifying critical vulnerabilities, 
+            and deploying effective mitigation strategies. 
+            My focus areas include Network Defense, Ethical Hacking, SIEM analysis,
+            and building proactive security measures across infrastructures.
             </p>
 
-            <p className="text-white/70 text-base mb-10 leading-relaxed">
-              My expertise in SIEM implementation, threat detection, and
-              security documentation is strengthened by industry
-              certifications, including eJPT and ICCA. I blend technical
-              expertise with analytical thinking to build robust security
-              solutions, always staying ahead of emerging threats to protect
-              critical infrastructure.
+            <p className="text-white/80 text-justify mb-8 leading-relaxed">
+            I'm passionate about staying ahead of threats, learning new tools, and turning security knowledge into practical solutions. 
+            Whether I’m writing automation scripts, monitoring logs, or breaking down attack vectors — I approach cybersecurity with a problem-solver’s 
+            mindset and a defender’s responsibility.
             </p>
 
             <motion.div

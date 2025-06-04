@@ -1,27 +1,13 @@
-
 import React, { memo } from "react";
 import { Button } from "@/components/ui/button";
 import {
   ArrowRight,
   Mail,
-  ShieldCheck,
-  ScanSearch,
-  Fingerprint,
-  AlertOctagon,
   Sparkle,
+  Terminal,
+  BookOpen,
+  BrainCircuit,
 } from "lucide-react";
-
-type Skill = {
-  icon: React.ElementType;
-  name: string;
-};
-
-const skills: Skill[] = [
-  { icon: ShieldCheck, name: "SOC Analyst" },
-  { icon: ScanSearch, name: "Vulnerability Assessment" },
-  { icon: Fingerprint, name: "Penetration Tester" },
-  { icon: AlertOctagon, name: "Incident Response" },
-];
 
 const StatusBadge = memo(() => (
   <div className="inline-block animate-float lg:mx-0" data-aos="zoom-in" data-aos-delay="400">
@@ -59,7 +45,7 @@ MainTitle.displayName = "MainTitle";
 
 const Hero: React.FC = () => {
   return (
-    <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-t from-[#0f0f1a] via-[#0a0a15] to-[#0f0f1a]">
       <div className="container mx-auto px-4 md:px-6 py-24 md:py-32 relative z-10">
         <div className="max-w-3xl mx-auto md:mx-0">
           <div className="mb-4">
@@ -71,53 +57,46 @@ const Hero: React.FC = () => {
           </div>
 
           <p
-            className="text-xl md:text-2xl text-white/80 mb-8 max-w-2xl leading-relaxed text-left"
+            className="text-xl md:text-2xl text-white/80 mb-6 max-w-2xl leading-relaxed text-left"
             data-aos="fade-up"
             data-aos-delay="800"
           >
             Hi, I'm a Cybersecurity Engineer with hands-on experience in SOC
             analysis, vulnerability assessment, and penetration testing. I
-            specialialize in identifying vulnerabilities and crafting robust
+            specialize in identifying vulnerabilities and crafting robust
             defense strategies to protect digital environments from emerging
             threats.
           </p>
 
-          <div className="my-6 md:my-8 max-w-2xl">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4">
-              {skills.map((skill, index) => (
-                <div
-                  key={skill.name}
-                  className={`flex items-center space-x-3 p-4 rounded-lg bg-transparent border border-white/10
-                             relative group overflow-hidden cursor-pointer
-                             transition-all duration-300 ease-in-out
-                             hover:bg-transparent hover:border-transparent
-                             focus-within:border-transparent`}
-                  data-aos="fade-up"
-                  data-aos-delay={900 + index * 100}
-                >
-                  <div className="absolute inset-0 rounded-lg p-[2px] opacity-0
-                                  bg-gradient-to-r from-[#6366f1] to-[#a855f7]
-                                  group-hover:opacity-100 group-focus-within:opacity-100
-                                  transition-opacity duration-300 ease-in-out">
-                    <div className="bg-slate-900 rounded-[calc(0.5rem-2px)] w-full h-full"></div>
-                  </div>
-
-                  <div className="relative z-10 flex items-center space-x-3 w-full">
-                    <skill.icon className="w-6 h-6 text-[#9b87f5] group-hover:text-purple-300 transition-colors duration-300" />
-                    <span className="text-white text-base font-medium">
-                      {skill.name}
-                    </span>
-                  </div>
-                </div>
-              ))}
+          {/* Currently Working On - Styled */}
+          <div className="grid sm:grid-cols-3 gap-4 mt-6" data-aos="fade-up" data-aos-delay="900">
+            <div className="flex items-start gap-3 p-4 border border-white/10 rounded-lg backdrop-blur-xl bg-white/5 hover:bg-white/10 transition">
+              <Terminal className="w-5 h-5 text-[#9b87f5] mt-1" />
+              <div>
+                <p className="text-white/70 text-sm">
+                  <span className="text-white font-semibold">Now:</span> Developing automated threat hunting scripts.
+                </p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 p-4 border border-white/10 rounded-lg backdrop-blur-xl bg-white/5 hover:bg-white/10 transition">
+              <BookOpen className="w-5 h-5 text-[#9b87f5] mt-1" />
+              <div>
+                <p className="text-white/70 text-sm">
+                  <span className="text-white font-semibold">Learning:</span> Cloud Security & Kubernetes hardening.
+                </p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 p-4 border border-white/10 rounded-lg backdrop-blur-xl bg-white/5 hover:bg-white/10 transition">
+              <BrainCircuit className="w-5 h-5 text-[#9b87f5] mt-1" />
+              <div>
+                <p className="text-white/70 text-sm">
+                  <span className="text-white font-semibold">Next:</span> Diving deeper into malware reverse engineering.
+                </p>
+              </div>
             </div>
           </div>
 
-          <div
-            className="flex flex-col sm:flex-row gap-4"
-            data-aos="fade-up"
-            data-aos-delay="1400"
-          >
+          <div className="flex flex-col sm:flex-row gap-4 mt-10" data-aos="fade-up" data-aos-delay="1400">
             <Button
               asChild
               size="lg"
@@ -126,21 +105,14 @@ const Hero: React.FC = () => {
                          border-none px-6 py-3 rounded-lg
                          shadow-md hover:shadow-xl hover:shadow-[#6366f1]/40
                          transform transition-all duration-300 ease-in-out
-                         flex items-center justify-center
-                         focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#9b87f5] focus-visible:ring-offset-background"
+                         flex items-center justify-center"
             >
               <a
                 href="#portfolio"
                 className="flex items-center justify-center relative z-10 py-1 transition-all duration-300 group-hover:w-auto w-[140px]"
               >
-                <span className="transition-all duration-300">
-                  View My Work
-                </span>
-                <ArrowRight
-                  className="w-5 h-5 ml-0 opacity-0 -translate-x-2
-                           group-hover:opacity-100 group-hover:translate-x-0 group-hover:ml-2
-                           transition-all duration-300 ease-in-out"
-                />
+                <span className="transition-all duration-300">View My Work</span>
+                <ArrowRight className="w-5 h-5 ml-0 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 group-hover:ml-2 transition-all duration-300 ease-in-out" />
                 <span className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300"></span>
               </a>
             </Button>
@@ -155,8 +127,7 @@ const Hero: React.FC = () => {
                          px-6 py-3 rounded-lg shadow-md
                          hover:shadow-xl hover:shadow-[#9b87f5]/30
                          transform transition-all duration-300 ease-in-out
-                         flex items-center justify-center
-                         focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#9b87f5] focus-visible:ring-offset-background"
+                         flex items-center justify-center"
             >
               <a
                 href="#contact"
