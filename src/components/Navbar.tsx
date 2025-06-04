@@ -1,8 +1,8 @@
-
 import React, { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { Menu as MenuIcon, X as XIcon } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { throttle } from 'lodash';
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -10,7 +10,7 @@ const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
   useEffect(() => {
-    const handleScroll = () => {
+    const handleScroll = throttle(() => {
       if (window.scrollY > 20) {
         setIsScrolled(true);
       } else {
@@ -35,9 +35,9 @@ const Navbar: React.FC = () => {
           }
         }
       }
-    };
+    }, 16); // ~60fps
     
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -59,8 +59,19 @@ const Navbar: React.FC = () => {
     { id: "contact", label: "Contact" }
   ];
 
-  const handleMobileLinkClick = (sectionId: string) => {
+  const handleSmoothScroll = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
     setActiveSection(sectionId);
+  };
+
+  const handleMobileLinkClick = (sectionId: string) => {
+    handleSmoothScroll(sectionId);
     setIsMobileMenuOpen(false);
   };
 
@@ -82,11 +93,15 @@ const Navbar: React.FC = () => {
           {/* Logo */}
           <motion.button 
             onClick={handleLogoClick}
-            className="text-2xl font-bold bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-transparent bg-clip-text hover:opacity-80 transition-opacity"
+            className="relative text-2xl font-bold text-white hover:opacity-80 transition-opacity group"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            Muntazir
+            <span className="bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-transparent bg-clip-text">
+              Muntazir
+            </span>
+            {/* Subtle glow effect */}
+            <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1] to-[#a855f7] opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-300 -z-10" />
           </motion.button>
           
           {/* Desktop Navigation */}
@@ -96,16 +111,28 @@ const Navbar: React.FC = () => {
                 key={item.id}
                 href={`#${item.id}`}
                 className={cn(
-                  "px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200",
+                  "relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200",
                   activeSection === item.id
-                    ? "bg-white/10 text-white"
+                    ? "text-white"
                     : "text-white/70 hover:text-white hover:bg-white/5"
                 )}
-                onClick={() => setActiveSection(item.id)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleSmoothScroll(item.id);
+                }}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                {item.label}
+                {/* Active indicator */}
+                {activeSection === item.id && (
+                  <motion.div
+                    layoutId="activeIndicator"
+                    className="absolute inset-0 bg-gradient-to-r from-[#6366f1]/20 to-[#a855f7]/20 rounded-lg border border-[#9b87f5]/30"
+                    initial={false}
+                    transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                  />
+                )}
+                <span className="relative z-10">{item.label}</span>
               </motion.a>
             ))}
           </div>
@@ -149,34 +176,49 @@ const Navbar: React.FC = () => {
       {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden bg-[#0B0B1E]/95 backdrop-blur-md"
-          >
-            <div className="container mx-auto px-6 py-4 space-y-2">
-              {navItems.map((item, index) => (
-                <motion.a
-                  key={item.id}
-                  href={`#${item.id}`}
-                  className={cn(
-                    "block px-4 py-3 rounded-lg text-base font-medium transition-all duration-200",
-                    activeSection === item.id
-                      ? "bg-white/10 text-white"
-                      : "text-white/70 hover:text-white hover:bg-white/5"
-                  )}
-                  onClick={() => handleMobileLinkClick(item.id)}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                >
-                  {item.label}
-                </motion.a>
-              ))}
-            </div>
-          </motion.div>
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
+              onClick={() => setIsMobileMenuOpen(false)}
+            />
+            
+            {/* Menu Panel */}
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              className="fixed top-0 right-0 h-full w-80 max-w-[80vw] bg-[#0B0B1E]/95 backdrop-blur-md border-l border-white/10 z-50"
+            >
+              <div className="p-6 pt-20">
+                {navItems.map((item, index) => (
+                  <motion.a
+                    key={item.id}
+                    href={`#${item.id}`}
+                    className={cn(
+                      "block py-4 text-lg font-medium transition-colors border-b border-white/5 last:border-b-0",
+                      activeSection === item.id
+                        ? "text-white"
+                        : "text-white/80 hover:text-white"
+                    )}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleMobileLinkClick(item.id);
+                    }}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 + 0.2 }}
+                  >
+                    {item.label}
+                  </motion.a>
+                ))}
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </nav>
