@@ -5,10 +5,7 @@ import {
   ArrowRight,
   Mail,
   Sparkle,
-  Shield,
-  Code,
   Search,
-  Zap,
   Target,
   Eye,
   Lock,
@@ -48,12 +45,28 @@ const MainTitle = memo(() => (
 ));
 MainTitle.displayName = "MainTitle";
 
-const ThreatMatrix = memo(() => {
-  const threats = [
-    { name: "Malware", severity: "high", status: "blocked" },
-    { name: "Phishing", severity: "medium", status: "monitored" },
-    { name: "DDoS", severity: "low", status: "mitigated" },
-    { name: "Ransomware", severity: "critical", status: "blocked" },
+const CoreSkills = memo(() => {
+  const skills = [
+    { 
+      name: "Threat Hunting", 
+      icon: Search, 
+      description: "Proactive threat detection"
+    },
+    { 
+      name: "Penetration Testing", 
+      icon: Target, 
+      description: "Vulnerability assessment"
+    },
+    { 
+      name: "SIEM Analysis", 
+      icon: Eye, 
+      description: "Security event monitoring"
+    },
+    { 
+      name: "Incident Response", 
+      icon: Lock, 
+      description: "Rapid threat mitigation"
+    },
   ];
 
   return (
@@ -63,9 +76,8 @@ const ThreatMatrix = memo(() => {
         <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1]/20 to-[#a855f7]/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
         
         <div className="relative bg-black/30 backdrop-blur-2xl border border-[#9b87f5]/30 rounded-2xl p-6 overflow-hidden">
-          {/* Matrix-style background effect */}
+          {/* Subtle background effects */}
           <div className="absolute inset-0 opacity-10">
-            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-[#6366f1]/20 via-transparent to-[#a855f7]/20"></div>
             <div className="absolute top-4 right-4 w-2 h-2 bg-[#00ff41] rounded-full animate-pulse"></div>
             <div className="absolute bottom-4 left-6 w-1 h-1 bg-[#ff6b6b] rounded-full animate-pulse delay-500"></div>
             <div className="absolute top-8 left-1/3 w-1.5 h-1.5 bg-[#4ecdc4] rounded-full animate-pulse delay-1000"></div>
@@ -73,69 +85,33 @@ const ThreatMatrix = memo(() => {
           
           <div className="relative z-10">
             {/* Header */}
-            <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center gap-3">
-                <div className="relative">
-                  <Shield className="w-6 h-6 text-[#9b87f5]" />
-                  <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold text-white">Security Operations Center</h3>
-                  <p className="text-xs text-[#9b87f5]">Real-time threat monitoring</p>
-                </div>
-              </div>
-              <div className="px-3 py-1 bg-green-500/20 text-green-400 text-xs font-mono rounded-full border border-green-500/30">
-                ACTIVE
+            <div className="flex items-center justify-center mb-6">
+              <div className="text-center">
+                <h3 className="text-lg font-bold text-white">Core Expertise</h3>
+                <p className="text-xs text-[#9b87f5]">Cybersecurity Specializations</p>
               </div>
             </div>
 
-            {/* Threat Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
-              {threats.map((threat, index) => (
-                <div 
-                  key={threat.name}
-                  className="group/item flex items-center justify-between p-3 bg-white/5 rounded-lg border border-white/10 hover:border-[#9b87f5]/50 transition-all duration-300"
-                  style={{ animationDelay: `${index * 200}ms` }}
-                >
-                  <div className="flex items-center gap-2">
-                    <div className={`w-2 h-2 rounded-full ${
-                      threat.severity === 'critical' ? 'bg-red-500' :
-                      threat.severity === 'high' ? 'bg-orange-500' :
-                      threat.severity === 'medium' ? 'bg-yellow-500' : 'bg-green-500'
-                    } animate-pulse`}></div>
-                    <span className="text-white text-sm font-mono">{threat.name}</span>
+            {/* Skills Grid - Perfectly Aligned */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {skills.map((skill, index) => {
+                const IconComponent = skill.icon;
+                return (
+                  <div 
+                    key={skill.name}
+                    className="group/item flex flex-col items-center justify-center p-4 bg-white/5 rounded-lg border border-white/10 hover:border-[#9b87f5]/50 transition-all duration-300 min-h-[100px]"
+                    style={{ animationDelay: `${index * 200}ms` }}
+                  >
+                    <div className="flex flex-col items-center gap-2 text-center">
+                      <IconComponent className="w-6 h-6 text-[#9b87f5] group-hover/item:text-white transition-colors duration-300" />
+                      <div>
+                        <span className="text-white text-sm font-semibold block">{skill.name}</span>
+                        <span className="text-[#9b87f5] text-xs">{skill.description}</span>
+                      </div>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <span className={`text-xs px-2 py-1 rounded font-mono ${
-                      threat.status === 'blocked' ? 'bg-red-500/20 text-red-300' :
-                      threat.status === 'mitigated' ? 'bg-blue-500/20 text-blue-300' :
-                      'bg-yellow-500/20 text-yellow-300'
-                    }`}>
-                      {threat.status.toUpperCase()}
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Skills Showcase */}
-            <div className="flex flex-wrap gap-2 pt-4 border-t border-white/10">
-              <div className="flex items-center gap-2 px-3 py-1.5 bg-[#6366f1]/20 text-[#9b87f5] text-xs font-medium rounded-full border border-[#9b87f5]/30">
-                <Search className="w-3 h-3" />
-                Threat Hunting
-              </div>
-              <div className="flex items-center gap-2 px-3 py-1.5 bg-[#a855f7]/20 text-[#9b87f5] text-xs font-medium rounded-full border border-[#9b87f5]/30">
-                <Target className="w-3 h-3" />
-                Penetration Testing
-              </div>
-              <div className="flex items-center gap-2 px-3 py-1.5 bg-[#6366f1]/20 text-[#9b87f5] text-xs font-medium rounded-full border border-[#9b87f5]/30">
-                <Eye className="w-3 h-3" />
-                SIEM Analysis
-              </div>
-              <div className="flex items-center gap-2 px-3 py-1.5 bg-[#a855f7]/20 text-[#9b87f5] text-xs font-medium rounded-full border border-[#9b87f5]/30">
-                <Lock className="w-3 h-3" />
-                Incident Response
-              </div>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -143,7 +119,7 @@ const ThreatMatrix = memo(() => {
     </div>
   );
 });
-ThreatMatrix.displayName = "ThreatMatrix";
+CoreSkills.displayName = "CoreSkills";
 
 const Hero: React.FC = () => {
   return (
@@ -170,7 +146,7 @@ const Hero: React.FC = () => {
             threats.
           </p>
 
-          <ThreatMatrix />
+          <CoreSkills />
 
           <div className="flex flex-col sm:flex-row gap-4 mt-10" data-aos="fade-up" data-aos-delay="1400">
             <Button
