@@ -24,12 +24,12 @@ const socialLinksData = [
     description: "Connect with me"
   },
   {
-    name: "X",
-    url: "https://x.com/muntaz1r9",
+    name: "TryHackMe",
+    url: "https://tryhackme.com/p/Muntazir",
     icon: null,
-    logoSrc: "/assets/images/X.svg",
-    hoverColor: "hover:shadow-[0_0_30px_rgba(255,255,255,0.3)]",
-    description: "Follow my updates"
+    logoSrc: "https://assets.tryhackme.com/img/THMlogo.png",
+    hoverColor: "hover:shadow-[0_0_30px_rgba(212,46,46,0.4)]",
+    description: "Check my progress"
   },
 ];
 
@@ -91,7 +91,7 @@ const Contact: React.FC = () => {
 
   return (
     <section id="contact" className="py-24 md:py-32 relative">
-      {/* Updated background to match consistent color scheme */}
+      {/* Background to match other pages */}
       <div className="absolute inset-0 bg-[#0B0B1E]"></div>
       <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-[#6366f1]/10 rounded-full blur-3xl animate-pulse"></div>
       <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-[#a855f7]/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
@@ -110,7 +110,7 @@ const Contact: React.FC = () => {
         {/* Contact Form and Social Links Grid with consistent heights */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
           {/* Contact Form */}
-          <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 relative overflow-hidden flex flex-col min-h-[600px]">
+          <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 relative overflow-hidden flex flex-col h-[600px]">
             <div className="absolute -top-20 -left-20 w-40 h-40 bg-[#6366f1]/20 rounded-full blur-3xl"></div>
             <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-[#a855f7]/20 rounded-full blur-3xl"></div>
             
@@ -176,7 +176,7 @@ const Contact: React.FC = () => {
           </div>
 
           {/* Social Links Section with matching height */}
-          <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 relative overflow-hidden flex flex-col min-h-[600px]">
+          <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 relative overflow-hidden flex flex-col h-[600px]">
             <div className="absolute -top-20 -right-20 w-40 h-40 bg-[#a855f7]/20 rounded-full blur-3xl"></div>
             <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-[#6366f1]/20 rounded-full blur-3xl"></div>
             
@@ -236,13 +236,6 @@ const Contact: React.FC = () => {
                     </div>
                   </motion.a>
                 ))}
-              </div>
-              
-              {/* Additional contact info - positioned at bottom */}
-              <div className="text-center mt-8 p-4 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl">
-                <p className="text-white/80 text-sm">
-                  <span className="text-[#9b87f5] font-medium">Email:</span> info@muntazirmehdi.com
-                </p>
               </div>
             </div>
           </div>

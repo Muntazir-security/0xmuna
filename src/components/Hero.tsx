@@ -1,3 +1,4 @@
+
 import React, { memo } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -7,6 +8,9 @@ import {
   Terminal,
   BookOpen,
   BrainCircuit,
+  Shield,
+  Zap,
+  Code,
 } from "lucide-react";
 
 const StatusBadge = memo(() => (
@@ -68,30 +72,71 @@ const Hero: React.FC = () => {
             threats.
           </p>
 
-          {/* Currently Working On - Styled */}
-          <div className="grid sm:grid-cols-3 gap-4 mt-6" data-aos="fade-up" data-aos-delay="900">
-            <div className="flex items-start gap-3 p-4 border border-white/10 rounded-lg backdrop-blur-xl bg-white/5 hover:bg-white/10 transition">
-              <Terminal className="w-5 h-5 text-[#9b87f5] mt-1" />
-              <div>
-                <p className="text-white/70 text-sm">
-                  <span className="text-white font-semibold">Now:</span> Developing automated threat hunting scripts.
-                </p>
-              </div>
-            </div>
-            <div className="flex items-start gap-3 p-4 border border-white/10 rounded-lg backdrop-blur-xl bg-white/5 hover:bg-white/10 transition">
-              <BookOpen className="w-5 h-5 text-[#9b87f5] mt-1" />
-              <div>
-                <p className="text-white/70 text-sm">
-                  <span className="text-white font-semibold">Learning:</span> Cloud Security & Kubernetes hardening.
-                </p>
-              </div>
-            </div>
-            <div className="flex items-start gap-3 p-4 border border-white/10 rounded-lg backdrop-blur-xl bg-white/5 hover:bg-white/10 transition">
-              <BrainCircuit className="w-5 h-5 text-[#9b87f5] mt-1" />
-              <div>
-                <p className="text-white/70 text-sm">
-                  <span className="text-white font-semibold">Next:</span> Diving deeper into malware reverse engineering.
-                </p>
+          {/* Enhanced Skills & Focus Area */}
+          <div className="mt-8 mb-6" data-aos="fade-up" data-aos-delay="900">
+            <div className="relative">
+              {/* Background glow */}
+              <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1]/10 to-[#a855f7]/10 rounded-2xl blur-xl"></div>
+              
+              <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6">
+                <div className="text-center mb-6">
+                  <h3 className="text-lg font-semibold text-white mb-2 flex items-center justify-center gap-2">
+                    <Shield className="w-5 h-5 text-[#9b87f5]" />
+                    Current Security Focus
+                  </h3>
+                  <div className="w-16 h-0.5 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-full mx-auto"></div>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="group p-4 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 hover:border-[#9b87f5]/50 transition-all duration-300">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="p-2 bg-[#6366f1]/20 rounded-lg group-hover:bg-[#6366f1]/30 transition-colors">
+                        <Terminal className="w-4 h-4 text-[#9b87f5]" />
+                      </div>
+                      <span className="text-sm font-medium text-white">Active Projects</span>
+                    </div>
+                    <p className="text-xs text-white/70 leading-relaxed">
+                      Building automated threat hunting scripts and developing custom SIEM rules
+                    </p>
+                  </div>
+                  
+                  <div className="group p-4 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 hover:border-[#9b87f5]/50 transition-all duration-300">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="p-2 bg-[#a855f7]/20 rounded-lg group-hover:bg-[#a855f7]/30 transition-colors">
+                        <BookOpen className="w-4 h-4 text-[#9b87f5]" />
+                      </div>
+                      <span className="text-sm font-medium text-white">Research Areas</span>
+                    </div>
+                    <p className="text-xs text-white/70 leading-relaxed">
+                      Cloud security architecture, Kubernetes hardening, and zero-trust implementations
+                    </p>
+                  </div>
+                  
+                  <div className="group p-4 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 hover:border-[#9b87f5]/50 transition-all duration-300">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="p-2 bg-[#6366f1]/20 rounded-lg group-hover:bg-[#6366f1]/30 transition-colors">
+                        <BrainCircuit className="w-4 h-4 text-[#9b87f5]" />
+                      </div>
+                      <span className="text-sm font-medium text-white">Next Goals</span>
+                    </div>
+                    <p className="text-xs text-white/70 leading-relaxed">
+                      Advanced malware analysis, AI-powered security tools, and red team operations
+                    </p>
+                  </div>
+                </div>
+                
+                {/* Skills badges */}
+                <div className="flex flex-wrap gap-2 mt-4 pt-4 border-t border-white/10">
+                  {['Penetration Testing', 'SOC Analysis', 'SIEM Management', 'Vulnerability Assessment', 'Incident Response'].map((skill, index) => (
+                    <span 
+                      key={skill}
+                      className="px-3 py-1 bg-gradient-to-r from-[#6366f1]/20 to-[#a855f7]/20 text-[#9b87f5] text-xs font-medium rounded-full border border-[#9b87f5]/30 hover:border-[#9b87f5]/60 transition-colors"
+                      style={{ animationDelay: `${index * 0.1}s` }}
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
