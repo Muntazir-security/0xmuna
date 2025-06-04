@@ -1,3 +1,4 @@
+
 import React from "react";
 import { motion } from "framer-motion";
 import { Download } from 'lucide-react';
@@ -69,7 +70,7 @@ const AboutMe: React.FC = () => {
         <div className="flex flex-col lg:flex-row gap-12 md:gap-16 items-center">
           <div className="lg:w-2/5 flex justify-center">
             <motion.div
-              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-full p-1 relative overflow-hidden hover:border-[#9b87f5] hover:shadow-2xl hover:shadow-[#9b87f5]/50 transition-all duration-300 ease-out w-80 h-80 md:w-96 md:h-96"
+              className="bg-white/5 backdrop-blur-sm border-2 border-[#9b87f5]/30 rounded-full p-2 relative overflow-hidden hover:border-[#9b87f5]/60 hover:shadow-2xl hover:shadow-[#9b87f5]/30 transition-all duration-300 ease-out w-80 h-80 md:w-96 md:h-96"
               whileHover={{ scale: 1.03 }}
               transition={{ type: "spring", stiffness: 400, damping: 15 }}
               data-aos="fade-up"
@@ -77,7 +78,7 @@ const AboutMe: React.FC = () => {
             >
               {/* Animated blur circles for profile picture glow */}
               <div className="absolute -top-40 -left-40 w-80 h-80 bg-[#6366f1]/20 rounded-full blur-2xl animate-pulse-glow-slow"></div>
-              <div className="absolute -bottom-40 -right-40 w-80 h-80 bg-[#a855f7]/20 rounded-full blur-2xl animate-pulse-glow-slow delay-500"></div> {/* Added delay for staggered effect */}
+              <div className="absolute -bottom-40 -right-40 w-80 h-80 bg-[#a855f7]/20 rounded-full blur-2xl animate-pulse-glow-slow delay-500"></div>
               <div className="w-full h-full rounded-full overflow-hidden relative z-10">
                 <img
                   src="/assets/images/profile.png"
@@ -185,7 +186,7 @@ const AboutMe: React.FC = () => {
                       style={{ height: "calc(100% - 0.5rem)", zIndex: 1 }}
                     ></div>
 
-                    {/* Timeline card - UPDATED WITH GRADIENT BORDER EFFECT */}
+                    {/* Timeline card - UPDATED WITH BETTER DATE LAYOUT */}
                     <div className="bg-white/5 backdrop-blur-sm border border-transparent rounded-xl p-6 ml-6 md:ml-0 relative z-10 group overflow-hidden hover:bg-white/10 hover:scale-[1.01] transition-all duration-300">
                       {/* Gradient border overlay */}
                       <div className="absolute inset-0 rounded-xl p-[2px] opacity-0
@@ -195,14 +196,13 @@ const AboutMe: React.FC = () => {
                         <div className="bg-[#0B0B1E] rounded-[calc(0.75rem-2px)] w-full h-full"></div>
                       </div>
 
-                      {/* Content wrapper */}
+                      {/* Content wrapper with improved date layout */}
                       <div className="relative z-10">
-                        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-2">
-                          <h3 className="text-xl font-semibold text-white mb-1 sm:mb-0">{job.title}</h3>
-                          <span className="text-sm text-[#9b87f5] whitespace-nowrap mt-1 sm:mt-0">{job.dateRange}</span>
+                        <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start mb-2">
+                          <h3 className="text-xl font-semibold text-white mb-1 lg:mb-0 lg:flex-1 lg:pr-4">{job.title}</h3>
+                          <span className="text-sm text-[#9b87f5] lg:whitespace-nowrap lg:flex-shrink-0">{job.dateRange}</span>
                         </div>
                         <p className="text-md text-white/90 mb-1">{job.institution}</p>
-                        {/* LOCATION COLOR CHANGE HERE */}
                         <p className="text-sm text-blue-300 mb-3">{job.location}</p>
                         <ul className="list-disc list-outside ml-5 text-white/80 space-y-1.5 text-sm leading-relaxed">
                           {job.responsibilities.map((point, i) => <li key={i}>{point}</li>)}
@@ -243,19 +243,19 @@ const AboutMe: React.FC = () => {
                   }`}
                 >
                   <div className={`relative ${index % 2 === 0 ? "md:pl-12" : "md:pr-12"}`}>
-                    {/* Circle marker for desktop timeline - CONSISTENT COLOR */}
+                    {/* Circle marker for desktop timeline */}
                     <div
                       className={`absolute top-2 w-4 h-4 bg-[#9b87f5] rounded-full border-4 border-[#0B0B1E] hidden md:block ${
                         index % 2 === 0 ? "left-0 -translate-x-1/2" : "right-0 translate-x-1/2"
                       }`}
                       style={{ zIndex: 2 }}
                     ></div>
-                    {/* Vertical line for mobile timeline - CONSISTENT COLOR */}
+                    {/* Vertical line for mobile timeline */}
                     <div
                       className="absolute left-0 top-2 bottom-0 ml-[0.4rem] w-0.5 bg-[#9b87f5] md:hidden"
                       style={{ height: "calc(100% - 0.5rem)", zIndex: 1 }}
                     ></div>
-                    {/* Timeline card - UPDATED WITH GRADIENT BORDER EFFECT */}
+                    {/* Timeline card with improved date layout */}
                     <div className="bg-white/5 backdrop-blur-sm border border-transparent rounded-xl p-6 ml-6 md:ml-0 relative z-10 group overflow-hidden hover:bg-white/10 hover:scale-[1.01] transition-all duration-300">
                       {/* Gradient border overlay */}
                       <div className="absolute inset-0 rounded-xl p-[2px] opacity-0
@@ -264,21 +264,19 @@ const AboutMe: React.FC = () => {
                                       transition-opacity duration-300 ease-in-out">
                         <div className="bg-[#0B0B1E] rounded-[calc(0.75rem-2px)] w-full h-full"></div>
                       </div>
-                      {/* Content wrapper */}
+                      {/* Content wrapper with improved date layout */}
                       <div className="relative z-10">
-                        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-2">
-                          <h3 className="text-xl font-semibold text-white mb-1 sm:mb-0">
+                        <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start mb-2">
+                          <h3 className="text-xl font-semibold text-white mb-1 lg:mb-0 lg:flex-1 lg:pr-4">
                             {edu.degree}
                           </h3>
-                          {/* Date range color - CONSISTENT COLOR */}
-                          <span className="text-sm text-[#9b87f5] whitespace-nowrap mt-1 sm:mt-0">
+                          <span className="text-sm text-[#9b87f5] lg:whitespace-nowrap lg:flex-shrink-0">
                             {edu.dateRange}
                           </span>
                         </div>
                         <p className="text-md text-white/90 mb-1">
                           {edu.institution}
                         </p>
-                        {/* LOCATION COLOR CHANGE HERE */}
                         <p className="text-sm text-blue-300 mb-3">
                           {edu.location}
                         </p>
