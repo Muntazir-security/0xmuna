@@ -70,8 +70,8 @@ const educationHistory = [
 const AboutMe: React.FC = () => {
   return (
     <section id="about" className="py-24 md:py-32 relative overflow-hidden">
-      {/* Background Effects */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0B0B1E] via-[#1a1a2e] to-[#16213e] opacity-50"></div>
+      {/* Background Effects - Updated to match contact page */}
+      <div className="absolute inset-0 bg-[#0B0B1E]"></div>
       <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-[#6366f1]/10 rounded-full blur-3xl animate-pulse"></div>
       <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-[#a855f7]/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
       
@@ -86,7 +86,7 @@ const AboutMe: React.FC = () => {
             transition={{ duration: 0.8 }}
           >
             <div className="relative">
-              {/* Enhanced profile picture container */}
+              {/* Simplified profile picture container */}
               <div className="bg-gradient-to-r from-[#6366f1] to-[#a855f7] p-1 rounded-full">
                 <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-full p-2 relative overflow-hidden hover:border-[#9b87f5] hover:shadow-2xl hover:shadow-[#9b87f5]/30 transition-all duration-500 w-80 h-80 md:w-96 md:h-96">
                   {/* Animated background effects */}
@@ -102,15 +102,6 @@ const AboutMe: React.FC = () => {
                   </div>
                 </div>
               </div>
-              
-              {/* Floating badges */}
-              <motion.div
-                className="absolute -top-4 -right-4 bg-gradient-to-r from-[#6366f1] to-[#a855f7] p-3 rounded-full shadow-lg"
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <Award className="w-6 h-6 text-white" />
-              </motion.div>
             </div>
           </motion.div>
 
@@ -214,28 +205,30 @@ const AboutMe: React.FC = () => {
                       <Briefcase className="w-3 h-3 text-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
                     </div>
 
-                    {/* Enhanced job card */}
+                    {/* Enhanced job card with better date layout */}
                     <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 ml-10 md:ml-0 relative group hover:bg-white/10 hover:border-[#9b87f5]/50 hover:shadow-2xl hover:shadow-[#9b87f5]/20 transition-all duration-500">
                       {/* Gradient overlay */}
                       <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1]/5 to-[#a855f7]/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                       
                       <div className="relative z-10">
-                        {/* Job header */}
-                        <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start mb-4">
-                          <div>
-                            <h3 className="text-xl font-bold text-white mb-2 group-hover:text-[#9b87f5] transition-colors duration-300">
-                              {job.title}
-                            </h3>
-                            <p className="text-white/90 font-medium mb-1">{job.institution}</p>
-                          </div>
-                          <div className="flex flex-col lg:items-end gap-2">
-                            <span className="inline-flex items-center px-3 py-1 bg-[#9b87f5]/20 text-[#9b87f5] text-sm font-medium rounded-full">
-                              <Calendar className="w-3 h-3 mr-1" />
-                              {job.dateRange}
-                            </span>
-                            <span className="inline-flex items-center px-3 py-1 bg-blue-500/20 text-blue-300 text-sm font-medium rounded-full">
-                              {job.type}
-                            </span>
+                        {/* Job header with improved layout for date */}
+                        <div className="mb-4">
+                          <div className="flex flex-col xl:flex-row xl:justify-between xl:items-start gap-3">
+                            <div className="flex-1">
+                              <h3 className="text-xl font-bold text-white mb-2 group-hover:text-[#9b87f5] transition-colors duration-300">
+                                {job.title}
+                              </h3>
+                              <p className="text-white/90 font-medium mb-1">{job.institution}</p>
+                            </div>
+                            <div className="flex flex-col sm:flex-row xl:flex-col gap-2 xl:items-end">
+                              <span className="inline-flex items-center px-3 py-1 bg-[#9b87f5]/20 text-[#9b87f5] text-sm font-medium rounded-full whitespace-nowrap">
+                                <Calendar className="w-3 h-3 mr-1 flex-shrink-0" />
+                                {job.dateRange}
+                              </span>
+                              <span className="inline-flex items-center px-3 py-1 bg-blue-500/20 text-blue-300 text-sm font-medium rounded-full whitespace-nowrap">
+                                {job.type}
+                              </span>
+                            </div>
                           </div>
                         </div>
                         
@@ -306,29 +299,31 @@ const AboutMe: React.FC = () => {
                       <GraduationCap className="w-3 h-3 text-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
                     </div>
 
-                    {/* Education card */}
+                    {/* Education card with improved date layout */}
                     <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 ml-10 md:ml-0 relative group hover:bg-white/10 hover:border-[#9b87f5]/50 hover:shadow-2xl hover:shadow-[#9b87f5]/20 transition-all duration-500">
                       <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1]/5 to-[#a855f7]/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                       
                       <div className="relative z-10">
-                        <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start mb-4">
-                          <div>
-                            <h3 className="text-xl font-bold text-white mb-2 group-hover:text-[#9b87f5] transition-colors duration-300">
-                              {edu.degree}
-                            </h3>
-                            <p className="text-white/90 font-medium mb-1">{edu.institution}</p>
-                          </div>
-                          <div className="flex flex-col lg:items-end gap-2">
-                            <span className="inline-flex items-center px-3 py-1 bg-[#9b87f5]/20 text-[#9b87f5] text-sm font-medium rounded-full">
-                              <Calendar className="w-3 h-3 mr-1" />
-                              {edu.dateRange}
-                            </span>
-                            {edu.grade && (
-                              <span className="inline-flex items-center px-3 py-1 bg-green-500/20 text-green-300 text-sm font-medium rounded-full">
-                                <Award className="w-3 h-3 mr-1" />
-                                {edu.grade}
+                        <div className="mb-4">
+                          <div className="flex flex-col xl:flex-row xl:justify-between xl:items-start gap-3">
+                            <div className="flex-1">
+                              <h3 className="text-xl font-bold text-white mb-2 group-hover:text-[#9b87f5] transition-colors duration-300">
+                                {edu.degree}
+                              </h3>
+                              <p className="text-white/90 font-medium mb-1">{edu.institution}</p>
+                            </div>
+                            <div className="flex flex-col sm:flex-row xl:flex-col gap-2 xl:items-end">
+                              <span className="inline-flex items-center px-3 py-1 bg-[#9b87f5]/20 text-[#9b87f5] text-sm font-medium rounded-full whitespace-nowrap">
+                                <Calendar className="w-3 h-3 mr-1 flex-shrink-0" />
+                                {edu.dateRange}
                               </span>
-                            )}
+                              {edu.grade && (
+                                <span className="inline-flex items-center px-3 py-1 bg-green-500/20 text-green-300 text-sm font-medium rounded-full whitespace-nowrap">
+                                  <Award className="w-3 h-3 mr-1 flex-shrink-0" />
+                                  {edu.grade}
+                                </span>
+                              )}
+                            </div>
                           </div>
                         </div>
                         
