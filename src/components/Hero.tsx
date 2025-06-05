@@ -71,17 +71,17 @@ const CoreSkills = memo(() => {
 
   return (
     <div className="mt-8 mb-6" data-aos="fade-up" data-aos-delay="900">
-      <div className="flex flex-wrap justify-center gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-2xl">
         {skills.map((skill, index) => {
           const IconComponent = skill.icon;
           return (
             <div 
               key={skill.name}
-              className="group flex items-center gap-3 px-4 py-3 bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl hover:border-[#9b87f5]/50 hover:bg-white/10 transition-all duration-300"
+              className="group flex flex-col items-center gap-2 px-4 py-4 bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl hover:border-[#9b87f5]/50 hover:bg-white/10 transition-all duration-300"
               style={{ animationDelay: `${index * 200}ms` }}
             >
-              <IconComponent className={`w-5 h-5 ${skill.color} group-hover:scale-110 transition-transform duration-300`} />
-              <span className="text-white text-sm font-medium">{skill.name}</span>
+              <IconComponent className={`w-6 h-6 ${skill.color} group-hover:scale-110 transition-transform duration-300`} />
+              <span className="text-white text-sm font-medium text-center leading-tight">{skill.name}</span>
             </div>
           );
         })}
@@ -95,7 +95,7 @@ const Hero: React.FC = () => {
   return (
     <section id="home" className="relative min-h-screen flex items-center overflow-hidden bg-[#0B0B1E]">
       <div className="container mx-auto px-4 md:px-6 py-24 md:py-32 relative z-10">
-        <div className="max-w-3xl mx-auto md:mx-0">
+        <div className="max-w-4xl mx-auto md:mx-0">
           <div className="mb-4">
             <StatusBadge />
           </div>
@@ -105,15 +105,11 @@ const Hero: React.FC = () => {
           </div>
 
           <p
-            className="text-xl md:text-2xl text-white/80 mb-6 max-w-2xl leading-relaxed text-left"
+            className="text-xl md:text-2xl text-white/80 mb-6 max-w-3xl leading-relaxed text-left"
             data-aos="fade-up"
             data-aos-delay="800"
           >
-            Hi, I'm a Cybersecurity Engineer with hands-on experience in SOC
-            analysis, vulnerability assessment, and penetration testing. I
-            specialize in identifying vulnerabilities and crafting robust
-            defense strategies to protect digital environments from emerging
-            threats.
+            Passionate Cybersecurity Engineer specializing in threat detection, vulnerability assessment, and digital forensics. I transform complex security challenges into robust defense strategies, ensuring organizations stay protected against evolving cyber threats.
           </p>
 
           <CoreSkills />
