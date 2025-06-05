@@ -5,10 +5,10 @@ import {
   ArrowRight,
   Mail,
   Sparkle,
+  Shield,
   Search,
-  Target,
-  Eye,
   Lock,
+  Cloud,
 } from "lucide-react";
 
 const StatusBadge = memo(() => (
@@ -48,73 +48,43 @@ MainTitle.displayName = "MainTitle";
 const CoreSkills = memo(() => {
   const skills = [
     { 
-      name: "Threat Hunting", 
-      icon: Search, 
-      description: "Proactive threat detection"
+      name: "SIEM", 
+      icon: Shield, 
+      color: "text-blue-400"
     },
     { 
-      name: "Penetration Testing", 
-      icon: Target, 
-      description: "Vulnerability assessment"
-    },
-    { 
-      name: "SIEM Analysis", 
-      icon: Eye, 
-      description: "Security event monitoring"
-    },
-    { 
-      name: "Incident Response", 
+      name: "Network Security", 
       icon: Lock, 
-      description: "Rapid threat mitigation"
+      color: "text-purple-400"
+    },
+    { 
+      name: "Ethical Hacker", 
+      icon: Search, 
+      color: "text-green-400"
+    },
+    { 
+      name: "Cloud Security", 
+      icon: Cloud, 
+      color: "text-orange-400"
     },
   ];
 
   return (
     <div className="mt-8 mb-6" data-aos="fade-up" data-aos-delay="900">
-      <div className="relative group">
-        {/* Animated background glow */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1]/20 to-[#a855f7]/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
-        
-        <div className="relative bg-black/30 backdrop-blur-2xl border border-[#9b87f5]/30 rounded-2xl p-6 overflow-hidden">
-          {/* Subtle background effects */}
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute top-4 right-4 w-2 h-2 bg-[#00ff41] rounded-full animate-pulse"></div>
-            <div className="absolute bottom-4 left-6 w-1 h-1 bg-[#ff6b6b] rounded-full animate-pulse delay-500"></div>
-            <div className="absolute top-8 left-1/3 w-1.5 h-1.5 bg-[#4ecdc4] rounded-full animate-pulse delay-1000"></div>
-          </div>
-          
-          <div className="relative z-10">
-            {/* Header */}
-            <div className="flex items-center justify-center mb-6">
-              <div className="text-center">
-                <h3 className="text-lg font-bold text-white">Core Expertise</h3>
-                <p className="text-xs text-[#9b87f5]">Cybersecurity Specializations</p>
-              </div>
+      <div className="flex flex-wrap justify-center gap-4">
+        {skills.map((skill, index) => {
+          const IconComponent = skill.icon;
+          return (
+            <div 
+              key={skill.name}
+              className="group flex items-center gap-3 px-4 py-3 bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl hover:border-[#9b87f5]/50 hover:bg-white/10 transition-all duration-300"
+              style={{ animationDelay: `${index * 200}ms` }}
+            >
+              <IconComponent className={`w-5 h-5 ${skill.color} group-hover:scale-110 transition-transform duration-300`} />
+              <span className="text-white text-sm font-medium">{skill.name}</span>
             </div>
-
-            {/* Skills Grid - Perfectly Aligned */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {skills.map((skill, index) => {
-                const IconComponent = skill.icon;
-                return (
-                  <div 
-                    key={skill.name}
-                    className="group/item flex flex-col items-center justify-center p-4 bg-white/5 rounded-lg border border-white/10 hover:border-[#9b87f5]/50 transition-all duration-300 min-h-[100px]"
-                    style={{ animationDelay: `${index * 200}ms` }}
-                  >
-                    <div className="flex flex-col items-center gap-2 text-center">
-                      <IconComponent className="w-6 h-6 text-[#9b87f5] group-hover/item:text-white transition-colors duration-300" />
-                      <div>
-                        <span className="text-white text-sm font-semibold block">{skill.name}</span>
-                        <span className="text-[#9b87f5] text-xs">{skill.description}</span>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
+          );
+        })}
       </div>
     </div>
   );
@@ -123,7 +93,7 @@ CoreSkills.displayName = "CoreSkills";
 
 const Hero: React.FC = () => {
   return (
-    <section id="home" className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-t from-[#0f0f1a] via-[#0a0a15] to-[#0f0f1a]">
+    <section id="home" className="relative min-h-screen flex items-center overflow-hidden bg-[#0B0B1E]">
       <div className="container mx-auto px-4 md:px-6 py-24 md:py-32 relative z-10">
         <div className="max-w-3xl mx-auto md:mx-0">
           <div className="mb-4">
@@ -159,7 +129,7 @@ const Hero: React.FC = () => {
                 className="flex items-center justify-center relative z-10 group-hover:text-white transition-colors duration-300"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1] to-[#a855f7] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
-                <span className="relative z-10 font-semibold">Explore My Arsenal</span>
+                <span className="relative z-10 font-semibold">View Portfolio</span>
                 <ArrowRight className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" />
               </a>
             </Button>
@@ -175,7 +145,7 @@ const Hero: React.FC = () => {
               >
                 <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
                 <Mail className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform duration-300" />
-                <span className="relative z-10 font-semibold">Initiate Contact</span>
+                <span className="relative z-10 font-semibold">Get In Touch</span>
               </a>
             </Button>
           </div>

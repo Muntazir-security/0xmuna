@@ -70,9 +70,8 @@ const educationHistory = [
 
 const AboutMe: React.FC = () => {
   return (
-    <section id="about" className="py-24 md:py-32 relative overflow-hidden">
+    <section id="about" className="py-24 md:py-32 relative overflow-hidden bg-[#0B0B1E]">
       {/* Background Effects */}
-      <div className="absolute inset-0 bg-[#0B0B1E]"></div>
       <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-[#6366f1]/10 rounded-full blur-3xl animate-pulse"></div>
       <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-[#a855f7]/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
       
@@ -156,7 +155,7 @@ const AboutMe: React.FC = () => {
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1] to-[#a855f7] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
                   <Download className="w-5 h-5 mr-3 relative z-10 group-hover:animate-bounce transition-transform duration-300" />
-                  <span className="relative z-10 font-semibold text-lg group-hover:text-white transition-colors duration-300">Access Credentials</span>
+                  <span className="relative z-10 font-semibold text-lg group-hover:text-white transition-colors duration-300">Download Resume</span>
                 </a>
               </Button>
             </motion.div>
@@ -229,7 +228,11 @@ const AboutMe: React.FC = () => {
                                 <Calendar className="w-3 h-3 mr-1 flex-shrink-0" />
                                 {job.dateRange}
                               </span>
-                              <span className="inline-flex items-center px-3 py-1 bg-blue-500/20 text-blue-300 text-sm font-medium rounded-full whitespace-nowrap">
+                              <span className={`inline-flex items-center px-3 py-1 text-sm font-medium rounded-full whitespace-nowrap ${
+                                job.type === 'Part-time' ? 'bg-blue-500/20 text-blue-300' : 
+                                job.type === 'Full-time' ? 'bg-green-500/20 text-green-300' : 
+                                'bg-orange-500/20 text-orange-300'
+                              }`}>
                                 {job.type}
                               </span>
                             </div>
