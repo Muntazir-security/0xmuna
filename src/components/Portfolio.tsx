@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -236,8 +237,12 @@ const Portfolio: React.FC = () => {
   ];
 
   return (
-    <section id="portfolio" className="py-24 md:py-32 relative">
-      <div className="container mx-auto px-4 md:px-6">
+    <section id="portfolio" className="py-24 md:py-32 relative bg-[#0B0B1E]">
+      {/* Background Effects - same as other pages */}
+      <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-[#6366f1]/10 rounded-full blur-3xl animate-pulse"></div>
+      <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-[#a855f7]/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+      
+      <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             My <span className="text-[#9b87f5]">Portfolio</span>

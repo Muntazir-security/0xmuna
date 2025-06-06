@@ -1,4 +1,3 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import { Download, MapPin, Calendar, Award, GraduationCap, Briefcase } from 'lucide-react';
@@ -118,23 +117,22 @@ const AboutMe: React.FC = () => {
             <div className="w-24 h-1.5 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-full mb-8"></div>
 
             <p className="text-white/80 text-justify mb-8 leading-relaxed">
-              I'm Syed Muntazir Mehdi, a <span className="text-[#9b87f5] font-semibold italic">Cybersecurity Graduate</span> with hands-on experience 
-              in <em className="text-blue-300">vulnerability assessment</em>, <em className="text-purple-300">SOC operations</em>, and <em className="text-green-300">penetration testing</em>. 
-              I hold a dual-awarded B.Sc. (Hons) in Cybersecurity from both <em className="text-orange-300">Asia Pacific University (Malaysia)</em> and <em className="text-pink-300">De Montfort University (UK)</em>.
+              I'm Syed Muntazir Mehdi, a <em>Cybersecurity Graduate</em> with hands-on experience 
+              in vulnerability assessment, SOC operations, and penetration testing. 
+              I hold a dual-awarded B.Sc. (Hons) in Cybersecurity from both <em>Asia Pacific University (Malaysia)</em> and <em>De Montfort University (UK)</em>.
             </p>
             
-
             <p className="text-white/80 text-justify mb-8 leading-relaxed">
-            Throughout my academic and professional journey, I've worked on securing <em className="text-blue-300">real-world systems</em>, identifying <em className="text-red-300">critical vulnerabilities</em>, 
-            and deploying <em className="text-green-300">effective mitigation strategies</em>. 
-            My focus areas include <em className="text-purple-300">Network Defense</em>, <em className="text-orange-300">Ethical Hacking</em>, <em className="text-blue-300">SIEM analysis</em>,
-            and building <em className="text-pink-300">proactive security measures</em> across infrastructures.
+            Throughout my academic and professional journey, I've worked on securing real-world systems, identifying <em>critical vulnerabilities</em>, 
+            and deploying effective mitigation strategies. 
+            My focus areas include <em>Network Defense</em>, <em>Ethical Hacking</em>, <em>SIEM analysis</em>,
+            and building proactive security measures across infrastructures.
             </p>
 
             <p className="text-white/80 text-justify mb-8 leading-relaxed">
-            I'm passionate about staying ahead of <em className="text-red-300">threats</em>, learning <em className="text-green-300">new tools</em>, and turning <em className="text-blue-300">security knowledge</em> into <em className="text-purple-300">practical solutions</em>. 
-            Whether I'm writing <em className="text-orange-300">automation scripts</em>, monitoring <em className="text-pink-300">logs</em>, or breaking down <em className="text-red-300">attack vectors</em> — I approach cybersecurity with a <em className="text-green-300">problem-solver's 
-            mindset</em> and a <em className="text-blue-300">defender's responsibility</em>.
+            I'm passionate about staying ahead of threats, learning new tools, and turning security knowledge into practical solutions. 
+            Whether I'm writing automation scripts, monitoring logs, or breaking down attack vectors — I approach cybersecurity with a <em>problem-solver's 
+            mindset</em> and a defender's responsibility.
             </p>
 
             <motion.div
