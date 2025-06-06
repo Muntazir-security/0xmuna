@@ -147,8 +147,8 @@ const AboutMe: React.FC = () => {
                 className="group relative overflow-hidden bg-transparent border-2 border-[#9b87f5] text-white hover:bg-transparent px-8 py-4 rounded-2xl shadow-lg hover:shadow-[0_0_40px_rgba(155,135,245,0.5)] transform transition-all duration-500 ease-in-out hover:scale-105"
               >
                 <a
-                  href="/assets/documents/Syed_Muntazir_Mehd_CV.pdf"
-                  download="Syed_Muntazir_Mehdi_CV.pdf"
+                  href="/assets/documents/Muntazir Mehdi CV.pdf"
+                  download="Muntazir_Mehdi_CV.pdf"
                   className="flex items-center justify-center relative"
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1] to-[#a855f7] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>

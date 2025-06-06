@@ -71,17 +71,17 @@ const CoreSkills = memo(() => {
 
   return (
     <div className="mt-8 mb-6" data-aos="fade-up" data-aos-delay="900">
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-3xl">
+      <div className="grid grid-cols-2 gap-4 max-w-2xl">
         {skills.map((skill, index) => {
           const IconComponent = skill.icon;
           return (
             <div 
               key={skill.name}
-              className="group flex items-center gap-3 px-4 py-4 bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl hover:border-[#9b87f5]/50 hover:bg-white/10 transition-all duration-300"
+              className="group flex items-center gap-3 px-4 py-3 bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl hover:border-[#9b87f5]/50 hover:bg-white/10 transition-all duration-300"
               style={{ animationDelay: `${index * 200}ms` }}
             >
-              <IconComponent className={`w-6 h-6 ${skill.color} group-hover:scale-110 transition-transform duration-300 flex-shrink-0`} />
-              <span className="text-white text-sm font-medium text-left leading-tight">{skill.name}</span>
+              <IconComponent className={`w-5 h-5 ${skill.color} group-hover:scale-110 transition-transform duration-300 flex-shrink-0`} />
+              <span className="text-white text-sm font-medium">{skill.name}</span>
             </div>
           );
         })}
@@ -90,6 +90,22 @@ const CoreSkills = memo(() => {
   );
 });
 CoreSkills.displayName = "CoreSkills";
+
+const TryHackMeBadge = memo(() => (
+  <div className="mt-8 mb-6" data-aos="fade-up" data-aos-delay="1200">
+    <div className="flex justify-center">
+      <iframe 
+        src="https://tryhackme.com/api/v2/badges/public-profile?userPublicId=996369" 
+        style={{ border: 'none' }}
+        className="rounded-lg"
+        width="400"
+        height="120"
+        title="TryHackMe Badge"
+      />
+    </div>
+  </div>
+));
+TryHackMeBadge.displayName = "TryHackMeBadge";
 
 const Hero: React.FC = () => {
   return (
@@ -113,6 +129,7 @@ const Hero: React.FC = () => {
           </p>
 
           <CoreSkills />
+          <TryHackMeBadge />
 
           <div className="flex flex-col sm:flex-row gap-4 mt-10" data-aos="fade-up" data-aos-delay="1400">
             <Button
