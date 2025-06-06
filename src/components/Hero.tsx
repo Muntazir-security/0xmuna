@@ -71,7 +71,7 @@ const CoreSkills = memo(() => {
 
   return (
     <div className="mt-8 mb-6" data-aos="fade-up" data-aos-delay="900">
-      <div className="grid grid-cols-2 gap-4 max-w-2xl">
+      <div className="flex flex-wrap gap-4 max-w-3xl">
         {skills.map((skill, index) => {
           const IconComponent = skill.icon;
           return (
@@ -93,35 +93,34 @@ CoreSkills.displayName = "CoreSkills";
 
 const TryHackMeBadge = memo(() => (
   <div className="hidden lg:flex flex-col items-center justify-center h-full" data-aos="fade-left" data-aos-delay="1200">
-    <div className="relative group">
-      {/* Animated glow rings */}
-      <div className="absolute -inset-4 bg-gradient-to-r from-[#6366f1] via-[#9b87f5] to-[#a855f7] rounded-2xl blur opacity-20 group-hover:opacity-40 animate-pulse-slow"></div>
-      <div className="absolute -inset-2 bg-gradient-to-r from-[#a855f7] to-[#6366f1] rounded-xl blur opacity-30 group-hover:opacity-50 animate-pulse-glow-slow"></div>
+    <div className="relative group cursor-pointer">
+      {/* Animated gradient border */}
+      <div className="absolute -inset-1 bg-gradient-to-r from-[#6366f1] via-[#9b87f5] to-[#a855f7] rounded-lg blur-sm opacity-30 group-hover:opacity-60 animate-pulse transition-all duration-500"></div>
       
       {/* Badge container */}
-      <div className="relative bg-black/40 backdrop-blur-xl border border-white/20 rounded-2xl p-6 group-hover:border-[#9b87f5]/50 transition-all duration-500 group-hover:scale-105">
-        <div className="text-center mb-4">
-          <h3 className="text-lg font-semibold bg-gradient-to-r from-[#6366f1] to-[#a855f7] bg-clip-text text-transparent">
+      <div className="relative bg-black/30 backdrop-blur-lg border border-white/10 rounded-lg p-3 group-hover:border-[#9b87f5]/40 transition-all duration-300 group-hover:scale-[1.02]">
+        {/* Small header */}
+        <div className="text-center mb-2">
+          <span className="text-xs font-medium bg-gradient-to-r from-[#6366f1] to-[#a855f7] bg-clip-text text-transparent">
             TryHackMe Profile
-          </h3>
-          <div className="w-12 h-0.5 bg-gradient-to-r from-[#6366f1] to-[#a855f7] mx-auto mt-2 rounded-full"></div>
+          </span>
         </div>
         
         {/* Badge iframe */}
-        <div className="relative overflow-hidden rounded-xl">
+        <div className="relative overflow-hidden rounded">
           <iframe 
             src="https://tryhackme.com/api/v2/badges/public-profile?userPublicId=996369" 
             style={{ border: 'none' }}
-            className="rounded-xl transform group-hover:scale-102 transition-transform duration-300"
-            width="400"
-            height="120"
+            className="rounded transform group-hover:scale-[1.01] transition-transform duration-300"
+            width="320"
+            height="100"
             title="TryHackMe Badge"
           />
         </div>
         
-        {/* Decorative elements */}
-        <div className="absolute top-2 right-2 w-2 h-2 bg-[#6366f1] rounded-full animate-pulse"></div>
-        <div className="absolute bottom-2 left-2 w-1.5 h-1.5 bg-[#a855f7] rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
+        {/* Subtle glow dots */}
+        <div className="absolute top-1 right-1 w-1.5 h-1.5 bg-[#6366f1] rounded-full animate-pulse opacity-60"></div>
+        <div className="absolute bottom-1 left-1 w-1 h-1 bg-[#a855f7] rounded-full animate-pulse opacity-60" style={{ animationDelay: '1s' }}></div>
       </div>
     </div>
   </div>
