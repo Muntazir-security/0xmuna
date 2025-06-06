@@ -92,16 +92,37 @@ const CoreSkills = memo(() => {
 CoreSkills.displayName = "CoreSkills";
 
 const TryHackMeBadge = memo(() => (
-  <div className="mt-8 mb-6" data-aos="fade-up" data-aos-delay="1200">
-    <div className="flex justify-center">
-      <iframe 
-        src="https://tryhackme.com/api/v2/badges/public-profile?userPublicId=996369" 
-        style={{ border: 'none' }}
-        className="rounded-lg"
-        width="400"
-        height="120"
-        title="TryHackMe Badge"
-      />
+  <div className="hidden lg:flex flex-col items-center justify-center h-full" data-aos="fade-left" data-aos-delay="1200">
+    <div className="relative group">
+      {/* Animated glow rings */}
+      <div className="absolute -inset-4 bg-gradient-to-r from-[#6366f1] via-[#9b87f5] to-[#a855f7] rounded-2xl blur opacity-20 group-hover:opacity-40 animate-pulse-slow"></div>
+      <div className="absolute -inset-2 bg-gradient-to-r from-[#a855f7] to-[#6366f1] rounded-xl blur opacity-30 group-hover:opacity-50 animate-pulse-glow-slow"></div>
+      
+      {/* Badge container */}
+      <div className="relative bg-black/40 backdrop-blur-xl border border-white/20 rounded-2xl p-6 group-hover:border-[#9b87f5]/50 transition-all duration-500 group-hover:scale-105">
+        <div className="text-center mb-4">
+          <h3 className="text-lg font-semibold bg-gradient-to-r from-[#6366f1] to-[#a855f7] bg-clip-text text-transparent">
+            TryHackMe Profile
+          </h3>
+          <div className="w-12 h-0.5 bg-gradient-to-r from-[#6366f1] to-[#a855f7] mx-auto mt-2 rounded-full"></div>
+        </div>
+        
+        {/* Badge iframe */}
+        <div className="relative overflow-hidden rounded-xl">
+          <iframe 
+            src="https://tryhackme.com/api/v2/badges/public-profile?userPublicId=996369" 
+            style={{ border: 'none' }}
+            className="rounded-xl transform group-hover:scale-102 transition-transform duration-300"
+            width="400"
+            height="120"
+            title="TryHackMe Badge"
+          />
+        </div>
+        
+        {/* Decorative elements */}
+        <div className="absolute top-2 right-2 w-2 h-2 bg-[#6366f1] rounded-full animate-pulse"></div>
+        <div className="absolute bottom-2 left-2 w-1.5 h-1.5 bg-[#a855f7] rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
+      </div>
     </div>
   </div>
 ));
@@ -111,57 +132,62 @@ const Hero: React.FC = () => {
   return (
     <section id="home" className="relative min-h-screen flex items-center overflow-hidden bg-[#0B0B1E]">
       <div className="container mx-auto px-4 md:px-6 py-24 md:py-32 relative z-10">
-        <div className="max-w-4xl mx-auto md:mx-0">
-          <div className="mb-4">
-            <StatusBadge />
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Left side - Main content */}
+          <div className="max-w-4xl">
+            <div className="mb-4">
+              <StatusBadge />
+            </div>
+
+            <div className="mb-8">
+              <MainTitle />
+            </div>
+
+            <p
+              className="text-xl md:text-2xl text-white/80 mb-6 max-w-3xl leading-relaxed text-left"
+              data-aos="fade-up"
+              data-aos-delay="800"
+            >
+              Cybersecurity Engineer with expertise in <em className="text-[#9b87f5] font-medium">threat detection</em>, <em className="text-blue-300 font-medium">vulnerability assessment</em>, and <em className="text-green-300 font-medium">digital forensics</em>. I specialize in transforming complex security challenges into robust defense strategies that protect organizations against evolving cyber threats.
+            </p>
+
+            <CoreSkills />
+
+            <div className="flex flex-col sm:flex-row gap-4 mt-10" data-aos="fade-up" data-aos-delay="1400">
+              <Button
+                asChild
+                size="lg"
+                className="group relative overflow-hidden bg-transparent border-2 border-[#9b87f5] text-white hover:bg-[#9b87f5] px-8 py-4 rounded-2xl shadow-lg hover:shadow-[0_0_40px_rgba(155,135,245,0.5)] transform transition-all duration-500 ease-in-out hover:scale-105"
+              >
+                <a
+                  href="#portfolio"
+                  className="flex items-center justify-center relative z-10 group-hover:text-white transition-colors duration-300"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1] to-[#a855f7] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
+                  <span className="relative z-10 font-semibold">View Portfolio</span>
+                  <ArrowRight className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" />
+                </a>
+              </Button>
+
+              <Button
+                asChild
+                size="lg"
+                className="group relative overflow-hidden bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-white border-2 border-transparent hover:border-white/30 px-8 py-4 rounded-2xl shadow-lg hover:shadow-[0_0_40px_rgba(99,102,241,0.5)] transform transition-all duration-500 ease-in-out hover:scale-105"
+              >
+                <a
+                  href="#contact"
+                  className="flex items-center justify-center relative z-10"
+                >
+                  <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
+                  <Mail className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform duration-300" />
+                  <span className="relative z-10 font-semibold">Get In Touch</span>
+                </a>
+              </Button>
+            </div>
           </div>
 
-          <div className="mb-8">
-            <MainTitle />
-          </div>
-
-          <p
-            className="text-xl md:text-2xl text-white/80 mb-6 max-w-3xl leading-relaxed text-left"
-            data-aos="fade-up"
-            data-aos-delay="800"
-          >
-            Cybersecurity Engineer with expertise in <em className="text-[#9b87f5] font-medium">threat detection</em>, <em className="text-blue-300 font-medium">vulnerability assessment</em>, and <em className="text-green-300 font-medium">digital forensics</em>. I specialize in transforming complex security challenges into robust defense strategies that protect organizations against evolving cyber threats.
-          </p>
-
-          <CoreSkills />
+          {/* Right side - TryHackMe Badge */}
           <TryHackMeBadge />
-
-          <div className="flex flex-col sm:flex-row gap-4 mt-10" data-aos="fade-up" data-aos-delay="1400">
-            <Button
-              asChild
-              size="lg"
-              className="group relative overflow-hidden bg-transparent border-2 border-[#9b87f5] text-white hover:bg-[#9b87f5] px-8 py-4 rounded-2xl shadow-lg hover:shadow-[0_0_40px_rgba(155,135,245,0.5)] transform transition-all duration-500 ease-in-out hover:scale-105"
-            >
-              <a
-                href="#portfolio"
-                className="flex items-center justify-center relative z-10 group-hover:text-white transition-colors duration-300"
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1] to-[#a855f7] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
-                <span className="relative z-10 font-semibold">View Portfolio</span>
-                <ArrowRight className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" />
-              </a>
-            </Button>
-
-            <Button
-              asChild
-              size="lg"
-              className="group relative overflow-hidden bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-white border-2 border-transparent hover:border-white/30 px-8 py-4 rounded-2xl shadow-lg hover:shadow-[0_0_40px_rgba(99,102,241,0.5)] transform transition-all duration-500 ease-in-out hover:scale-105"
-            >
-              <a
-                href="#contact"
-                className="flex items-center justify-center relative z-10"
-              >
-                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
-                <Mail className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform duration-300" />
-                <span className="relative z-10 font-semibold">Get In Touch</span>
-              </a>
-            </Button>
-          </div>
         </div>
       </div>
 
