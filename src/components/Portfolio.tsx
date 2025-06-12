@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -79,65 +78,100 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({ project, index })
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
+      transition={{ duration: 0.6, delay: index * 0.15 }}
+      className="group relative h-full"
     >
-      <Card className="group bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl overflow-hidden transition-all duration-500 hover:bg-white/10 hover:border-[#9b87f5]/50 hover:shadow-2xl hover:shadow-[#9b87f5]/20 hover:-translate-y-2 h-full flex flex-col">
-        {/* Header with Icon */}
-        <div className="relative p-8 pb-6">
-          <div className="absolute top-6 right-6">
-            <div className="w-12 h-12 bg-gradient-to-br from-[#6366f1]/20 to-[#a855f7]/20 rounded-xl flex items-center justify-center border border-white/10 group-hover:scale-110 transition-transform duration-300">
-              <IconComponent className="w-6 h-6 text-[#9b87f5]" />
+      {/* Floating gradient orb background */}
+      <div className="absolute -inset-1 bg-gradient-to-r from-[#6366f1]/20 via-[#9b87f5]/20 to-[#a855f7]/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700" />
+      
+      <div className="relative bg-gradient-to-br from-white/8 via-white/5 to-white/3 backdrop-blur-xl border border-white/10 rounded-2xl overflow-hidden transition-all duration-500 group-hover:border-[#9b87f5]/40 group-hover:bg-gradient-to-br group-hover:from-white/12 group-hover:via-white/8 group-hover:to-white/5 h-full flex flex-col">
+        
+        {/* Animated top border */}
+        <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[#9b87f5]/50 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700" />
+        
+        {/* Header section */}
+        <div className="relative p-6 pb-4">
+          <div className="flex items-start justify-between mb-4">
+            <div className="flex items-center space-x-3">
+              <div className="relative">
+                <div className="w-12 h-12 bg-gradient-to-br from-[#6366f1]/30 to-[#9b87f5]/30 rounded-xl border border-white/20 flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
+                  <IconComponent className="w-6 h-6 text-[#9b87f5] group-hover:text-white transition-colors duration-300" />
+                </div>
+                {/* Pulsing ring effect */}
+                <div className="absolute inset-0 rounded-xl border-2 border-[#9b87f5]/30 scale-0 group-hover:scale-125 opacity-0 group-hover:opacity-100 transition-all duration-700" />
+              </div>
+              <div>
+                <span className="inline-flex items-center px-2.5 py-1 bg-[#9b87f5]/20 text-[#9b87f5] rounded-full text-xs font-medium border border-[#9b87f5]/30 group-hover:bg-[#9b87f5]/30 transition-colors duration-300">
+                  {project.category || 'Development'}
+                </span>
+              </div>
+            </div>
+            <div className="w-8 h-8 bg-white/5 rounded-lg border border-white/10 flex items-center justify-center group-hover:bg-[#9b87f5]/20 group-hover:border-[#9b87f5]/40 transition-all duration-300">
+              <ArrowRight className="w-4 h-4 text-white/60 group-hover:text-[#9b87f5] group-hover:translate-x-0.5 transition-all duration-300" />
             </div>
           </div>
           
-          <div className="pr-16">
-            <span className="inline-block px-3 py-1 bg-[#9b87f5]/20 text-[#9b87f5] rounded-full text-xs font-medium mb-4">
-              {project.category || 'Development'}
-            </span>
-            <h3 className="text-xl font-bold text-white mb-3 line-clamp-2 group-hover:text-[#9b87f5] transition-colors duration-300">
-              {project.title}
-            </h3>
-            <p className="text-white/70 text-sm leading-relaxed line-clamp-3">
-              {project.description}
-            </p>
+          <h3 className="text-xl font-bold text-white mb-3 line-clamp-2 group-hover:text-[#9b87f5] transition-colors duration-300">
+            {project.title}
+          </h3>
+          
+          <p className="text-white/70 text-sm leading-relaxed line-clamp-3 group-hover:text-white/90 transition-colors duration-300">
+            {project.description}
+          </p>
+        </div>
+
+        {/* Technologies section */}
+        <div className="px-6 pb-4 flex-grow">
+          <div className="space-y-3">
+            <h4 className="text-xs font-semibold text-white/50 uppercase tracking-wider">Technologies</h4>
+            <div className="flex flex-wrap gap-2">
+              {project.tags.slice(0, 4).map((tag, tagIndex) => (
+                <motion.span 
+                  key={tag}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: (index * 0.1) + (tagIndex * 0.05) }}
+                  className="px-2.5 py-1.5 bg-white/5 text-white/70 rounded-lg text-xs border border-white/10 group-hover:border-[#9b87f5]/30 group-hover:bg-[#9b87f5]/10 group-hover:text-white transition-all duration-300"
+                >
+                  {tag}
+                </motion.span>
+              ))}
+              {project.tags.length > 4 && (
+                <span className="px-2.5 py-1.5 bg-white/5 text-white/60 rounded-lg text-xs border border-white/10 group-hover:border-[#9b87f5]/30 transition-colors duration-300">
+                  +{project.tags.length - 4}
+                </span>
+              )}
+            </div>
           </div>
         </div>
 
-        {/* Technologies */}
-        <div className="px-8 pb-6 flex-grow">
-          <div className="flex flex-wrap gap-2">
-            {project.tags.slice(0, 3).map((tag) => (
-              <span key={tag} className="px-2.5 py-1 bg-white/5 text-white/60 rounded-md text-xs border border-white/5">
-                {tag}
-              </span>
-            ))}
-            {project.tags.length > 3 && (
-              <span className="px-2.5 py-1 bg-white/5 text-white/60 rounded-md text-xs border border-white/5">
-                +{project.tags.length - 3} more
-              </span>
-            )}
-          </div>
-        </div>
-
-        {/* Footer */}
-        <div className="p-8 pt-0 mt-auto">
-          <div className="flex items-center justify-between">
-            <Link to={`/project/${project.id}`} className="flex-1 mr-3">
-              <Button className="w-full bg-gradient-to-r from-[#6366f1] to-[#9b87f5] text-white hover:opacity-90 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-[#9b87f5]/30">
-                View Details
-                <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+        {/* Footer with CTA */}
+        <div className="p-6 pt-0 mt-auto">
+          <div className="flex items-center space-x-3">
+            <Link to={`/project/${project.id}`} className="flex-1">
+              <Button className="w-full bg-gradient-to-r from-[#6366f1] to-[#9b87f5] text-white hover:opacity-90 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-[#9b87f5]/30 relative overflow-hidden">
+                <span className="relative z-10 flex items-center justify-center">
+                  Explore Project
+                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+                </span>
+                {/* Shimmer effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
               </Button>
             </Link>
             <Button 
               size="icon" 
               variant="outline" 
-              className="border-white/20 text-white/70 hover:bg-white/10 hover:text-white hover:border-[#9b87f5]/50 transition-all duration-300"
+              className="border-white/20 text-white/70 hover:bg-[#9b87f5]/20 hover:text-[#9b87f5] hover:border-[#9b87f5]/50 transition-all duration-300"
             >
               <ExternalLink className="w-4 h-4" />
             </Button>
           </div>
         </div>
-      </Card>
+
+        {/* Subtle corner accents */}
+        <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-[#9b87f5]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        <div className="absolute bottom-0 left-0 w-20 h-20 bg-gradient-to-tr from-[#6366f1]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      </div>
     </motion.div>
   );
 };
@@ -178,44 +212,44 @@ const Portfolio: React.FC = () => {
   const projectsInput: ProjectInputData[] = [
     { 
       title: "Mitigating TCP SYN Flooding-Based DDoS Attack in SDN", 
-      description: "Designed and implemented an advanced anomaly detection system to protect Software-Defined Networks (SDN) from DDoS attacks. The system uses a statistical approach for real-time analysis of network traffic, ensuring robust security against SYN flooding attacks.", 
+      description: "Advanced anomaly detection system protecting Software-Defined Networks from DDoS attacks using statistical analysis and real-time traffic monitoring. Implemented comprehensive security measures to prevent SYN flooding attacks while maintaining network performance.", 
       iconName: "Shield", 
-      tags: ["Software-Defined Networking (SDN)", "DDoS Mitigation", "Network Security", "Statistical Analysis"],
+      tags: ["Software-Defined Networking (SDN)", "DDoS Mitigation", "Network Security", "Statistical Analysis", "Real-time Monitoring"],
       category: "Network Security"
     },
     { 
       title: "SABB Bank Management System", 
-      description: "Developed a Python-based banking system with multi-level authentication and secure transaction handling. The system ensures robust security and prevents fraudulent activities.", 
+      description: "Comprehensive Python-based banking system featuring multi-level authentication, secure transaction processing, and fraud prevention mechanisms. Includes account management, transaction history, and robust security protocols.", 
       iconName: "Building2", 
-      tags: ["Python", "CLI", "File I/O", "User Authentication"],
+      tags: ["Python", "CLI Interface", "File I/O Operations", "User Authentication", "Security"],
       category: "Financial Software"
     },
     { 
       title: "University Information Management System", 
-      description: "Created a recommendation engine for the Malaysian Ministry of Higher Education to evaluate university rankings. The system features user-specific interfaces and data analysis tools.", 
+      description: "Intelligent recommendation engine designed for the Malaysian Ministry of Higher Education to evaluate and rank universities. Features user-specific interfaces, comprehensive data analysis, and ranking algorithms.", 
       iconName: "GraduationCap", 
-      tags: ["Data Structures", "Algorithms", "User Authentication", "Data Analysis"],
+      tags: ["Data Structures", "Algorithms", "User Authentication", "Data Analysis", "Ranking System"],
       category: "Educational Technology"
     },
     { 
       title: "APU e-Bookstore Database Management System", 
-      description: "A robust database system for APU's e-Bookstore, streamlining book management and order processing with normalized database design.", 
+      description: "Robust database system for APU's e-Bookstore with normalized design, efficient book catalog management, order processing, and inventory tracking. Features optimized queries and data integrity controls.", 
       iconName: "DatabaseIcon", 
-      tags: ["Database Design", "SQL", "ERD Modeling", "Normalization"],
+      tags: ["Database Design", "SQL Optimization", "ERD Modeling", "Normalization", "Data Integrity"],
       category: "Database Systems"
     },
     { 
       title: "Minimart Management System", 
-      description: "An Assembly Language application providing essential tools for minimart operations, including inventory management and sales analysis.", 
+      description: "Low-level Assembly Language application providing comprehensive minimart operations including inventory management, sales tracking, reporting systems, and performance optimization for retail environments.", 
       iconName: "ShoppingCart", 
-      tags: ["Assembly Language", "Low-level Programming", "Inventory Management"],
+      tags: ["Assembly Language", "Low-level Programming", "Inventory Management", "Sales Analytics"],
       category: "Retail Management"
     },
     { 
       title: "Personal Task Management System", 
-      description: "A CLI-based task management solution in C, enabling efficient organization and tracking of tasks with priority-based scheduling.", 
+      description: "Efficient CLI-based task management solution built in C, featuring priority-based scheduling, task categorization, deadline tracking, and productivity analytics for personal workflow optimization.", 
       iconName: "CheckSquare", 
-      tags: ["C", "CLI", "File I/O", "Task Management"],
+      tags: ["C Programming", "CLI Interface", "File I/O", "Task Management", "Priority Scheduling"],
       category: "Productivity Tools"
     },
   ];
