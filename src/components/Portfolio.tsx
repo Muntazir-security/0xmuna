@@ -145,26 +145,47 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({ project, index })
           </div>
         </div>
 
-        {/* Footer with CTA */}
+        {/* Footer with enhanced CTA */}
         <div className="p-6 pt-0 mt-auto">
           <div className="flex items-center space-x-3">
             <Link to={`/project/${project.id}`} className="flex-1">
-              <Button className="w-full bg-gradient-to-r from-[#6366f1] to-[#9b87f5] text-white hover:opacity-90 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-[#9b87f5]/30 relative overflow-hidden">
-                <span className="relative z-10 flex items-center justify-center">
-                  Explore Project
-                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
-                </span>
-                {/* Shimmer effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
-              </Button>
+              <motion.button 
+                className="w-full group/btn relative overflow-hidden bg-gradient-to-r from-[#6366f1] via-[#8b5cf6] to-[#a855f7] p-[2px] rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-[#9b87f5]/30"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                {/* Animated gradient border */}
+                <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1] via-[#8b5cf6] to-[#a855f7] rounded-xl opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300 animate-pulse" />
+                
+                {/* Inner button content */}
+                <div className="relative bg-gradient-to-r from-[#6366f1] to-[#9b87f5] text-white px-6 py-3 rounded-[10px] flex items-center justify-center space-x-2 group-hover/btn:bg-gradient-to-r group-hover/btn:from-[#7c3aed] group-hover/btn:to-[#c084fc] transition-all duration-300">
+                  
+                  {/* Animated background pattern */}
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.1),transparent)] opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300" />
+                  
+                  {/* Button text with icon */}
+                  <span className="relative z-10 flex items-center justify-center font-medium">
+                    <span className="mr-2">Explore Project</span>
+                    <div className="relative">
+                      <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
+                      {/* Trailing arrow effect */}
+                      <ArrowRight className="w-4 h-4 absolute top-0 left-0 opacity-0 group-hover/btn:opacity-50 transition-all duration-300 group-hover/btn:translate-x-2 group-hover/btn:scale-75" />
+                    </div>
+                  </span>
+                  
+                  {/* Shimmer effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover/btn:translate-x-[100%] transition-transform duration-700 skew-x-12" />
+                </div>
+              </motion.button>
             </Link>
-            <Button 
-              size="icon" 
-              variant="outline" 
-              className="border-white/20 text-white/70 hover:bg-[#9b87f5]/20 hover:text-[#9b87f5] hover:border-[#9b87f5]/50 transition-all duration-300"
+            
+            <motion.button 
+              className="p-3 border border-white/20 text-white/70 hover:bg-[#9b87f5]/20 hover:text-[#9b87f5] hover:border-[#9b87f5]/50 transition-all duration-300 rounded-xl group/external"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
-              <ExternalLink className="w-4 h-4" />
-            </Button>
+              <ExternalLink className="w-4 h-4 group-hover/external:rotate-12 transition-transform duration-300" />
+            </motion.button>
           </div>
         </div>
 

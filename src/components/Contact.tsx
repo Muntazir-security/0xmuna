@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -102,9 +101,6 @@ const Contact: React.FC = () => {
             Get In <span className="text-[#9b87f5]">Touch</span>
           </h2>
           <div className="w-16 h-1.5 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-full mx-auto mb-6"></div>
-          <p className="text-white/80 text-lg max-w-2xl mx-auto">
-            Interested in working together or have a question? Feel free to reach out!
-          </p>
         </div>
         
         {/* Contact Form and Social Links Grid with consistent heights */}

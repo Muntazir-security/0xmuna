@@ -106,22 +106,21 @@ const Navbar: React.FC = () => {
           </motion.button>
           
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-1 relative">
+          <div className="hidden md:flex items-center space-x-0 relative bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-1">
             {/* Background indicator that moves smoothly */}
             <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-[#6366f1]/20 to-[#a855f7]/20 rounded-lg border border-[#9b87f5]/30"
-              layout
+              className="absolute bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-xl h-[calc(100%-8px)] top-1"
               layoutId="navIndicator"
               initial={false}
+              animate={{
+                left: `${navItems.findIndex(item => item.id === activeSection) * (100 / navItems.length)}%`,
+                width: `${100 / navItems.length}%`
+              }}
               transition={{ 
                 type: "spring", 
                 stiffness: 400, 
                 damping: 30,
                 duration: 0.6
-              }}
-              style={{
-                left: `${navItems.findIndex(item => item.id === activeSection) * 25}%`,
-                width: '25%'
               }}
             />
             
@@ -130,7 +129,7 @@ const Navbar: React.FC = () => {
                 key={item.id}
                 href={`#${item.id}`}
                 className={cn(
-                  "relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 z-10",
+                  "relative px-6 py-3 rounded-xl text-sm font-medium transition-all duration-300 z-10 flex-1 text-center",
                   activeSection === item.id
                     ? "text-white"
                     : "text-white/70 hover:text-white"
@@ -139,8 +138,8 @@ const Navbar: React.FC = () => {
                   e.preventDefault();
                   handleSmoothScroll(item.id);
                 }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
               >
                 <span className="relative z-10">{item.label}</span>
               </motion.a>
