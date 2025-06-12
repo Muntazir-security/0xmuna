@@ -95,32 +95,45 @@ const TryHackMeBadge = memo(() => (
   <div className="hidden lg:flex flex-col items-center justify-center h-full" data-aos="fade-left" data-aos-delay="1200">
     <div className="relative group cursor-pointer">
       {/* Animated gradient border */}
-      <div className="absolute -inset-1 bg-gradient-to-r from-[#6366f1] via-[#9b87f5] to-[#a855f7] rounded-lg blur-sm opacity-30 group-hover:opacity-60 animate-pulse transition-all duration-500"></div>
+      <div className="absolute -inset-1 bg-gradient-to-r from-[#6366f1] via-[#9b87f5] to-[#a855f7] rounded-xl blur-sm opacity-30 group-hover:opacity-60 animate-pulse transition-all duration-500"></div>
       
       {/* Badge container */}
-      <div className="relative bg-black/30 backdrop-blur-lg border border-white/10 rounded-lg p-3 group-hover:border-[#9b87f5]/40 transition-all duration-300 group-hover:scale-[1.02]">
-        {/* Small header */}
-        <div className="text-center mb-2">
-          <span className="text-xs font-medium bg-gradient-to-r from-[#6366f1] to-[#a855f7] bg-clip-text text-transparent">
-            TryHackMe Profile
-          </span>
+      <div className="relative bg-black/20 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden group-hover:border-[#9b87f5]/40 transition-all duration-300 group-hover:scale-[1.02]">
+        {/* Header with gradient background */}
+        <div className="bg-gradient-to-r from-[#6366f1]/10 to-[#a855f7]/10 p-3 border-b border-white/5">
+          <div className="flex items-center justify-center gap-2">
+            <div className="w-2 h-2 bg-[#6366f1] rounded-full animate-pulse"></div>
+            <span className="text-sm font-medium bg-gradient-to-r from-[#6366f1] to-[#a855f7] bg-clip-text text-transparent">
+              TryHackMe Profile
+            </span>
+            <div className="w-2 h-2 bg-[#a855f7] rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+          </div>
         </div>
         
-        {/* Badge iframe */}
-        <div className="relative overflow-hidden rounded">
-          <iframe 
-            src="https://tryhackme.com/api/v2/badges/public-profile?userPublicId=996369" 
-            style={{ border: 'none' }}
-            className="rounded transform group-hover:scale-[1.01] transition-transform duration-300"
-            width="320"
-            height="100"
-            title="TryHackMe Badge"
-          />
+        {/* Badge iframe with fixed dimensions */}
+        <div className="relative p-2 bg-gradient-to-br from-black/10 to-black/30">
+          <div className="relative overflow-hidden rounded-lg bg-white/5 backdrop-blur-sm">
+            <iframe 
+              src="https://tryhackme.com/api/v2/badges/public-profile?userPublicId=996369" 
+              style={{ 
+                border: 'none',
+                width: '280px',
+                height: '90px',
+                display: 'block'
+              }}
+              className="transform group-hover:scale-[1.01] transition-transform duration-300"
+              title="TryHackMe Badge"
+              scrolling="no"
+            />
+          </div>
         </div>
         
-        {/* Subtle glow dots */}
-        <div className="absolute top-1 right-1 w-1.5 h-1.5 bg-[#6366f1] rounded-full animate-pulse opacity-60"></div>
-        <div className="absolute bottom-1 left-1 w-1 h-1 bg-[#a855f7] rounded-full animate-pulse opacity-60" style={{ animationDelay: '1s' }}></div>
+        {/* Decorative corner elements */}
+        <div className="absolute top-2 right-2 w-1 h-1 bg-[#6366f1] rounded-full opacity-60"></div>
+        <div className="absolute bottom-2 left-2 w-1 h-1 bg-[#a855f7] rounded-full opacity-60"></div>
+        
+        {/* Subtle shine effect */}
+        <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
       </div>
     </div>
   </div>
