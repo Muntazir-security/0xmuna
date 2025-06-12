@@ -71,17 +71,17 @@ const CoreSkills = memo(() => {
 
   return (
     <div className="mt-8 mb-6" data-aos="fade-up" data-aos-delay="900">
-      <div className="flex flex-wrap gap-4 max-w-3xl">
+      <div className="flex flex-wrap gap-3 max-w-4xl">
         {skills.map((skill, index) => {
           const IconComponent = skill.icon;
           return (
             <div 
               key={skill.name}
-              className="group flex items-center gap-3 px-4 py-3 bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl hover:border-[#9b87f5]/50 hover:bg-white/10 transition-all duration-300"
+              className="group flex items-center gap-2 px-3 py-2 bg-white/5 backdrop-blur-xl border border-white/10 rounded-lg hover:border-[#9b87f5]/50 hover:bg-white/10 transition-all duration-300 flex-shrink-0"
               style={{ animationDelay: `${index * 200}ms` }}
             >
-              <IconComponent className={`w-5 h-5 ${skill.color} group-hover:scale-110 transition-transform duration-300 flex-shrink-0`} />
-              <span className="text-white text-sm font-medium">{skill.name}</span>
+              <IconComponent className={`w-4 h-4 ${skill.color} group-hover:scale-110 transition-transform duration-300`} />
+              <span className="text-white text-sm font-medium whitespace-nowrap">{skill.name}</span>
             </div>
           );
         })}

@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { Menu as MenuIcon, X as XIcon } from "lucide-react";
@@ -105,16 +106,34 @@ const Navbar: React.FC = () => {
           </motion.button>
           
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-1">
+          <div className="hidden md:flex items-center space-x-1 relative">
+            {/* Background indicator that moves smoothly */}
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-r from-[#6366f1]/20 to-[#a855f7]/20 rounded-lg border border-[#9b87f5]/30"
+              layout
+              layoutId="navIndicator"
+              initial={false}
+              transition={{ 
+                type: "spring", 
+                stiffness: 400, 
+                damping: 30,
+                duration: 0.6
+              }}
+              style={{
+                left: `${navItems.findIndex(item => item.id === activeSection) * 25}%`,
+                width: '25%'
+              }}
+            />
+            
             {navItems.map((item) => (
               <motion.a 
                 key={item.id}
                 href={`#${item.id}`}
                 className={cn(
-                  "relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200",
+                  "relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 z-10",
                   activeSection === item.id
                     ? "text-white"
-                    : "text-white/70 hover:text-white hover:bg-white/5"
+                    : "text-white/70 hover:text-white"
                 )}
                 onClick={(e) => {
                   e.preventDefault();
@@ -123,15 +142,6 @@ const Navbar: React.FC = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                {/* Active indicator */}
-                {activeSection === item.id && (
-                  <motion.div
-                    layoutId="activeIndicator"
-                    className="absolute inset-0 bg-gradient-to-r from-[#6366f1]/20 to-[#a855f7]/20 rounded-lg border border-[#9b87f5]/30"
-                    initial={false}
-                    transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                  />
-                )}
                 <span className="relative z-10">{item.label}</span>
               </motion.a>
             ))}
