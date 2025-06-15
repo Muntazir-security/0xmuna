@@ -36,7 +36,7 @@ const Navbar: React.FC = () => {
           }
         }
       }
-    }, 16); // ~60fps
+    }, 16);
     
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
@@ -101,26 +101,24 @@ const Navbar: React.FC = () => {
             <span className="bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-transparent bg-clip-text">
               Muntazir
             </span>
-            {/* Subtle glow effect */}
             <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1] to-[#a855f7] opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-300 -z-10" />
           </motion.button>
           
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-0 relative bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-1">
-            {/* Background indicator that moves smoothly */}
             <motion.div
               className="absolute bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-xl h-[calc(100%-8px)] top-1"
               layoutId="navIndicator"
               initial={false}
               animate={{
-                left: `${navItems.findIndex(item => item.id === activeSection) * (100 / navItems.length)}%`,
-                width: `${100 / navItems.length}%`
+                left: `${4 + navItems.findIndex(item => item.id === activeSection) * 25}%`,
+                width: "23%"
               }}
               transition={{ 
                 type: "spring", 
-                stiffness: 400, 
-                damping: 30,
-                duration: 0.6
+                stiffness: 300, 
+                damping: 25,
+                mass: 0.8
               }}
             />
             
@@ -129,7 +127,7 @@ const Navbar: React.FC = () => {
                 key={item.id}
                 href={`#${item.id}`}
                 className={cn(
-                  "relative px-6 py-3 rounded-xl text-sm font-medium transition-all duration-300 z-10 flex-1 text-center",
+                  "relative px-6 py-3 rounded-xl text-sm font-medium transition-all duration-300 z-10 text-center min-w-[100px]",
                   activeSection === item.id
                     ? "text-white"
                     : "text-white/70 hover:text-white"
@@ -186,7 +184,6 @@ const Navbar: React.FC = () => {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <>
-            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -195,7 +192,6 @@ const Navbar: React.FC = () => {
               onClick={() => setIsMobileMenuOpen(false)}
             />
             
-            {/* Menu Panel */}
             <motion.div
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
