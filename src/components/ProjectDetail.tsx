@@ -14,14 +14,13 @@ interface Project {
   id: number;
   title: string;
   description: string;
-  icon?: React.ElementType;
+  iconName: string;
   tags: string[];
   category: string;
   features: string[];
   overview: string;
   problem: string;
   solution: string;
-  image?: string;
 }
 
 const ProjectDetail: React.FC = () => {
@@ -39,7 +38,7 @@ const ProjectDetail: React.FC = () => {
   // SVG pattern for background
   const dotPattern = `data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239b87f5' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E`;
 
-  const projectsData = [
+  const projectsData: Project[] = [
     {
       id: 1,
       title: "Mitigating TCP SYN Flooding-Based DDoS Attack in SDN",
@@ -154,7 +153,7 @@ const ProjectDetail: React.FC = () => {
 
   if (!project) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center bg-[#0B0B1E]">
         <div className="text-center">
           <h1 className="text-2xl font-bold text-white mb-4">Project Not Found</h1>
           <Button 
@@ -191,7 +190,7 @@ const ProjectDetail: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen relative">
+    <div className="min-h-screen relative bg-[#0B0B1E]">
       {/* Hero Section with Gradient Background */}
       <div className="relative bg-gradient-to-br from-[#0B0B1E] via-[#1a1a3e] to-[#0B0B1E] pt-24 pb-12">
         <div 
