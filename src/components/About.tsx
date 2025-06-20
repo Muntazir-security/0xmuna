@@ -52,52 +52,63 @@ const educationHistory = [
   {
     id: 1,
     degree: "B.Sc. of Computer Science Specializing in Cyber Security",
+    institution: "De Montfort University",
+    location: "Leicester, UK",
+    dateRange: "Sep 2021 - Aug 2024",
+    grade: "Second Class Honours",
+    isDualDegree: true,
+    note: "Dual-awarded with Asia Pacific University"
+  },
+  {
+    id: 2,
+    degree: "B.Sc. of Computer Science Specializing in Cyber Security",
     institution: "Asia Pacific University of Technology & Innovation",
     location: "Kuala Lumpur, Malaysia",
     dateRange: "Sep 2021 - Aug 2024",
     grade: "Second Class Honours",
+    isDualDegree: true,
+    note: "Dual-awarded with De Montfort University"
   },
   {
-    id: 2,
+    id: 3,
     degree: "High School Diploma",
     institution: "New World International School",
     location: "Al Khobar, Saudi Arabia",
     dateRange: "Sep 2014 - June 2021",
     grade: "Distinction",
+    isDualDegree: false
   },
 ];
 
 const AboutMe: React.FC = () => {
   return (
-    <section id="about" className="py-24 md:py-32 relative overflow-hidden bg-[#0B0B1E]">
-      {/* Background Effects */}
-      <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-[#6366f1]/10 rounded-full blur-3xl animate-pulse"></div>
-      <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-[#a855f7]/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+    <section id="about" className="py-20 md:py-32 relative overflow-hidden bg-[#0B0B1E]">
+      {/* Subtle background effects */}
+      <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-[#6366f1]/5 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-[#a855f7]/5 rounded-full blur-3xl"></div>
       
-      <div className="container mx-auto px-4 md:px-6 relative z-10">
+      <div className="container mx-auto px-6 md:px-8 lg:px-12 xl:px-16 relative z-10">
         {/* About Me Section */}
-        <div className="flex flex-col lg:flex-row gap-16 items-center mb-32">
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center mb-24">
           <motion.div
-            className="lg:w-2/5 flex justify-center"
-            initial={{ opacity: 0, scale: 0.8 }}
+            className="lg:col-span-5 flex justify-center lg:justify-start"
+            initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.6 }}
           >
             <div className="relative">
-              {/* Simplified profile picture container */}
-              <div className="bg-gradient-to-r from-[#6366f1] to-[#a855f7] p-1 rounded-full">
-                <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-full p-2 relative overflow-hidden hover:border-[#9b87f5] hover:shadow-2xl hover:shadow-[#9b87f5]/30 transition-all duration-500 w-80 h-80 md:w-96 md:h-96">
-                  {/* Animated background effects */}
-                  <div className="absolute -top-20 -left-20 w-40 h-40 bg-[#6366f1]/20 rounded-full blur-2xl animate-pulse"></div>
-                  <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-[#a855f7]/20 rounded-full blur-2xl animate-pulse delay-500"></div>
-                  
-                  <div className="w-full h-full rounded-full overflow-hidden relative z-10">
-                    <img
-                      src="/assets/images/profile.png"
-                      alt="Muntazir Mehdi - Profile Picture"
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                    />
+              {/* Clean profile picture container */}
+              <div className="relative w-80 h-80 md:w-96 md:h-96">
+                <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-full p-1">
+                  <div className="w-full h-full bg-black/40 rounded-full p-2 backdrop-blur-xl border border-white/20">
+                    <div className="w-full h-full rounded-full overflow-hidden">
+                      <img
+                        src="/assets/images/profile.png"
+                        alt="Muntazir Mehdi - Profile Picture"
+                        className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -105,55 +116,58 @@ const AboutMe: React.FC = () => {
           </motion.div>
 
           <motion.div
-            className="lg:w-3/5"
+            className="lg:col-span-7"
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
           >
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
               About <span className="bg-gradient-to-r from-[#6366f1] to-[#a855f7] bg-clip-text text-transparent">Me</span>
             </h2>
             <div className="w-24 h-1.5 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-full mb-8"></div>
 
-            <p className="text-white/80 text-justify mb-8 leading-relaxed">
-              I'm Syed Muntazir Mehdi, a <em>Cybersecurity Graduate</em> with hands-on experience 
-              in vulnerability assessment, SOC operations, and penetration testing. 
-              I hold a dual-awarded B.Sc. (Hons) in Cybersecurity from both <em>Asia Pacific University (Malaysia)</em> and <em>De Montfort University (UK)</em>.
-            </p>
-            
-            <p className="text-white/80 text-justify mb-8 leading-relaxed">
-            Throughout my academic and professional journey, I've worked on securing real-world systems, identifying <em>critical vulnerabilities</em>, 
-            and deploying effective mitigation strategies. 
-            My focus areas include <em>Network Defense</em>, <em>Ethical Hacking</em>, <em>SIEM analysis</em>,
-            and building proactive security measures across infrastructures.
-            </p>
+            <div className="space-y-6">
+              <p className="text-white/85 leading-relaxed text-lg">
+                I'm Syed Muntazir Mehdi, a <span className="text-white font-medium">Cybersecurity Graduate</span> with hands-on experience 
+                in vulnerability assessment, SOC operations, and penetration testing. 
+                I hold a dual-awarded B.Sc. (Hons) in Cybersecurity from both <span className="text-white font-medium">Asia Pacific University (Malaysia)</span> and <span className="text-white font-medium">De Montfort University (UK)</span>.
+              </p>
+              
+              <p className="text-white/85 leading-relaxed text-lg">
+                Throughout my academic and professional journey, I've worked on securing real-world systems, identifying <span className="text-white font-medium">critical vulnerabilities</span>, 
+                and deploying effective mitigation strategies. 
+                My focus areas include <span className="text-white font-medium">Network Defense</span>, <span className="text-white font-medium">Ethical Hacking</span>, <span className="text-white font-medium">SIEM analysis</span>,
+                and building proactive security measures across infrastructures.
+              </p>
 
-            <p className="text-white/80 text-justify mb-8 leading-relaxed">
-            I'm passionate about staying ahead of threats, learning new tools, and turning security knowledge into practical solutions. 
-            Whether I'm writing automation scripts, monitoring logs, or breaking down attack vectors — I approach cybersecurity with a <em>problem-solver's 
-            mindset</em> and a defender's responsibility.
-            </p>
+              <p className="text-white/85 leading-relaxed text-lg">
+                I'm passionate about staying ahead of threats, learning new tools, and turning security knowledge into practical solutions. 
+                Whether I'm writing automation scripts, monitoring logs, or breaking down attack vectors — I approach cybersecurity with a <span className="text-white font-medium">problem-solver's 
+                mindset</span> and a defender's responsibility.
+              </p>
+            </div>
 
             <motion.div
+              className="mt-8"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.8 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
             >
               <Button
                 asChild
                 size="lg"
-                className="group relative overflow-hidden bg-transparent border-2 border-[#9b87f5] text-white hover:bg-transparent px-8 py-4 rounded-2xl shadow-lg hover:shadow-[0_0_40px_rgba(155,135,245,0.5)] transform transition-all duration-500 ease-in-out hover:scale-105"
+                className="group relative overflow-hidden bg-transparent border-2 border-[#9b87f5] text-white hover:bg-[#9b87f5] px-8 py-4 rounded-xl shadow-lg hover:shadow-[0_0_30px_rgba(155,135,245,0.4)] transform transition-all duration-300 ease-in-out hover:scale-[1.02]"
               >
                 <a
                   href="/assets/documents/Muntazir Mehdi CV.pdf"
                   download="Muntazir_Mehdi_CV.pdf"
-                  className="flex items-center justify-center relative"
+                  className="flex items-center justify-center relative z-10 group-hover:text-white transition-colors duration-300"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1] to-[#a855f7] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
-                  <Download className="w-5 h-5 mr-3 relative z-10 group-hover:animate-bounce transition-transform duration-300" />
-                  <span className="relative z-10 font-semibold text-lg group-hover:text-white transition-colors duration-300">Download Resume</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1] to-[#a855f7] opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+                  <Download className="w-5 h-5 mr-3 relative z-10 transition-transform duration-300" />
+                  <span className="relative z-10 font-semibold">Download Resume</span>
                 </a>
               </Button>
             </motion.div>
@@ -162,11 +176,11 @@ const AboutMe: React.FC = () => {
 
         {/* Work Experience Section */}
         <motion.div
-          className="mb-32"
-          initial={{ opacity: 0, y: 50 }}
+          className="mb-24"
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6 }}
         >
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
@@ -186,7 +200,7 @@ const AboutMe: React.FC = () => {
                 initial={{ opacity: 0, x: index % 2 === 0 ? 50 : -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.8, delay: 0.2 * index }}
+                transition={{ duration: 0.6, delay: 0.1 * index }}
               >
                 <div className={`md:w-1/2 ${index % 2 === 0 ? "md:order-2" : "md:order-1"}`}>
                   <div className={`relative ${index % 2 === 0 ? "md:pl-12" : "md:pr-12"}`}>
@@ -207,10 +221,7 @@ const AboutMe: React.FC = () => {
                     </div>
 
                     {/* Enhanced job card with better date layout */}
-                    <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 ml-10 md:ml-0 relative group hover:bg-white/10 hover:border-[#9b87f5]/50 hover:shadow-2xl hover:shadow-[#9b87f5]/20 transition-all duration-500">
-                      {/* Gradient overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1]/5 to-[#a855f7]/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                      
+                    <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl p-6 md:p-8 ml-6 md:ml-0 relative group hover:bg-white/8 hover:border-white/20 transition-all duration-300">
                       <div className="relative z-10">
                         {/* Job header with improved layout for date */}
                         <div className="mb-4">
@@ -246,8 +257,8 @@ const AboutMe: React.FC = () => {
                         <div className="space-y-3">
                           {job.responsibilities.map((point, i) => (
                             <div key={i} className="flex items-start gap-3">
-                              <div className="w-2 h-2 bg-[#9b87f5] rounded-full mt-2 flex-shrink-0"></div>
-                              <p className="text-white/80 text-sm leading-relaxed">{point}</p>
+                              <div className="w-1.5 h-1.5 bg-[#9b87f5] rounded-full mt-2 flex-shrink-0"></div>
+                              <p className="text-white/80 leading-relaxed">{point}</p>
                             </div>
                           ))}
                         </div>
@@ -263,10 +274,10 @@ const AboutMe: React.FC = () => {
 
         {/* Education Section */}
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6 }}
         >
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
@@ -285,7 +296,7 @@ const AboutMe: React.FC = () => {
                 initial={{ opacity: 0, x: index % 2 === 0 ? 50 : -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.8, delay: 0.2 * index }}
+                transition={{ duration: 0.6, delay: 0.1 * index }}
               >
                 <div className={`md:w-1/2 ${index % 2 === 0 ? "md:order-2" : "md:order-1"}`}>
                   <div className={`relative ${index % 2 === 0 ? "md:pl-12" : "md:pr-12"}`}>
@@ -305,9 +316,7 @@ const AboutMe: React.FC = () => {
                     </div>
 
                     {/* Education card with improved date layout */}
-                    <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 ml-10 md:ml-0 relative group hover:bg-white/10 hover:border-[#9b87f5]/50 hover:shadow-2xl hover:shadow-[#9b87f5]/20 transition-all duration-500">
-                      <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1]/5 to-[#a855f7]/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                      
+                    <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl p-6 md:p-8 ml-6 md:ml-0 relative group hover:bg-white/8 hover:border-white/20 transition-all duration-300">
                       <div className="relative z-10">
                         <div className="mb-4">
                           <div className="flex flex-col xl:flex-row xl:justify-between xl:items-start gap-3">
@@ -316,6 +325,9 @@ const AboutMe: React.FC = () => {
                                 {edu.degree}
                               </h3>
                               <p className="text-white/90 font-medium mb-1">{edu.institution}</p>
+                              {edu.note && (
+                                <p className="text-blue-300 text-sm mt-1">{edu.note}</p>
+                              )}
                             </div>
                             <div className="flex flex-col sm:flex-row xl:flex-col gap-2 xl:items-end">
                               <span className="inline-flex items-center px-3 py-1 bg-[#9b87f5]/20 text-[#9b87f5] text-sm font-medium rounded-full whitespace-nowrap">

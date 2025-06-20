@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -191,194 +190,145 @@ const ProjectDetail: React.FC = () => {
 
   return (
     <div className="min-h-screen relative bg-[#0B0B1E]">
-      {/* Hero Section with Gradient Background */}
-      <div className="relative bg-gradient-to-br from-[#0B0B1E] via-[#1a1a3e] to-[#0B0B1E] pt-24 pb-12">
-        <div 
-          className="absolute inset-0 opacity-20"
-          style={{
-            backgroundImage: `url("${dotPattern}")`,
-          }}
-        ></div>
-        
-        <div className="container mx-auto px-4 md:px-6 relative z-10">
+      {/* Subtle background effects */}
+      <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-[#6366f1]/5 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-[#a855f7]/5 rounded-full blur-3xl"></div>
+      
+      {/* Header Section */}
+      <div className="relative pt-24 pb-12">
+        <div className="container mx-auto px-6 md:px-8 lg:px-12 xl:px-16 relative z-10">
+          {/* Back Button */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.4 }}
+            className="mb-8"
+          >
+            <Button 
+              variant="outline" 
+              className="bg-white/5 border-white/20 text-white hover:bg-white/10 hover:border-white/30 transition-all duration-300"
+              onClick={handleBackToPortfolio}
+            >
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Back to Portfolio
+            </Button>
+          </motion.div>
+
+          {/* Project Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="mb-12"
           >
-            <Button 
-              variant="ghost" 
-              className="text-white/80 hover:text-white hover:bg-white/10 mb-8 group"
-              onClick={handleBackToPortfolio}
-            >
-              <ArrowLeft className="w-4 h-4 mr-2 transition-transform group-hover:-translate-x-1" />
-              Back to Portfolio
-            </Button>
-            
-            <div className="flex flex-col lg:flex-row items-start gap-8">
-              <motion.div 
-                className="w-24 h-24 lg:w-32 lg:h-32 bg-gradient-to-br from-[#6366f1]/20 via-[#9b87f5]/20 to-[#a855f7]/20 rounded-3xl flex items-center justify-center border border-white/10 backdrop-blur-sm"
-                whileHover={{ scale: 1.05, rotate: 5 }}
-                transition={{ duration: 0.3 }}
-              >
-                <IconComponent className="w-12 h-12 lg:w-16 lg:h-16 text-[#9b87f5]" />
-              </motion.div>
-              
-              <div className="flex-1">
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                >
-                  <div className="flex items-center gap-3 mb-4">
-                    <span className="px-4 py-2 bg-gradient-to-r from-[#6366f1]/20 to-[#9b87f5]/20 text-[#9b87f5] rounded-full text-sm font-medium border border-[#9b87f5]/20">
-                      {project.category}
-                    </span>
-                    <div className="flex items-center text-white/60 text-sm">
-                      <Calendar className="w-4 h-4 mr-1" />
-                      2024
-                    </div>
-                  </div>
-                  
-                  <h1 className="text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
-                    {project.title}
-                  </h1>
-                  
-                  <p className="text-xl text-white/80 leading-relaxed max-w-3xl">
-                    {project.description}
-                  </p>
-                </motion.div>
+            <div className="flex items-start gap-6 mb-6">
+              <div className="bg-[#9b87f5]/20 p-4 rounded-xl border border-[#9b87f5]/30">
+                <IconComponent className="w-8 h-8 text-[#9b87f5]" />
               </div>
+              <div className="flex-1">
+                <span className="inline-block px-3 py-1 bg-white/10 text-white/70 rounded-full text-sm font-medium border border-white/20 mb-3">
+                  {project.category}
+                </span>
+                <h1 className="text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">
+                  {project.title}
+                </h1>
+                <p className="text-xl text-white/80 leading-relaxed max-w-3xl">
+                  {project.description}
+                </p>
+              </div>
+            </div>
+
+            {/* Technologies */}
+            <div className="flex flex-wrap gap-2">
+              {project.tags.map((tag) => (
+                <span 
+                  key={tag}
+                  className="px-3 py-1.5 bg-white/10 text-white/70 rounded-lg text-sm border border-white/20"
+                >
+                  {tag}
+                </span>
+              ))}
             </div>
           </motion.div>
         </div>
       </div>
 
       {/* Content Section */}
-      <div className="container mx-auto px-4 md:px-6 py-16">
+      <div className="container mx-auto px-6 md:px-8 lg:px-12 xl:px-16 pb-20 relative z-10">
         <div className="grid lg:grid-cols-12 gap-12">
           {/* Main Content */}
-          <motion.div 
-            className="lg:col-span-8 space-y-12"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
-            {/* Overview Card */}
-            <Card className="group bg-gradient-to-br from-white/5 via-white/[0.02] to-transparent backdrop-blur-xl border border-white/10 hover:border-white/20 transition-all duration-500 hover:shadow-2xl hover:shadow-[#9b87f5]/10">
-              <CardContent className="p-8">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-2 h-2 bg-gradient-to-r from-[#6366f1] to-[#9b87f5] rounded-full"></div>
-                  <h2 className="text-2xl font-bold text-white">Project Overview</h2>
-                </div>
-                <p className="text-white/80 leading-relaxed text-lg">{project.overview}</p>
-              </CardContent>
-            </Card>
+          <div className="lg:col-span-8 space-y-8">
+            {/* Overview */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl p-6 md:p-8"
+            >
+              <h2 className="text-2xl font-bold text-white mb-4">Project Overview</h2>
+              <p className="text-white/80 leading-relaxed">
+                {project.overview}
+              </p>
+            </motion.div>
 
-            {/* Problem & Solution Grid */}
-            <div className="grid md:grid-cols-2 gap-8">
-              <Card className="group bg-gradient-to-br from-red-500/5 via-white/[0.02] to-transparent backdrop-blur-xl border border-red-500/20 hover:border-red-500/30 transition-all duration-500 hover:shadow-xl hover:shadow-red-500/10">
-                <CardContent className="p-8">
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="w-8 h-8 bg-red-500/20 rounded-lg flex items-center justify-center">
-                      <div className="w-3 h-3 bg-red-400 rounded-full"></div>
-                    </div>
-                    <h3 className="text-xl font-bold text-white">Challenge</h3>
-                  </div>
-                  <p className="text-white/80 leading-relaxed">{project.problem}</p>
-                </CardContent>
-              </Card>
-              
-              <Card className="group bg-gradient-to-br from-green-500/5 via-white/[0.02] to-transparent backdrop-blur-xl border border-green-500/20 hover:border-green-500/30 transition-all duration-500 hover:shadow-xl hover:shadow-green-500/10">
-                <CardContent className="p-8">
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="w-8 h-8 bg-green-500/20 rounded-lg flex items-center justify-center">
-                      <div className="w-3 h-3 bg-green-400 rounded-full"></div>
-                    </div>
-                    <h3 className="text-xl font-bold text-white">Solution</h3>
-                  </div>
-                  <p className="text-white/80 leading-relaxed">{project.solution}</p>
-                </CardContent>
-              </Card>
+            {/* Problem & Solution */}
+            <div className="grid gap-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl p-6 md:p-8"
+              >
+                <h3 className="text-xl font-bold text-white mb-4">The Problem</h3>
+                <p className="text-white/80 leading-relaxed">
+                  {project.problem}
+                </p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl p-6 md:p-8"
+              >
+                <h3 className="text-xl font-bold text-white mb-4">The Solution</h3>
+                <p className="text-white/80 leading-relaxed">
+                  {project.solution}
+                </p>
+              </motion.div>
             </div>
-
-            {/* Key Features */}
-            <Card className="group bg-gradient-to-br from-white/5 via-white/[0.02] to-transparent backdrop-blur-xl border border-white/10 hover:border-white/20 transition-all duration-500 hover:shadow-2xl hover:shadow-[#9b87f5]/10">
-              <CardContent className="p-8">
-                <div className="flex items-center gap-3 mb-8">
-                  <div className="w-2 h-2 bg-gradient-to-r from-[#6366f1] to-[#9b87f5] rounded-full"></div>
-                  <h2 className="text-2xl font-bold text-white">Key Features</h2>
-                </div>
-                <div className="grid md:grid-cols-2 gap-6">
-                  {project.features.map((feature, index) => (
-                    <motion.div
-                      key={index}
-                      className="flex items-start gap-4 p-4 rounded-xl bg-white/5 border border-white/10 hover:border-[#9b87f5]/30 transition-all duration-300 hover:bg-white/10"
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.3, delay: index * 0.1 }}
-                      whileHover={{ x: 5 }}
-                    >
-                      <div className="w-3 h-3 bg-gradient-to-r from-[#6366f1] to-[#9b87f5] rounded-full mt-2 flex-shrink-0"></div>
-                      <span className="text-white/80 leading-relaxed">{feature}</span>
-                    </motion.div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
+          </div>
 
           {/* Sidebar */}
-          <motion.div 
-            className="lg:col-span-4 space-y-8"
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            {/* Technologies */}
-            <Card className="bg-gradient-to-br from-white/5 via-white/[0.02] to-transparent backdrop-blur-xl border border-white/10 hover:border-white/20 transition-all duration-500 sticky top-8">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-3 mb-6">
-                  <Tag className="w-5 h-5 text-[#9b87f5]" />
-                  <h3 className="text-lg font-bold text-white">Technologies</h3>
-                </div>
-                <div className="flex flex-wrap gap-3">
-                  {project.tags.map((tag, index) => (
-                    <motion.span 
-                      key={tag} 
-                      className="px-4 py-2 bg-gradient-to-r from-[#9b87f5]/10 to-[#6366f1]/10 text-[#9b87f5] rounded-full text-sm border border-[#9b87f5]/20 hover:border-[#9b87f5]/40 transition-colors cursor-default"
-                      whileHover={{ scale: 1.05 }}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.3, delay: index * 0.1 }}
-                    >
-                      {tag}
-                    </motion.span>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+          <div className="lg:col-span-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl p-6 md:p-8 sticky top-8"
+            >
+              <h3 className="text-xl font-bold text-white mb-6">Key Features</h3>
+              <div className="space-y-4">
+                {project.features.map((feature, index) => (
+                  <div key={index} className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-[#9b87f5] rounded-full mt-2 flex-shrink-0"></div>
+                    <span className="text-white/80 leading-relaxed">{feature}</span>
+                  </div>
+                ))}
+              </div>
 
-            {/* Project Actions */}
-            <Card className="bg-gradient-to-br from-white/5 via-white/[0.02] to-transparent backdrop-blur-xl border border-white/10">
-              <CardContent className="p-6">
-                <h3 className="text-lg font-bold text-white mb-6 flex items-center gap-3">
-                  <User className="w-5 h-5 text-[#9b87f5]" />
-                  Project Links
-                </h3>
-                <div className="space-y-4">
-                  <Button className="w-full bg-gradient-to-r from-[#6366f1] to-[#9b87f5] text-white hover:opacity-90 transition-all duration-300 hover:shadow-lg hover:shadow-[#9b87f5]/25 group">
-                    <ExternalLink className="w-4 h-4 mr-2 transition-transform group-hover:translate-x-1" />
-                    View Live Demo
-                  </Button>
-                  <Button variant="outline" className="w-full border-white/20 text-white hover:bg-white/10 hover:border-white/40 transition-all duration-300 group">
-                    <Github className="w-4 h-4 mr-2 transition-transform group-hover:rotate-12" />
-                    View Source Code
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
+              {/* Action Buttons */}
+              <div className="mt-8 pt-6 border-t border-white/10 space-y-3">
+                <Button
+                  onClick={handleBackToPortfolio}
+                  className="w-full bg-gradient-to-r from-[#6366f1] to-[#9b87f5] hover:from-[#5855eb] hover:to-[#8b5cf6] text-white border-0 py-3 rounded-xl transition-all duration-300"
+                >
+                  <ArrowLeft className="w-4 h-4 mr-2" />
+                  Back to Portfolio
+                </Button>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </div>
     </div>

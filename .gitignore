@@ -1,3 +1,42 @@
+# Environment variables (contains sensitive email credentials)
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Logs
+*.log
+server.log
+simple_server.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Node modules (if any)
+node_modules/
+
+# Build outputs
+dist/
+build/
+
+# Temporary files
+*.tmp
+*.temp
+
 # Logs
 logs
 *.log

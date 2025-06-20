@@ -76,123 +76,66 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({ project, index })
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: index * 0.15 }}
-      className="group relative h-full"
+      transition={{ duration: 0.4, delay: index * 0.1 }}
+      className="group h-full"
     >
-      {/* Floating gradient orb background */}
-      <div className="absolute -inset-1 bg-gradient-to-r from-[#6366f1]/20 via-[#9b87f5]/20 to-[#a855f7]/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700" />
-      
-      <div className="relative bg-gradient-to-br from-white/8 via-white/5 to-white/3 backdrop-blur-xl border border-white/10 rounded-2xl overflow-hidden transition-all duration-500 group-hover:border-[#9b87f5]/40 group-hover:bg-gradient-to-br group-hover:from-white/12 group-hover:via-white/8 group-hover:to-white/5 h-full flex flex-col">
-        
-        {/* Animated top border */}
-        <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[#9b87f5]/50 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700" />
-        
-        {/* Header section */}
-        <div className="relative p-6 pb-4">
+      <Link to={`/project/${project.id}`} className="block h-full">
+        <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl p-6 h-full transition-all duration-300 hover:bg-white/8 hover:border-white/20 hover:scale-[1.02] flex flex-col">
+          
+          {/* Header */}
           <div className="flex items-start justify-between mb-4">
-            <div className="flex items-center space-x-3">
-              <div className="relative">
-                <div className="w-12 h-12 bg-gradient-to-br from-[#6366f1]/30 to-[#9b87f5]/30 rounded-xl border border-white/20 flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
-                  <IconComponent className="w-6 h-6 text-[#9b87f5] group-hover:text-white transition-colors duration-300" />
-                </div>
-                {/* Pulsing ring effect */}
-                <div className="absolute inset-0 rounded-xl border-2 border-[#9b87f5]/30 scale-0 group-hover:scale-125 opacity-0 group-hover:opacity-100 transition-all duration-700" />
-              </div>
-              <div>
-                <span className="inline-flex items-center px-2.5 py-1 bg-[#9b87f5]/20 text-[#9b87f5] rounded-full text-xs font-medium border border-[#9b87f5]/30 group-hover:bg-[#9b87f5]/30 transition-colors duration-300">
-                  {project.category || 'Development'}
-                </span>
-              </div>
+            <div className="bg-[#9b87f5]/20 p-3 rounded-xl border border-[#9b87f5]/30">
+              <IconComponent className="w-6 h-6 text-[#9b87f5]" />
             </div>
-            <div className="w-8 h-8 bg-white/5 rounded-lg border border-white/10 flex items-center justify-center group-hover:bg-[#9b87f5]/20 group-hover:border-[#9b87f5]/40 transition-all duration-300">
-              <ArrowRight className="w-4 h-4 text-white/60 group-hover:text-[#9b87f5] group-hover:translate-x-0.5 transition-all duration-300" />
-            </div>
+            <span className="px-3 py-1 bg-white/10 text-white/70 rounded-full text-xs font-medium border border-white/20">
+              {project.category || 'Development'}
+            </span>
           </div>
           
-          <h3 className="text-xl font-bold text-white mb-3 line-clamp-2 group-hover:text-[#9b87f5] transition-colors duration-300">
-            {project.title}
-          </h3>
-          
-          <p className="text-white/70 text-sm leading-relaxed line-clamp-3 group-hover:text-white/90 transition-colors duration-300">
-            {project.description}
-          </p>
-        </div>
-
-        {/* Technologies section */}
-        <div className="px-6 pb-4 flex-grow">
-          <div className="space-y-3">
-            <h4 className="text-xs font-semibold text-white/50 uppercase tracking-wider">Technologies</h4>
-            <div className="flex flex-wrap gap-2">
-              {project.tags.slice(0, 4).map((tag, tagIndex) => (
-                <motion.span 
-                  key={tag}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: (index * 0.1) + (tagIndex * 0.05) }}
-                  className="px-2.5 py-1.5 bg-white/5 text-white/70 rounded-lg text-xs border border-white/10 group-hover:border-[#9b87f5]/30 group-hover:bg-[#9b87f5]/10 group-hover:text-white transition-all duration-300"
-                >
-                  {tag}
-                </motion.span>
-              ))}
-              {project.tags.length > 4 && (
-                <span className="px-2.5 py-1.5 bg-white/5 text-white/60 rounded-lg text-xs border border-white/10 group-hover:border-[#9b87f5]/30 transition-colors duration-300">
-                  +{project.tags.length - 4}
-                </span>
-              )}
-            </div>
-          </div>
-        </div>
-
-        {/* Footer with enhanced CTA */}
-        <div className="p-6 pt-0 mt-auto">
-          <div className="flex items-center space-x-3">
-            <Link to={`/project/${project.id}`} className="flex-1">
-              <motion.button 
-                className="w-full group/btn relative overflow-hidden bg-gradient-to-r from-[#6366f1] via-[#8b5cf6] to-[#a855f7] p-[2px] rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-[#9b87f5]/30"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                {/* Animated gradient border */}
-                <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1] via-[#8b5cf6] to-[#a855f7] rounded-xl opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300 animate-pulse" />
-                
-                {/* Inner button content */}
-                <div className="relative bg-gradient-to-r from-[#6366f1] to-[#9b87f5] text-white px-6 py-3 rounded-[10px] flex items-center justify-center space-x-2 group-hover/btn:bg-gradient-to-r group-hover/btn:from-[#7c3aed] group-hover/btn:to-[#c084fc] transition-all duration-300">
-                  
-                  {/* Animated background pattern */}
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.1),transparent)] opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300" />
-                  
-                  {/* Button text with icon */}
-                  <span className="relative z-10 flex items-center justify-center font-medium">
-                    <span className="mr-2">Explore Project</span>
-                    <div className="relative">
-                      <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
-                      {/* Trailing arrow effect */}
-                      <ArrowRight className="w-4 h-4 absolute top-0 left-0 opacity-0 group-hover/btn:opacity-50 transition-all duration-300 group-hover/btn:translate-x-2 group-hover/btn:scale-75" />
-                    </div>
-                  </span>
-                  
-                  {/* Shimmer effect */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover/btn:translate-x-[100%] transition-transform duration-700 skew-x-12" />
-                </div>
-              </motion.button>
-            </Link>
+          {/* Content */}
+          <div className="flex-1 space-y-4">
+            <h3 className="text-xl font-bold text-white group-hover:text-[#9b87f5] transition-colors duration-300 line-clamp-2">
+              {project.title}
+            </h3>
             
-            <motion.button 
-              className="p-3 border border-white/20 text-white/70 hover:bg-[#9b87f5]/20 hover:text-[#9b87f5] hover:border-[#9b87f5]/50 transition-all duration-300 rounded-xl group/external"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <ExternalLink className="w-4 h-4 group-hover/external:rotate-12 transition-transform duration-300" />
-            </motion.button>
+            <p className="text-white/70 leading-relaxed line-clamp-3 group-hover:text-white/85 transition-colors duration-300">
+              {project.description}
+            </p>
+            
+            {/* Technologies */}
+            <div className="space-y-2">
+              <p className="text-xs font-medium text-white/50 uppercase tracking-wider">Technologies</p>
+              <div className="flex flex-wrap gap-2">
+                {project.tags.slice(0, 3).map((tag) => (
+                  <span 
+                    key={tag}
+                    className="px-2.5 py-1 bg-white/10 text-white/70 rounded-md text-xs border border-white/20"
+                  >
+                    {tag}
+                  </span>
+                ))}
+                {project.tags.length > 3 && (
+                  <span className="px-2.5 py-1 bg-white/10 text-white/60 rounded-md text-xs border border-white/20">
+                    +{project.tags.length - 3}
+                  </span>
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* Footer */}
+          <div className="mt-6 pt-4 border-t border-white/10">
+            <div className="flex items-center justify-between">
+              <span className="text-sm text-white/60 group-hover:text-[#9b87f5] transition-colors duration-300 font-medium">
+                View Details
+              </span>
+              <ArrowRight className="w-4 h-4 text-white/60 group-hover:text-[#9b87f5] group-hover:translate-x-1 transition-all duration-300" />
+            </div>
           </div>
         </div>
-
-        {/* Subtle corner accents */}
-        <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-[#9b87f5]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-        <div className="absolute bottom-0 left-0 w-20 h-20 bg-gradient-to-tr from-[#6366f1]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-      </div>
+      </Link>
     </motion.div>
   );
 };
@@ -292,32 +235,32 @@ const Portfolio: React.FC = () => {
   ];
 
   return (
-    <section id="portfolio" className="py-24 md:py-32 relative bg-[#0B0B1E]">
-      {/* Background Effects - same as other pages */}
-      <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-[#6366f1]/10 rounded-full blur-3xl animate-pulse"></div>
-      <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-[#a855f7]/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+    <section id="portfolio" className="py-20 md:py-32 relative bg-[#0B0B1E]">
+      {/* Subtle background effects */}
+      <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-[#6366f1]/5 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-[#a855f7]/5 rounded-full blur-3xl"></div>
       
-      <div className="container mx-auto px-4 md:px-6 relative z-10">
-        <div className="text-center mb-12">
+      <div className="container mx-auto px-6 md:px-8 lg:px-12 xl:px-16 relative z-10">
+        <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             My <span className="text-[#9b87f5]">Portfolio</span>
           </h2>
-          <div className="w-16 h-1.5 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-full mx-auto mb-6"></div>
-          <p className="text-white/80 text-lg max-w-2xl mx-auto">
+          <div className="w-24 h-1.5 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-full mx-auto mb-6"></div>
+          <p className="text-white/85 text-lg max-w-2xl mx-auto leading-relaxed">
             Here's a collection of my work, certifications, and the technologies I work with.
           </p>
         </div>
 
         {/* Modern Navigation Tabs */}
         <div className="flex justify-center mb-16">
-          <div className="relative bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-2">
+          <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl p-2">
             <div className="flex space-x-2">
               {subNavItems.map((item) => (
                 <button
                   key={item.id}
                   onClick={() => setActiveSubSection(item.id)}
                   className={`
-                    relative px-6 py-3 rounded-xl text-sm font-medium transition-all duration-300 ease-in-out
+                    relative px-6 py-3 rounded-lg text-sm font-medium transition-all duration-300 ease-in-out
                     ${activeSubSection === item.id
                       ? 'text-white'
                       : 'text-white/60 hover:text-white/80'
@@ -328,7 +271,7 @@ const Portfolio: React.FC = () => {
                   {activeSubSection === item.id && (
                     <motion.div
                       layoutId="activeTab"
-                      className="absolute inset-0 bg-gradient-to-r from-[#6366f1] to-[#9b87f5] rounded-xl"
+                      className="absolute inset-0 bg-gradient-to-r from-[#6366f1] to-[#9b87f5] rounded-lg"
                       initial={false}
                       transition={{
                         type: "spring",
@@ -345,7 +288,7 @@ const Portfolio: React.FC = () => {
                   
                   {/* Hover effect for inactive tabs */}
                   {activeSubSection !== item.id && (
-                    <div className="absolute inset-0 bg-white/5 rounded-xl opacity-0 hover:opacity-100 transition-opacity duration-300" />
+                    <div className="absolute inset-0 bg-white/5 rounded-lg opacity-0 hover:opacity-100 transition-opacity duration-300" />
                   )}
                 </button>
               ))}
@@ -362,37 +305,41 @@ const Portfolio: React.FC = () => {
         )}
 
         {activeSubSection === 'certifications' && (
-          <div className="pt-4 pb-8">
+          <div className="space-y-8">
             {!imagesLoaded && (
               <div className="flex justify-center items-center py-12">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#9b87f5]"></div>
+                <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-[#9b87f5]"></div>
                 <span className="ml-3 text-white/70">Loading certificates...</span>
               </div>
             )}
-            <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 transition-opacity duration-500 ${imagesLoaded ? 'opacity-100' : 'opacity-0'}`}>
+            <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 transition-opacity duration-300 ${imagesLoaded ? 'opacity-100' : 'opacity-0'}`}>
               {certificationsData.map((cert, index) => (
                 <motion.div
                   key={cert.id}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  transition={{ duration: 0.4, delay: index * 0.05 }}
                   onClick={() => setSelectedCertImage(cert.imageSrc)}
-                  className="cursor-pointer"
+                  className="group cursor-pointer"
                 >
-                  <Card className="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl overflow-hidden transition-all duration-300 ease-in-out group hover:scale-[1.03] hover:border-[#6366f1]/70 hover:shadow-2xl hover:shadow-[#6366f1]/20 flex flex-col h-full">
-                    <div className="aspect-video overflow-hidden border-b border-white/5 group-hover:border-[#6366f1]/30 transition-colors duration-300">
+                  <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden transition-all duration-300 hover:bg-white/8 hover:border-white/20 hover:scale-[1.02] h-full flex flex-col">
+                    <div className="aspect-video overflow-hidden border-b border-white/10 bg-white/5">
                       <img
                         src={cert.imageSrc}
                         alt={`${cert.title} Certificate`}
-                        className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300 p-2 md:p-4 bg-black/10"
+                        className="w-full h-full object-contain p-4 transition-transform duration-300 group-hover:scale-105"
                         loading="eager"
                       />
                     </div>
-                    <CardContent className="p-5 flex flex-col flex-grow">
-                      <h4 className="text-md md:text-lg font-semibold text-white mb-1 group-hover:text-[#6366f1] transition-colors duration-300">{cert.title}</h4>
-                      <p className="text-sm text-white/70 mb-0">{cert.issuingBody}</p>
-                    </CardContent>
-                  </Card>
+                    <div className="p-6 flex flex-col flex-grow">
+                      <h4 className="text-lg font-semibold text-white mb-2 group-hover:text-[#9b87f5] transition-colors duration-300 line-clamp-2">
+                        {cert.title}
+                      </h4>
+                      <p className="text-sm text-white/60 mt-auto">
+                        {cert.issuingBody}
+                      </p>
+                    </div>
+                  </div>
                 </motion.div>
               ))}
             </div>
@@ -400,46 +347,34 @@ const Portfolio: React.FC = () => {
         )}
 
         {activeSubSection === 'techstack' && (
-          <div className="pt-4 pb-8">
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 md:gap-6">
+          <div className="space-y-8">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
               {techStackData.map((tech, index) => (
                 <motion.div
                   key={tech.id}
-                  initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                  initial={{ opacity: 0, y: 20 }}
                   animate={techStackVisible ? {
                     opacity: 1,
-                    scale: 1,
                     y: 0,
                     transition: {
-                      duration: 0.3,
-                      delay: index * 0.01,
-                      ease: [0.23, 1, 0.32, 1]
+                      duration: 0.4,
+                      delay: index * 0.02,
                     }
                   } : {}}
-                  whileHover={{
-                    scale: 1.08,
-                    y: -8,
-                    transition: { duration: 0.2, ease: "easeOut" }
-                  }}
-                  className="group relative flex flex-col items-center justify-center bg-gradient-to-br from-white/8 via-white/5 to-white/2 backdrop-blur-md border border-white/10 rounded-2xl p-4 md:p-6 aspect-square transition-all duration-300 ease-out hover:bg-gradient-to-br hover:from-[#6366f1]/15 hover:via-[#9b87f5]/10 hover:to-purple-500/5 hover:border-[#9b87f5]/40 hover:shadow-2xl hover:shadow-[#9b87f5]/25"
+                  className="group"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#6366f1]/0 to-[#a855f7]/0 group-hover:from-[#6366f1]/10 group-hover:to-[#a855f7]/10 rounded-2xl transition-all duration-300"></div>
-
-                  <div className="relative z-10 flex flex-col items-center justify-center flex-grow w-full">
-                    <img
-                      src={tech.logoSrc}
-                      alt={`${tech.name} logo`}
-                      className="w-16 h-16 md:w-20 md:h-20 object-contain transition-all duration-300 group-hover:scale-110 filter brightness-100"
-                    />
-
-                    <div className="absolute bottom-0 inset-x-0 h-6 flex items-center justify-center overflow-hidden">
-                      <span className="text-sm text-white/80 font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-full group-hover:translate-y-0">
+                  <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl p-4 md:p-6 aspect-square transition-all duration-300 hover:bg-white/8 hover:border-white/20 hover:scale-[1.05] flex flex-col items-center justify-center">
+                    <div className="flex flex-col items-center justify-center flex-grow">
+                      <img
+                        src={tech.logoSrc}
+                        alt={`${tech.name} logo`}
+                        className="w-12 h-12 md:w-16 md:h-16 object-contain transition-transform duration-300 group-hover:scale-110 mb-3"
+                      />
+                      <span className="text-xs md:text-sm text-white/70 font-medium text-center group-hover:text-white/90 transition-colors duration-300">
                         {tech.name}
                       </span>
                     </div>
                   </div>
-
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#9b87f5]/0 via-transparent to-transparent group-hover:from-[#9b87f5]/5 rounded-2xl transition-all duration-300 pointer-events-none"></div>
                 </motion.div>
               ))}
             </div>
