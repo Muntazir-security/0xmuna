@@ -1,73 +1,186 @@
-# Welcome to your Lovable project
+# Muntazir Mehdi - Professional Portfolio
 
-## Project info
+A modern, responsive portfolio website showcasing cybersecurity expertise, professional experience, and technical skills. Built with cutting-edge web technologies and featuring a sleek, professional design.
 
-**URL**: https://lovable.dev/projects/923df010-07b4-4619-8f14-a0dff8440a09
+![Portfolio Preview](public/assets/images/Main%20Logo.svg)
 
-## How can I edit this code?
+## 🌟 Features
 
-There are several ways of editing your application.
+### Modern Design & User Experience
+- **Clean, Professional Interface**: Minimalist design with subtle animations and smooth transitions
+- **Responsive Layout**: Optimized for all devices - desktop, tablet, and mobile
+- **Dark Theme**: Elegant dark theme with carefully chosen color palette
+- **Smooth Navigation**: Seamless single-page application with intuitive navigation
 
-**Use Lovable**
+### Interactive Sections
+- **Hero Section**: Professional introduction with TryHackMe profile integration
+- **About**: Comprehensive background with educational timeline and career highlights
+- **Portfolio**: Showcase of cybersecurity projects with detailed case studies
+- **Contact**: Professional contact form with direct email integration
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/923df010-07b4-4619-8f14-a0dff8440a09) and start prompting.
+### Technical Highlights
+- **Modern Tech Stack**: Built with React, TypeScript, and Vite for optimal performance
+- **Component Architecture**: Modular design using shadcn/ui components
+- **Responsive Design**: Tailwind CSS for mobile-first responsive design
+- **Performance Optimized**: Fast loading times and smooth animations
 
-Changes made via Lovable will be committed automatically to this repo.
+## 🚀 Live Demo
 
-**Use your preferred IDE**
+**Portfolio URL**: [muntazirmehdi.com](https://muntazirmehdi.com)
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## 🛠️ Technologies Used
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Frontend
+- **React 18** - Modern React with hooks and functional components
+- **TypeScript** - Type-safe development
+- **Vite** - Lightning-fast build tool and development server
+- **Tailwind CSS** - Utility-first CSS framework
+- **shadcn/ui** - Modern component library
+- **Lucide React** - Beautiful icon library
 
-Follow these steps:
+### Backend (Contact Form)
+- **Python Flask** - Email server for contact form
+- **SMTP Integration** - Professional email handling
+- **CORS Support** - Cross-origin request handling
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+### Development Tools
+- **ESLint** - Code linting and formatting
+- **PostCSS** - CSS processing
+- **Bun** - Fast package manager and runtime
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+## 📋 Project Structure
 
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+```
+0xmuna/
+├── src/
+│   ├── components/
+│   │   ├── Hero.tsx          # Landing section with intro
+│   │   ├── About.tsx         # Professional background
+│   │   ├── Portfolio.tsx     # Projects showcase
+│   │   ├── Contact.tsx       # Contact form
+│   │   └── ui/              # Reusable UI components
+│   ├── pages/
+│   │   ├── Index.tsx         # Main portfolio page
+│   │   └── ProjectDetail.tsx # Individual project pages
+│   └── lib/
+│       └── utils.ts          # Utility functions
+├── public/
+│   └── assets/
+│       ├── images/           # Professional images & logos
+│       └── documents/        # Resume and certificates
+└── email_server.py          # Contact form backend
 ```
 
-**Edit a file directly in GitHub**
+## 🏆 Professional Highlights
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Cybersecurity Expertise
+- **Penetration Testing**: OSCP, eJPT certified
+- **Security Operations**: SOC Analyst expertise
+- **Cloud Security**: AWS, Azure certifications
+- **Network Security**: Fortinet, Snort, Suricata
 
-**Use GitHub Codespaces**
+### Certifications Featured
+- OSCP (Offensive Security Certified Professional)
+- eJPT (eLearnSecurity Junior Penetration Tester)
+- Google Cybersecurity Professional Certificate
+- AWS Solutions Architect
+- Red Hat System Administrator (RHCSA)
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### Technical Skills Showcase
+- **Security Tools**: Burp Suite, Nessus, Wazuh, TheHive
+- **Cloud Platforms**: AWS, Azure, Kubernetes
+- **Operating Systems**: Arch Linux, Ubuntu, Red Hat
+- **Containerization**: Docker, Portainer
+- **SIEM/SOAR**: Splunk, Elastic Stack
 
-## What technologies are used for this project?
+## 🚀 Getting Started
 
-This project is built with:
+### Prerequisites
+- Node.js 18+ and npm (install with [nvm](https://github.com/nvm-sh/nvm))
+- Python 3.8+ (for email server)
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### Installation
 
-## How can I deploy this project?
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/muntazirmehdi/0xmuna.git
+   cd 0xmuna
+   ```
 
-Simply open [Lovable](https://lovable.dev/projects/923df010-07b4-4619-8f14-a0dff8440a09) and click on Share -> Publish.
+2. **Install frontend dependencies**
+   ```bash
+   npm install
+   ```
 
-## Can I connect a custom domain to my Lovable project?
+3. **Install backend dependencies** (optional, for contact form)
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-Yes, you can!
+4. **Start development server**
+   ```bash
+   npm run dev
+   ```
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+5. **Run email server** (optional)
+   ```bash
+   python email_server.py
+   ```
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+### Available Scripts
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
+
+## 🎨 Design Philosophy
+
+### Modern & Professional
+- Clean, minimalist design that focuses on content
+- Subtle animations that enhance user experience without distraction
+- Professional color scheme suitable for cybersecurity industry
+
+### Performance First
+- Optimized bundle size and loading times
+- Efficient component rendering and state management
+- Mobile-first responsive design approach
+
+### Accessibility & UX
+- High contrast ratios for better readability
+- Keyboard navigation support
+- Screen reader friendly markup
+
+## 📱 Responsive Design
+
+The portfolio is fully responsive and optimized for:
+- **Desktop**: Full-featured experience with hover effects
+- **Tablet**: Touch-friendly interface with adapted layouts
+- **Mobile**: Streamlined navigation and optimized content flow
+
+## 🔧 Customization
+
+### Updating Content
+- **Personal Info**: Edit `src/components/Hero.tsx` and `src/components/About.tsx`
+- **Projects**: Update `src/components/Portfolio.tsx` with your projects
+- **Images**: Replace files in `public/assets/images/`
+- **Resume**: Update `public/assets/documents/Muntazir Mehdi CV.pdf`
+
+### Styling
+- **Colors**: Modify Tailwind config in `tailwind.config.ts`
+- **Components**: Customize UI components in `src/components/ui/`
+- **Animations**: Adjust transitions and effects in component files
+
+## 📞 Contact & Professional Links
+
+- **Email**: info@muntazirmehdi.com
+- **LinkedIn**: [Muntazir Mehdi](https://linkedin.com/in/muntazirmehdi)
+- **GitHub**: [0xMuna](https://github.com/muntazirmehdi)
+- **TryHackMe**: Active contributor and learner
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+---
+
+*Built with passion for cybersecurity and modern web development. Showcasing the intersection of security expertise and technical innovation.*
