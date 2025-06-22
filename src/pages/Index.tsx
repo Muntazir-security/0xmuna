@@ -21,7 +21,7 @@ const Index: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen relative overflow-x-hidden font-inter">
+    <div className="min-h-screen relative overflow-x-hidden font-inter bg-[#0B0B1E]">
       {/* Background with animated starfield */}
       <PageBackground />
       

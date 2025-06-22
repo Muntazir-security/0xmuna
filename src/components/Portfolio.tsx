@@ -7,8 +7,14 @@ import {
   ShoppingCart, CheckSquare, Car, Home, Briefcase, ArrowRight, X as XIcon, ExternalLink
 } from 'lucide-react';
 import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { 
+  ProjectCardSkeleton, 
+  CertificationCardSkeleton, 
+  TechStackSkeleton 
+} from "@/components/ui/loading-skeleton";
 
 interface Project {
   id: number;
@@ -145,9 +151,19 @@ const Portfolio: React.FC = () => {
   const [selectedCertImage, setSelectedCertImage] = useState<string | null>(null);
   const [imagesLoaded, setImagesLoaded] = useState(false);
   const [techStackVisible, setTechStackVisible] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [projectsLoaded, setProjectsLoaded] = useState(false);
 
   useEffect(() => {
     AOS.init({ once: true });
+    
+    // Simulate initial loading
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+      setProjectsLoaded(true);
+    }, 800);
+
+    return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {
@@ -253,103 +269,94 @@ const Portfolio: React.FC = () => {
 
         {/* Modern Navigation Tabs */}
         <div className="flex justify-center mb-16">
-          <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl p-2">
-            <div className="flex space-x-2">
-              {subNavItems.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => setActiveSubSection(item.id)}
-                  className={`
-                    relative px-6 py-3 rounded-lg text-sm font-medium transition-all duration-300 ease-in-out
-                    ${activeSubSection === item.id
-                      ? 'text-white'
-                      : 'text-white/60 hover:text-white/80'
-                    }
-                  `}
-                >
-                  {/* Active indicator */}
-                  {activeSubSection === item.id && (
-                    <motion.div
-                      layoutId="activeTab"
-                      className="absolute inset-0 bg-gradient-to-r from-[#6366f1] to-[#9b87f5] rounded-lg"
-                      initial={false}
-                      transition={{
-                        type: "spring",
-                        stiffness: 500,
-                        damping: 30
-                      }}
-                    />
-                  )}
-                  
-                  {/* Tab label */}
-                  <span className="relative z-10">
-                    {item.label}
-                  </span>
-                  
-                  {/* Hover effect for inactive tabs */}
-                  {activeSubSection !== item.id && (
-                    <div className="absolute inset-0 bg-white/5 rounded-lg opacity-0 hover:opacity-100 transition-opacity duration-300" />
-                  )}
-                </button>
-              ))}
-            </div>
+          <div className="flex items-center space-x-1 bg-white/5 backdrop-blur-md border border-white/10 rounded-full p-1">
+            {subNavItems.map((item) => (
+              <motion.button
+                key={item.id}
+                className={cn(
+                  "relative px-4 lg:px-6 py-2 rounded-full text-sm font-medium transition-all duration-300",
+                  activeSubSection === item.id
+                    ? "bg-gradient-to-r from-[#6366f1] to-[#9b87f5] text-white shadow-lg"
+                    : "text-white/70 hover:text-white hover:bg-white/5"
+                )}
+                onClick={() => setActiveSubSection(item.id)}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                {item.label}
+              </motion.button>
+            ))}
           </div>
         </div>
 
         {activeSubSection === 'projects' && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project, index) => (
-              <ModernProjectCard key={project.id} project={project} index={index} />
-            ))}
+            {!projectsLoaded ? (
+              // Loading skeletons
+              [...Array(6)].map((_, index) => (
+                <ProjectCardSkeleton key={index} />
+              ))
+            ) : (
+              projects.map((project, index) => (
+                <ModernProjectCard key={project.id} project={project} index={index} />
+              ))
+            )}
           </div>
         )}
 
         {activeSubSection === 'certifications' && (
           <div className="space-y-8">
-            {!imagesLoaded && (
-              <div className="flex justify-center items-center py-12">
-                <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-[#9b87f5]"></div>
-                <span className="ml-3 text-white/70">Loading certificates...</span>
+            {!imagesLoaded ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {[...Array(6)].map((_, index) => (
+                  <CertificationCardSkeleton key={index} />
+                ))}
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 transition-opacity duration-300 opacity-100">
+                {certificationsData.map((cert, index) => (
+                  <motion.div
+                    key={cert.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: index * 0.05 }}
+                    onClick={() => setSelectedCertImage(cert.imageSrc)}
+                    className="group cursor-pointer"
+                  >
+                    <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden transition-all duration-300 hover:bg-white/8 hover:border-white/20 hover:scale-[1.02] h-full flex flex-col">
+                      <div className="aspect-video overflow-hidden border-b border-white/10 bg-white/5">
+                        <img
+                          src={cert.imageSrc}
+                          alt={`${cert.title} Certificate`}
+                          className="w-full h-full object-contain p-4 transition-transform duration-300 group-hover:scale-105"
+                          loading="eager"
+                        />
+                      </div>
+                      <div className="p-6 flex flex-col flex-grow">
+                        <h4 className="text-lg font-semibold text-white mb-2 group-hover:text-[#9b87f5] transition-colors duration-300 line-clamp-2">
+                          {cert.title}
+                        </h4>
+                        <p className="text-sm text-white/60 mt-auto">
+                          {cert.issuingBody}
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
               </div>
             )}
-            <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 transition-opacity duration-300 ${imagesLoaded ? 'opacity-100' : 'opacity-0'}`}>
-              {certificationsData.map((cert, index) => (
-                <motion.div
-                  key={cert.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: index * 0.05 }}
-                  onClick={() => setSelectedCertImage(cert.imageSrc)}
-                  className="group cursor-pointer"
-                >
-                  <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden transition-all duration-300 hover:bg-white/8 hover:border-white/20 hover:scale-[1.02] h-full flex flex-col">
-                    <div className="aspect-video overflow-hidden border-b border-white/10 bg-white/5">
-                      <img
-                        src={cert.imageSrc}
-                        alt={`${cert.title} Certificate`}
-                        className="w-full h-full object-contain p-4 transition-transform duration-300 group-hover:scale-105"
-                        loading="eager"
-                      />
-                    </div>
-                    <div className="p-6 flex flex-col flex-grow">
-                      <h4 className="text-lg font-semibold text-white mb-2 group-hover:text-[#9b87f5] transition-colors duration-300 line-clamp-2">
-                        {cert.title}
-                      </h4>
-                      <p className="text-sm text-white/60 mt-auto">
-                        {cert.issuingBody}
-                      </p>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
           </div>
         )}
 
         {activeSubSection === 'techstack' && (
           <div className="space-y-8">
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
-              {techStackData.map((tech, index) => (
+              {!techStackVisible ? (
+                [...Array(18)].map((_, index) => (
+                  <TechStackSkeleton key={index} />
+                ))
+              ) : (
+                techStackData.map((tech, index) => (
                 <motion.div
                   key={tech.id}
                   initial={{ opacity: 0, y: 20 }}
@@ -376,7 +383,8 @@ const Portfolio: React.FC = () => {
                     </div>
                   </div>
                 </motion.div>
-              ))}
+                ))
+              )}
             </div>
           </div>
         )}
