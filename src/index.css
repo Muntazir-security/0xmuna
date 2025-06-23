@@ -101,8 +101,13 @@
     @apply bg-white/30;
   }
 
-  /* Custom CSS for enhanced mobile responsiveness */
+  /* Improved mobile touch targets */
   @media (max-width: 768px) {
+    button, a, [role="button"] {
+      min-height: 44px;
+      min-width: 44px;
+    }
+    
     .mobile-optimized {
       @apply px-4 py-8;
     }
@@ -114,9 +119,31 @@
     .mobile-spacing {
       @apply space-y-4;
     }
+    
+    /* Prevent horizontal scroll */
+    body {
+      overflow-x: hidden !important;
+    }
+    
+    /* Improve tap highlighting */
+    * {
+      -webkit-tap-highlight-color: rgba(59, 130, 246, 0.1);
+    }
   }
 
+  /* Improved focus states for accessibility */
+  *:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
 
+  /* Performance optimizations */
+  .gpu-accelerated {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
 
   /* Enhanced animations for better performance */
   @keyframes float-gentle {

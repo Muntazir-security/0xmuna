@@ -10,6 +10,21 @@ const Navbar: React.FC = () => {
   const isManuallyNavigating = useRef(false);
   
   useEffect(() => {
+    // Force home state multiple times to ensure it sticks
+    setActiveSection("home");
+    
+    const forceHomeState = () => {
+      setActiveSection("home");
+    };
+    
+    // Force home immediately
+    forceHomeState();
+    
+    // Force home after DOM is ready
+    setTimeout(forceHomeState, 50);
+    setTimeout(forceHomeState, 200);
+    setTimeout(forceHomeState, 500);
+    
     const handleScroll = () => {
       // Update scrolled state
       setIsScrolled(window.scrollY > 50);
@@ -19,50 +34,61 @@ const Navbar: React.FC = () => {
         return;
       }
       
-      // Update active section based on scroll position
-      const sections = ["home", "about", "portfolio", "contact"];
-      const scrollPosition = window.scrollY + 150; // Better offset for detection
-      const viewportHeight = window.innerHeight;
-      const documentHeight = document.documentElement.scrollHeight;
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
       
-      // If we're near the bottom of the page (within 100px), activate contact
-      if (window.scrollY + viewportHeight >= documentHeight - 100) {
-        setActiveSection("contact");
+      // Always default to home at the top
+      if (scrollY < 200) {
+        setActiveSection("home");
         return;
       }
       
-      // Find the current section
-      let currentSection = "home";
-      
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const offsetTop = element.offsetTop;
-          const offsetHeight = element.offsetHeight;
-          
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            currentSection = section;
-          }
+      // Check for about section
+      const aboutElement = document.getElementById("about");
+      if (aboutElement) {
+        const aboutRect = aboutElement.getBoundingClientRect();
+        const aboutTop = scrollY + aboutRect.top;
+        if (scrollY >= aboutTop - 200 && scrollY < aboutTop + aboutElement.offsetHeight - 200) {
+          setActiveSection("about");
+          return;
         }
       }
       
-      setActiveSection(currentSection);
+      // Check for portfolio section
+      const portfolioElement = document.getElementById("portfolio");
+      if (portfolioElement) {
+        const portfolioRect = portfolioElement.getBoundingClientRect();
+        const portfolioTop = scrollY + portfolioRect.top;
+        if (scrollY >= portfolioTop - 200 && scrollY < portfolioTop + portfolioElement.offsetHeight - 200) {
+          setActiveSection("portfolio");
+          return;
+        }
+      }
+      
+      // Check for contact section - only at the very bottom
+      const contactElement = document.getElementById("contact");
+      if (contactElement) {
+        const contactRect = contactElement.getBoundingClientRect();
+        const contactTop = scrollY + contactRect.top;
+        const documentHeight = document.documentElement.scrollHeight;
+        
+        // Only activate contact if we're in the last 400px of the page or actively in contact section
+        if (scrollY + windowHeight >= documentHeight - 100 || 
+            (scrollY >= contactTop - 200 && scrollY < contactTop + contactElement.offsetHeight)) {
+          setActiveSection("contact");
+          return;
+        }
+      }
+      
+      // Default to home if no other section matches
+      setActiveSection("home");
     };
     
-    // Initial call
-    handleScroll();
+    // Add scroll listener
+    window.addEventListener("scroll", handleScroll, { passive: true });
     
-    // Add scroll listener with throttling
-    let timeoutId: NodeJS.Timeout;
-    const throttledHandleScroll = () => {
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(handleScroll, 10);
-    };
-    
-    window.addEventListener("scroll", throttledHandleScroll, { passive: true });
     return () => {
-      window.removeEventListener("scroll", throttledHandleScroll);
-      clearTimeout(timeoutId);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
@@ -85,30 +111,80 @@ const Navbar: React.FC = () => {
   ];
 
   const handleSmoothScroll = (sectionId: string) => {
-    // Immediately update active state for instant feedback
-    setActiveSection(sectionId);
+    console.log(`Attempting to scroll to: ${sectionId}`);
     
-    // Disable scroll detection temporarily
-    isManuallyNavigating.current = true;
-    
-    const element = document.getElementById(sectionId);
-    if (element) {
-      const offsetTop = element.offsetTop - 80; // Account for navbar height
-      window.scrollTo({
-        top: offsetTop,
-        behavior: 'smooth'
-      });
+    // Close mobile menu if open
+    if (isMobileMenuOpen) {
+      setIsMobileMenuOpen(false);
     }
     
-    // Re-enable scroll detection after smooth scroll completes
+    // Temporarily disable scroll detection
+    isManuallyNavigating.current = true;
+    
+    // Immediately update active state for visual feedback
+    setActiveSection(sectionId);
+    
+    // Find the target element
+    const element = document.getElementById(sectionId);
+    console.log(`Found element:`, element);
+    
+    if (element) {
+      try {
+        // Method 1: Try scrollIntoView first
+        element.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+        
+        // Adjust for navbar after scrolling
+        setTimeout(() => {
+          const navbarHeight = 80;
+          const currentScroll = window.scrollY;
+          window.scrollTo({
+            top: currentScroll - navbarHeight,
+            behavior: 'smooth'
+          });
+        }, 100);
+        
+        console.log(`Successfully scrolled to ${sectionId} using scrollIntoView`);
+      } catch (error) {
+        console.error('scrollIntoView failed, trying fallback method:', error);
+        
+        // Method 2: Fallback to manual calculation
+        const rect = element.getBoundingClientRect();
+        const absoluteTop = window.scrollY + rect.top;
+        const navbarHeight = 80;
+        const targetPosition = absoluteTop - navbarHeight;
+        
+        window.scrollTo({
+          top: Math.max(0, targetPosition),
+          behavior: 'smooth'
+        });
+        
+        console.log(`Fallback scroll to ${sectionId} at position ${targetPosition}`);
+      }
+    } else {
+      console.error(`Element with id '${sectionId}' not found!`);
+      
+      // List all available IDs for debugging
+      const allIds = Array.from(document.querySelectorAll('[id]')).map(el => el.id);
+      console.log('Available element IDs:', allIds);
+    }
+    
+    // Re-enable scroll detection after animation
     setTimeout(() => {
       isManuallyNavigating.current = false;
-    }, 1000); // Adjust timeout based on scroll duration
+      console.log(`Re-enabled scroll detection for ${sectionId}`);
+    }, 1500);
   };
 
   const handleMobileLinkClick = (sectionId: string) => {
-    handleSmoothScroll(sectionId);
+    console.log(`Mobile menu clicked: ${sectionId}`);
     setIsMobileMenuOpen(false);
+    // Small delay to let menu close before scrolling
+    setTimeout(() => {
+      handleSmoothScroll(sectionId);
+    }, 200);
   };
 
   const handleLogoClick = () => {
@@ -245,3 +321,5 @@ const Navbar: React.FC = () => {
 };
 
 export default Navbar;
+
+

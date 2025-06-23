@@ -198,7 +198,7 @@ const AboutMe: React.FC = () => {
                 initial={{ opacity: 0, x: index % 2 === 0 ? 50 : -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.6, delay: 0.1 * index }}
+                transition={{ duration: 0.4, delay: index * 0.1, ease: "easeOut" }}
               >
                 <div className={`md:w-1/2 ${index % 2 === 0 ? "md:order-2" : "md:order-1"}`}>
                   <div className={`relative ${index % 2 === 0 ? "md:pl-12" : "md:pr-12"}`}>
@@ -294,7 +294,7 @@ const AboutMe: React.FC = () => {
                 initial={{ opacity: 0, x: index % 2 === 0 ? 50 : -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.6, delay: 0.1 * index }}
+                transition={{ duration: 0.4, delay: index * 0.1, ease: "easeOut" }}
               >
                 <div className={`md:w-1/2 ${index % 2 === 0 ? "md:order-2" : "md:order-1"}`}>
                   <div className={`relative ${index % 2 === 0 ? "md:pl-12" : "md:pr-12"}`}>

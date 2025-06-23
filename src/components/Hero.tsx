@@ -1,6 +1,7 @@
 import React, { memo, useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Mail, Shield, Lock, Terminal, Globe } from "lucide-react";
+import { motion } from "framer-motion";
 
 const TypewriterText = memo(({ 
   text, 
@@ -97,33 +98,65 @@ const StatusBadge = memo(() => (
 StatusBadge.displayName = 'StatusBadge';
 
 const TryHackMeBadge = memo(() => (
-  <div className="flex justify-center" data-aos="fade-left" data-aos-delay="1200">
-    <HolographicCard className="w-full max-w-sm">
-      <div className="bg-gradient-to-r from-white/5 to-white/5 px-4 py-3 border-b border-white/10 rounded-t-xl">
-        <div className="flex items-center justify-center gap-3">
-          <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
-          <span className="text-sm font-medium text-white/90">TryHackMe Profile</span>
-          <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+  <motion.div 
+    className="flex justify-center"
+    initial={{ opacity: 0, x: 50 }}
+    animate={{ opacity: 1, x: 0 }}
+    transition={{ duration: 0.8, delay: 1.0 }}
+  >
+    <div className="w-full max-w-sm relative group">
+      {/* Subtle glow effect */}
+      <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-400/20 via-purple-500/20 to-pink-500/20 rounded-2xl blur-sm opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div>
+      
+      {/* Main container */}
+      <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl overflow-hidden">
+        
+        {/* Header */}
+        <div className="bg-gradient-to-r from-white/5 to-white/10 px-4 py-3 border-b border-white/10">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
+              <span className="text-sm font-medium text-white/90">TryHackMe Profile</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <div className="w-1.5 h-1.5 bg-green-400 rounded-full"></div>
+              <span className="text-xs text-white/60">Live</span>
+            </div>
           </div>
         </div>
         
-      <div className="p-2">
-        <div className="relative overflow-hidden rounded-xl bg-white/5 backdrop-blur-sm border border-white/10">
+        {/* Badge content */}
+        <div className="p-4">
+          <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl overflow-hidden">
             <iframe 
               src="https://tryhackme.com/api/v2/badges/public-profile?userPublicId=996369" 
-            className="w-full h-20 border-0 block"
+              className="w-full h-20 border-0 block"
               title="TryHackMe Badge"
               scrolling="no"
-            style={{
-              minWidth: '280px',
-              maxWidth: '280px',
-              height: '80px'
-            }}
+              style={{
+                minWidth: '100%',
+                height: '80px',
+                backgroundColor: 'transparent'
+              }}
             />
+          </div>
+          
+          {/* Quick stats overlay */}
+          <div className="mt-3 flex items-center justify-between text-xs">
+            <div className="flex items-center gap-2 text-white/60">
+              <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full"></div>
+              <span>Rank: 45,054</span>
+            </div>
+            <div className="flex items-center gap-2 text-white/60">
+              <div className="w-1.5 h-1.5 bg-purple-400 rounded-full"></div>
+              <span>Streak: 17 days</span>
+            </div>
+          </div>
         </div>
+        
       </div>
-    </HolographicCard>
-  </div>
+    </div>
+  </motion.div>
 ));
 TryHackMeBadge.displayName = "TryHackMeBadge";
 
@@ -150,52 +183,71 @@ const Hero: React.FC = () => {
             <div className="lg:col-span-8 space-y-8 text-center lg:text-left">
               
               {/* Status Badge */}
-              <div className="flex justify-center lg:justify-start">
-              <StatusBadge />
-            </div>
+              <motion.div 
+                className="flex justify-center lg:justify-start"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+              >
+                <StatusBadge />
+              </motion.div>
 
               {/* Main Heading with Holographic Effect */}
-              <div className="space-y-6" data-aos="fade-up" data-aos-delay="600">
+              <motion.div 
+                className="space-y-6" 
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+              >
                 <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-tight">
-                  <div className="mb-4">
-                    <TypewriterText 
-                      text="MUNTAZIR" 
-                      delay={800}
-                      speed={120}
-                      className="block bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent drop-shadow-2xl"
-                    />
-                  </div>
-                  <div>
-                    <TypewriterText 
-                      text="MEHDI" 
-                      delay={2200}
-                      speed={120}
-                      className="block bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent drop-shadow-2xl"
-                    />
-                  </div>
+                  <motion.div 
+                    className="mb-4"
+                    initial={{ opacity: 0, x: -50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.8, delay: 0.5 }}
+                  >
+                    <span className="block bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent drop-shadow-2xl">
+                      MUNTAZIR
+                    </span>
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, x: 50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.8, delay: 0.7 }}
+                  >
+                    <span className="block bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent drop-shadow-2xl">
+                      MEHDI
+                    </span>
+                  </motion.div>
                 </h1>
                 
                 <div className="space-y-4">
-                  <div className="text-xl md:text-2xl font-semibold">
-                    <TypewriterText 
-                      text="IT Engineer at Neotek" 
-                      delay={3800}
-                      speed={80}
-                      className="text-white/90"
-                    />
-                  </div>
-                  <div className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto lg:mx-0">
-                    <TypewriterText 
-                      text="Cybersecurity professional crafting digital fortresses and elegant solutions in the cyber realm." 
-                      delay={5200}
-                      speed={60}
-                    />
-                  </div>
+                  <motion.div 
+                    className="text-xl md:text-2xl font-semibold"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.9 }}
+                  >
+                    <span className="text-white/90">IT Engineer at Neotek</span>
+                  </motion.div>
+                  <motion.div 
+                    className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto lg:mx-0"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 1.1 }}
+                  >
+                    <span>Passionate cybersecurity engineer specializing in threat detection, network defense, and building resilient security infrastructures. I transform complex security challenges into robust, scalable solutions.</span>
+                  </motion.div>
                 </div>
-            </div>
+              </motion.div>
 
               {/* Expertise Icons */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4" data-aos="fade-up" data-aos-delay="6500">
+              <motion.div 
+                className="flex flex-wrap justify-center lg:justify-start gap-2"
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 1.3 }}
+              >
                 {[
                   { name: "SIEM", icon: Shield, color: "text-cyan-400", bg: "bg-cyan-400/10" },
                   { name: "Network Security", icon: Lock, color: "text-purple-400", bg: "bg-purple-400/10" },
@@ -204,16 +256,30 @@ const Hero: React.FC = () => {
                 ].map((skill, index) => {
                   const IconComponent = skill.icon;
                   return (
-                    <HolographicCard key={skill.name} delay={7000 + (index * 200)} className="text-center">
-                      <IconComponent className={`w-8 h-8 ${skill.color} mx-auto mb-2`} />
-                      <span className="text-white text-sm font-medium">{skill.name}</span>
-                    </HolographicCard>
+                    <motion.div 
+                      key={skill.name} 
+                      className="relative group inline-flex items-center gap-2 px-3 py-1.5 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full hover:border-cyan-400/30 transition-all duration-300 hover:scale-105"
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.5, delay: 1.5 + (index * 0.1) }}
+                      whileHover={{ scale: 1.05, y: -2 }}
+                    >
+                      <div className={`w-4 h-4 ${skill.color} transition-transform duration-300 group-hover:scale-110 flex-shrink-0`}>
+                        <IconComponent className="w-full h-full" />
+                      </div>
+                      <span className="text-white text-xs font-medium leading-none">{skill.name}</span>
+                    </motion.div>
                   );
                 })}
-              </div>
+              </motion.div>
 
               {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start" data-aos="fade-up" data-aos-delay="8000">
+              <motion.div 
+                className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 1.8 }}
+              >
               <Button
                 asChild
                 size="lg"
@@ -235,19 +301,30 @@ const Hero: React.FC = () => {
                     <span className="font-semibold">Connect</span>
                 </a>
               </Button>
-            </div>
+            </motion.div>
           </div>
 
                          {/* Right Column - Interactive Elements */}
              <div className="lg:col-span-4 space-y-6">
-          <TryHackMeBadge />
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 1.0 }}
+              >
+                <TryHackMeBadge />
+              </motion.div>
              </div>
           </div>
         </div>
       </div>
 
       {/* Enhanced Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20" data-aos="fade-up" data-aos-delay="9000">
+      <motion.div 
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 2.2 }}
+      >
         <a
           href="#about"
           className="flex flex-col items-center gap-3 text-white/60 hover:text-cyan-400 transition-all duration-300 group"
@@ -260,7 +337,7 @@ const Hero: React.FC = () => {
             <div className="absolute inset-0 border-2 border-cyan-400/30 rounded-full animate-ping opacity-20"></div>
           </div>
         </a>
-      </div>
+      </motion.div>
     </section>
   );
 };

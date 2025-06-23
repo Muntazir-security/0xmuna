@@ -52,6 +52,17 @@ const Contact: React.FC = () => {
     setIsSubmitting(true);
 
     try {
+      // Validate form data
+      if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+        throw new Error('Please fill in all required fields');
+      }
+      
+      // Email validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(formData.email)) {
+        throw new Error('Please enter a valid email address');
+      }
+
       const response = await fetch('http://localhost:5000/send-email', {
         method: 'POST',
         headers: {
@@ -60,29 +71,47 @@ const Contact: React.FC = () => {
         body: JSON.stringify(formData),
       });
 
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
       const result = await response.json();
 
       if (result.success) {
-      toast({
-        title: "Message Sent Successfully!",
-        description: "Thank you for your message. I'll get back to you soon.",
-      });
+        toast({
+          title: "Message Sent Successfully!",
+          description: "Thank you for your message. I'll get back to you soon.",
+        });
 
-      // Reset form
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
-      });
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: ''
+        });
       } else {
         throw new Error(result.error || 'Failed to send message');
       }
     } catch (error) {
       console.error('Email sending error:', error);
+      
+      // More specific error handling
+      let errorMessage = "Failed to send message. Please try again or contact me directly at info@muntazirmehdi.com";
+      
+      if (error instanceof Error) {
+        if (error.message.includes('fetch')) {
+          errorMessage = "Unable to connect to email server. Please contact me directly at info@muntazirmehdi.com";
+        } else if (error.message.includes('required fields')) {
+          errorMessage = error.message;
+        } else if (error.message.includes('valid email')) {
+          errorMessage = error.message;
+        }
+      }
+      
       toast({
         title: "Error",
-        description: "Failed to send message. Please try again or contact me directly at info@muntazirmehdi.com",
+        description: errorMessage,
         variant: "destructive",
       });
     } finally {
