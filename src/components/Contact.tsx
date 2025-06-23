@@ -91,16 +91,16 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-16 md:py-24 relative">
-      {/* Clean background */}
-      <div className="absolute inset-0 bg-[#0B0B1E]"></div>
-      
+    <section 
+      id="contact" 
+      className="py-16 md:py-24 relative"
+    >
       <div className="container mx-auto px-6 md:px-8 lg:px-12 xl:px-16 relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Get In <span className="bg-gradient-to-r from-[#6366f1] to-[#a855f7] bg-clip-text text-transparent">Touch</span>
+            Get In <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">Touch</span>
           </h2>
-          <div className="w-16 h-1 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-full mx-auto mb-6"></div>
+          <div className="w-16 h-1 bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 rounded-full mx-auto mb-6"></div>
           <p className="text-white/85 text-lg max-w-2xl mx-auto">
             Have a question or want to work together? I'd love to hear from you.
           </p>
@@ -115,8 +115,8 @@ const Contact: React.FC = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="absolute -top-20 -left-20 w-40 h-40 bg-[#6366f1]/10 rounded-full blur-3xl"></div>
-            <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-[#a855f7]/10 rounded-full blur-3xl"></div>
+            <div className="absolute -top-20 -left-20 w-40 h-40 bg-cyan-400/10 rounded-full blur-3xl"></div>
+            <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-purple-500/10 rounded-full blur-3xl"></div>
             
             <div className="relative z-10">
               <h3 className="text-2xl font-bold text-white mb-6">Send Message</h3>
@@ -131,7 +131,7 @@ const Contact: React.FC = () => {
                       onChange={handleInputChange}
                       placeholder="Your full name" 
                       required
-                      className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus-visible:ring-[#6366f1] focus-visible:border-[#6366f1] transition-all duration-300 hover:border-white/30" 
+                      className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus-visible:ring-cyan-400 focus-visible:border-cyan-400 transition-all duration-300 hover:border-white/30" 
                     />
                   </div>
                   <div className="space-y-2">
@@ -143,7 +143,7 @@ const Contact: React.FC = () => {
                       onChange={handleInputChange}
                       placeholder="your.email@example.com" 
                       required
-                      className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus-visible:ring-[#6366f1] focus-visible:border-[#6366f1] transition-all duration-300 hover:border-white/30" 
+                      className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus-visible:ring-cyan-400 focus-visible:border-cyan-400 transition-all duration-300 hover:border-white/30" 
                     />
                   </div>
                 </div>
@@ -156,7 +156,7 @@ const Contact: React.FC = () => {
                     onChange={handleInputChange}
                     placeholder="What is this about?" 
                     required
-                    className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus-visible:ring-[#6366f1] focus-visible:border-[#6366f1] transition-all duration-300 hover:border-white/30" 
+                    className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus-visible:ring-cyan-400 focus-visible:border-cyan-400 transition-all duration-300 hover:border-white/30" 
                   />
                 </div>
                 
@@ -169,14 +169,14 @@ const Contact: React.FC = () => {
                     placeholder="Your message here..." 
                     required
                     rows={6}
-                    className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus-visible:ring-[#6366f1] focus-visible:border-[#6366f1] transition-all duration-300 hover:border-white/30 resize-none" 
+                    className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus-visible:ring-cyan-400 focus-visible:border-cyan-400 transition-all duration-300 hover:border-white/30 resize-none" 
                   />
                 </div>
                 
                 <Button 
                   type="submit" 
                   disabled={isSubmitting}
-                  className="w-full bg-gradient-to-r from-[#6366f1] to-[#a855f7] hover:from-[#5855f0] hover:to-[#9333ea] transition-all duration-400 text-white border-none disabled:opacity-50 h-12 text-base font-medium"
+                  className="w-full bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-400 hover:to-purple-500 transition-all duration-400 text-white border-none disabled:opacity-50 h-12 text-base font-medium"
                 >
                   {isSubmitting ? (
                     <div className="flex items-center space-x-2">

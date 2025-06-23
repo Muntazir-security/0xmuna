@@ -1,16 +1,95 @@
-import React, { memo } from "react";
+import React, { memo, useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Mail, Shield, Lock, Search, Cloud, Sparkle } from "lucide-react";
+import { ArrowRight, Mail, Shield, Lock, Terminal, Globe } from "lucide-react";
+
+const TypewriterText = memo(({ 
+  text, 
+  delay = 0, 
+  className = "",
+  speed = 100 
+}: { 
+  text: string; 
+  delay?: number; 
+  className?: string;
+  speed?: number;
+}) => {
+  const [displayText, setDisplayText] = useState("");
+  const [showCursor, setShowCursor] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      let i = 0;
+      const typeInterval = setInterval(() => {
+        if (i < text.length) {
+          setDisplayText(text.slice(0, i + 1));
+          i++;
+        } else {
+          clearInterval(typeInterval);
+          setTimeout(() => setShowCursor(false), 500);
+        }
+      }, speed);
+      return () => clearInterval(typeInterval);
+    }, delay);
+    return () => clearTimeout(timer);
+  }, [text, delay, speed]);
+
+  return (
+    <span className={className}>
+      {displayText}
+      {showCursor && <span className="animate-pulse text-cyan-400">|</span>}
+    </span>
+  );
+});
+TypewriterText.displayName = 'TypewriterText';
+
+const HolographicCard = memo(({ 
+  children, 
+  className = "",
+  delay = 0 
+}: { 
+  children: React.ReactNode; 
+  className?: string;
+  delay?: number;
+}) => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsVisible(true), delay);
+    return () => clearTimeout(timer);
+  }, [delay]);
+
+  return (
+    <div
+      className={`relative group transition-all duration-700 transform ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+      } ${className}`}
+    >
+      <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 rounded-2xl blur-sm opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div>
+      <div className="relative bg-slate-900/80 backdrop-blur-xl border border-white/20 rounded-2xl p-6 hover:border-cyan-400/50 transition-all duration-300">
+        <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/5 via-transparent to-purple-500/5 rounded-2xl"></div>
+        <div className="relative z-10">
+          {children}
+        </div>
+      </div>
+    </div>
+  );
+});
+HolographicCard.displayName = 'HolographicCard';
+
+
 
 const StatusBadge = memo(() => (
-  <div className="inline-block animate-float" data-aos="zoom-in" data-aos-delay="400">
+  <div className="inline-block" data-aos="zoom-in" data-aos-delay="400">
     <div className="relative group">
-      <div className="absolute -inset-0.5 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-full blur opacity-30 group-hover:opacity-50 transition duration-1000"></div>
-      <div className="relative px-4 py-2.5 rounded-full bg-black/40 backdrop-blur-xl border border-white/10">
-        <span className="bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-transparent bg-clip-text text-sm font-medium flex items-center">
-          <Sparkle className="w-4 h-4 mr-2 text-blue-400" />
-          IT Security Specialist
-        </span>
+      <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 rounded-full blur opacity-40 group-hover:opacity-70 transition duration-500"></div>
+      <div className="relative px-6 py-3 rounded-full bg-slate-900/90 backdrop-blur-xl border border-cyan-400/30">
+        <div className="flex items-center gap-3">
+          <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+          <span className="bg-gradient-to-r from-cyan-400 to-purple-400 text-transparent bg-clip-text text-sm font-semibold">
+            SECURITY SPECIALIST • ONLINE
+          </span>
+          <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+        </div>
       </div>
     </div>
   </div>
@@ -19,179 +98,167 @@ StatusBadge.displayName = 'StatusBadge';
 
 const TryHackMeBadge = memo(() => (
   <div className="flex justify-center" data-aos="fade-left" data-aos-delay="1200">
-    <div className="relative group cursor-pointer w-full max-w-sm">
-      <div className="absolute -inset-0.5 bg-gradient-to-r from-[#6366f1]/20 to-[#a855f7]/20 rounded-2xl blur opacity-50 group-hover:opacity-70 transition-all duration-300"></div>
-      
-      <div className="relative bg-black/40 backdrop-blur-xl border border-white/20 rounded-2xl overflow-hidden group-hover:border-white/30 transition-all duration-300">
-        <div className="bg-gradient-to-r from-white/5 to-white/5 px-4 py-3 border-b border-white/10">
-          <div className="flex items-center justify-center gap-3">
-            <div className="w-1.5 h-1.5 bg-[#6366f1] rounded-full"></div>
-            <span className="text-sm font-medium text-white/90">TryHackMe Profile</span>
-            <div className="w-1.5 h-1.5 bg-[#a855f7] rounded-full"></div>
-          </div>
-        </div>
-        
-        <div className="relative bg-gradient-to-b from-black/5 to-black/20 p-2">
-          <div className="relative overflow-hidden rounded-xl bg-white/5 backdrop-blur-sm border border-white/10">
-            <iframe 
-              src="https://tryhackme.com/api/v2/badges/public-profile?userPublicId=996369" 
-              className="w-full h-20 border-0 block"
-              title="TryHackMe Badge"
-              scrolling="no"
-              style={{ 
-                minWidth: '280px',
-                maxWidth: '280px',
-                height: '80px'
-              }}
-            />
-          </div>
+    <HolographicCard className="w-full max-w-sm">
+      <div className="bg-gradient-to-r from-white/5 to-white/5 px-4 py-3 border-b border-white/10 rounded-t-xl">
+        <div className="flex items-center justify-center gap-3">
+          <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
+          <span className="text-sm font-medium text-white/90">TryHackMe Profile</span>
+          <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
         </div>
       </div>
-    </div>
+      
+      <div className="p-2">
+        <div className="relative overflow-hidden rounded-xl bg-white/5 backdrop-blur-sm border border-white/10">
+          <iframe 
+            src="https://tryhackme.com/api/v2/badges/public-profile?userPublicId=996369" 
+            className="w-full h-20 border-0 block"
+            title="TryHackMe Badge"
+            scrolling="no"
+            style={{
+              minWidth: '280px',
+              maxWidth: '280px',
+              height: '80px'
+            }}
+          />
+        </div>
+      </div>
+    </HolographicCard>
   </div>
 ));
 TryHackMeBadge.displayName = "TryHackMeBadge";
 
 const Hero: React.FC = () => {
   return (
-    <section id="home" className="relative min-h-screen flex items-center overflow-hidden bg-[#0B0B1E]">
-      {/* Background Effects */}
-      <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#6366f1]/5 rounded-full blur-3xl animate-float-gentle"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#a855f7]/5 rounded-full blur-3xl animate-float-gentle" style={{ animationDelay: '1s' }}></div>
+    <section 
+      id="home" 
+      className="relative min-h-screen flex items-center overflow-hidden"
+    >
+      {/* Ambient Background Effects */}
+      <div className="absolute inset-0" style={{ zIndex: 2 }}>
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-400/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-3/4 left-3/4 w-64 h-64 bg-pink-500/10 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '4s' }}></div>
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 py-16 sm:py-20 md:py-32 relative z-10">
-        <div className="max-w-7xl mx-auto">
+      <div className="container mx-auto px-6 md:px-8 lg:px-12 xl:px-16 py-16 sm:py-20 md:py-32 relative z-10">
+        <div className="max-w-7xl mx-auto text-white">
           
           {/* Main Layout */}
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center min-h-[70vh]">
             
             {/* Left Column - Main Content */}
-            <div className="lg:col-span-8 space-y-6 md:space-y-8 text-center lg:text-left mobile-optimized">
+            <div className="lg:col-span-8 space-y-8 text-center lg:text-left">
               
-              {/* Status and Title */}
-              <div className="space-y-4 md:space-y-6">
+              {/* Status Badge */}
+              <div className="flex justify-center lg:justify-start">
                 <StatusBadge />
+              </div>
+              
+              {/* Main Heading with Holographic Effect */}
+              <div className="space-y-6" data-aos="fade-up" data-aos-delay="600">
+                <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-tight">
+                  <div className="mb-4">
+                    <TypewriterText 
+                      text="MUNTAZIR" 
+                      delay={800}
+                      speed={120}
+                      className="block bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent drop-shadow-2xl"
+                    />
+                  </div>
+                  <div>
+                    <TypewriterText 
+                      text="MEHDI" 
+                      delay={2200}
+                      speed={120}
+                      className="block bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent drop-shadow-2xl"
+                    />
+                  </div>
+                </h1>
                 
-                <div data-aos="fade-up" data-aos-delay="600">
-                  <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight leading-tight">
-                    <span className="block bg-gradient-to-r from-[#6366f1] to-[#a855f7] bg-clip-text text-transparent mb-2 animate-shimmer">
-                      Muntazir
-                    </span>
-                    <span className="block bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent">
-                      Mehdi
-                    </span>
-                  </h1>
-                </div>
-
-                <div className="space-y-4" data-aos="fade-up" data-aos-delay="800">
-                  <p className="text-xl md:text-2xl text-white/90 font-semibold">
-                    IT Engineer at <span className="text-[#6366f1]">Neotek</span>
-                  </p>
-                  <p className="text-lg md:text-xl text-white/70 max-w-2xl">
-                    Cybersecurity-focused professional securing enterprise networks and building resilient defense systems against evolving cyber threats.
-                  </p>
+                <div className="space-y-4">
+                  <div className="text-xl md:text-2xl font-semibold">
+                    <TypewriterText 
+                      text="IT Engineer at Neotek" 
+                      delay={3800}
+                      speed={80}
+                      className="text-white/90"
+                    />
+                  </div>
+                  <div className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto lg:mx-0">
+                    <TypewriterText 
+                      text="Cybersecurity professional crafting digital fortresses and elegant solutions in the cyber realm." 
+                      delay={5200}
+                      speed={60}
+                    />
+                  </div>
                 </div>
               </div>
 
-              {/* Skills */}
-              <div className="space-y-6" data-aos="fade-up" data-aos-delay="900">
-                <h3 className="text-lg font-semibold text-white/80">Core Expertise</h3>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  {[
-                    { name: "SIEM", icon: Shield, color: "text-blue-400", bg: "bg-blue-400/10" },
-                    { name: "Network Security", icon: Lock, color: "text-purple-400", bg: "bg-purple-400/10" },
-                    { name: "Ethical Hacker", icon: Search, color: "text-green-400", bg: "bg-green-400/10" },
-                    { name: "Cloud Security", icon: Cloud, color: "text-orange-400", bg: "bg-orange-400/10" },
-                  ].map((skill, index) => {
-                    const IconComponent = skill.icon;
-                    return (
-                      <div 
-                        key={skill.name}
-                        className={`group flex flex-col items-center gap-3 p-4 ${skill.bg} backdrop-blur-xl border border-white/10 rounded-xl hover:border-[#9b87f5]/50 hover:bg-white/10 transition-all duration-300`}
-                      >
-                        <IconComponent className={`w-8 h-8 ${skill.color} group-hover:scale-110 transition-transform duration-300`} />
-                        <span className="text-white text-sm font-medium text-center">{skill.name}</span>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-
-              {/* Stats */}
-              <div className="space-y-6" data-aos="fade-up" data-aos-delay="1000">
-                <h3 className="text-lg font-semibold text-white/80">Quick Overview</h3>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  {[
-                    { number: "2+", label: "Years Experience", color: "text-blue-400" },
-                    { number: "5+", label: "Certifications", color: "text-purple-400" },
-                    { number: "10+", label: "Projects", color: "text-green-400" },
-                    { number: "24/7", label: "Security Focus", color: "text-orange-400" }
-                  ].map((stat, index) => (
-                    <div key={index} className="text-center group">
-                      <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl p-4 hover:border-[#9b87f5]/30 hover:bg-white/8 transition-all duration-300">
-                        <div className={`text-2xl font-bold ${stat.color} mb-1 group-hover:scale-110 transition-transform duration-300`}>
-                          {stat.number}
-                        </div>
-                        <div className="text-xs text-white/60 group-hover:text-white/80 transition-colors duration-300">
-                          {stat.label}
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+              {/* Expertise Icons */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4" data-aos="fade-up" data-aos-delay="6500">
+                {[
+                  { name: "SIEM", icon: Shield, color: "text-cyan-400", bg: "bg-cyan-400/10" },
+                  { name: "Network Security", icon: Lock, color: "text-purple-400", bg: "bg-purple-400/10" },
+                  { name: "Penetration Testing", icon: Terminal, color: "text-green-400", bg: "bg-green-400/10" },
+                  { name: "Cloud Security", icon: Globe, color: "text-pink-400", bg: "bg-pink-400/10" },
+                ].map((skill, index) => {
+                  const IconComponent = skill.icon;
+                  return (
+                    <HolographicCard key={skill.name} delay={7000 + (index * 200)} className="text-center">
+                      <IconComponent className={`w-8 h-8 ${skill.color} mx-auto mb-2`} />
+                      <span className="text-white text-sm font-medium">{skill.name}</span>
+                    </HolographicCard>
+                  );
+                })}
               </div>
 
               {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start" data-aos="fade-up" data-aos-delay="1100">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start" data-aos="fade-up" data-aos-delay="8000">
                 <Button
                   asChild
                   size="lg"
-                  className="group relative overflow-hidden bg-transparent border-2 border-[#9b87f5] text-white hover:bg-[#9b87f5] px-8 py-4 rounded-xl shadow-lg hover:shadow-[0_0_30px_rgba(155,135,245,0.4)] transform transition-all duration-300 ease-in-out hover:scale-[1.02]"
+                  className="group relative overflow-hidden bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-400 hover:to-purple-500 text-white px-8 py-4 rounded-xl shadow-2xl hover:shadow-cyan-500/25 transform transition-all duration-300 hover:scale-105"
                 >
-                  <a
-                    href="#portfolio"
-                    className="flex items-center justify-center relative z-10 group-hover:text-white transition-colors duration-300"
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1] to-[#a855f7] opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
-                    <span className="relative z-10 font-semibold">View Portfolio</span>
-                    <ArrowRight className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" />
+                  <a href="#portfolio" className="flex items-center justify-center">
+                    <span className="font-semibold">Explore My Work</span>
+                    <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
                   </a>
                 </Button>
-
+                
                 <Button
                   asChild
                   size="lg"
-                  className="group relative overflow-hidden bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-white border-2 border-transparent hover:border-white/30 px-8 py-4 rounded-xl shadow-lg hover:shadow-[0_0_30px_rgba(99,102,241,0.4)] transform transition-all duration-300 ease-in-out hover:scale-[1.02]"
+                  className="group relative overflow-hidden bg-transparent border-2 border-cyan-400/50 text-white hover:bg-cyan-400/10 hover:border-cyan-400 px-8 py-4 rounded-xl transition-all duration-300"
                 >
-                  <a
-                    href="#contact"
-                    className="flex items-center justify-center relative z-10"
-                  >
-                    <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+                  <a href="#contact" className="flex items-center justify-center">
                     <Mail className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform duration-300" />
-                    <span className="relative z-10 font-semibold">Get In Touch</span>
+                    <span className="font-semibold">Connect</span>
                   </a>
                 </Button>
               </div>
             </div>
-
-            {/* Right Column - TryHackMe Badge */}
-            <div className="lg:col-span-4 flex justify-center lg:justify-end">
-              <TryHackMeBadge />
-            </div>
+            
+                         {/* Right Column - Interactive Elements */}
+             <div className="lg:col-span-4 space-y-6">
+               <TryHackMeBadge />
+             </div>
           </div>
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2" data-aos="fade-up" data-aos-delay="1300">
+      {/* Enhanced Scroll Indicator */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20" data-aos="fade-up" data-aos-delay="9000">
         <a
           href="#about"
-          className="w-7 h-12 border-2 border-white/30 rounded-full flex justify-center cursor-pointer hover:border-[#9b87f5] transition-colors duration-300 animate-pulse group"
+          className="flex flex-col items-center gap-3 text-white/60 hover:text-cyan-400 transition-all duration-300 group"
         >
-          <div className="w-1 h-2.5 bg-white/60 rounded-full mt-2 group-hover:bg-[#9b87f5] transition-colors duration-300"></div>
+          <span className="text-xs font-medium uppercase tracking-wider">Discover More</span>
+          <div className="relative">
+            <div className="w-6 h-10 border-2 border-current rounded-full flex justify-center group-hover:border-cyan-400 transition-colors duration-300">
+              <div className="w-1 h-2 bg-current rounded-full mt-2 animate-bounce group-hover:bg-cyan-400"></div>
+            </div>
+            <div className="absolute inset-0 border-2 border-cyan-400/30 rounded-full animate-ping opacity-20"></div>
+          </div>
         </a>
       </div>
     </section>

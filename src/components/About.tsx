@@ -82,11 +82,10 @@ const educationHistory = [
 
 const AboutMe: React.FC = () => {
   return (
-    <section id="about" className="py-20 md:py-32 relative overflow-hidden bg-[#0B0B1E]">
-      {/* Subtle background effects */}
-      <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-[#6366f1]/5 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-[#a855f7]/5 rounded-full blur-3xl"></div>
-      
+    <section 
+      id="about" 
+      className="py-20 md:py-32 relative overflow-hidden"
+    >
       <div className="container mx-auto px-6 md:px-8 lg:px-12 xl:px-16 relative z-10">
         {/* About Me Section */}
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center mb-24">
@@ -100,8 +99,8 @@ const AboutMe: React.FC = () => {
             <div className="relative">
               {/* Clean profile picture container */}
               <div className="relative w-80 h-80 md:w-96 md:h-96">
-                <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-full p-1">
-                  <div className="w-full h-full bg-black/40 rounded-full p-2 backdrop-blur-xl border border-white/20">
+                <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 rounded-full p-1">
+                  <div className="w-full h-full bg-slate-900/80 rounded-full p-2 backdrop-blur-xl border border-white/20">
                     <div className="w-full h-full rounded-full overflow-hidden">
                       <img
                         src="/assets/images/profile.png"
@@ -123,9 +122,9 @@ const AboutMe: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              About <span className="bg-gradient-to-r from-[#6366f1] to-[#a855f7] bg-clip-text text-transparent">Me</span>
+              About <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">Me</span>
             </h2>
-            <div className="w-24 h-1.5 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-full mb-8"></div>
+            <div className="w-24 h-1.5 bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 rounded-full mb-8"></div>
 
             <div className="space-y-6">
               <p className="text-white/85 leading-relaxed text-lg">
@@ -158,16 +157,15 @@ const AboutMe: React.FC = () => {
               <Button
                 asChild
                 size="lg"
-                className="group relative overflow-hidden bg-transparent border-2 border-[#9b87f5] text-white hover:bg-[#9b87f5] px-8 py-4 rounded-xl shadow-lg hover:shadow-[0_0_30px_rgba(155,135,245,0.4)] transform transition-all duration-300 ease-in-out hover:scale-[1.02]"
+                className="group relative overflow-hidden bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-400 hover:to-purple-500 text-white px-8 py-4 rounded-xl shadow-2xl hover:shadow-cyan-500/25 transform transition-all duration-300 hover:scale-105"
               >
                 <a
                   href="/assets/documents/Muntazir Mehdi CV.pdf"
                   download="Muntazir_Mehdi_CV.pdf"
-                  className="flex items-center justify-center relative z-10 group-hover:text-white transition-colors duration-300"
+                  className="flex items-center justify-center"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1] to-[#a855f7] opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
-                  <Download className="w-5 h-5 mr-3 relative z-10 transition-transform duration-300" />
-                  <span className="relative z-10 font-semibold">Download Resume</span>
+                  <Download className="w-5 h-5 mr-3 transition-transform duration-300" />
+                  <span className="font-semibold">Download Resume</span>
                 </a>
               </Button>
             </motion.div>
@@ -184,14 +182,14 @@ const AboutMe: React.FC = () => {
         >
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Work <span className="text-[#9b87f5]">Experience</span>
+              Work <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">Experience</span>
             </h2>
-            <div className="w-24 h-1.5 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-full mx-auto"></div>
+            <div className="w-24 h-1.5 bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 rounded-full mx-auto"></div>
           </div>
           
           <div className="relative">
             {/* Enhanced timeline line */}
-            <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-[#6366f1] to-[#a855f7] transform -translate-x-1/2 hidden md:block opacity-30"></div>
+            <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-cyan-400 via-purple-400 to-pink-400 transform -translate-x-1/2 hidden md:block opacity-30"></div>
 
             {workExperience.map((job, index) => (
               <motion.div
@@ -206,7 +204,7 @@ const AboutMe: React.FC = () => {
                   <div className={`relative ${index % 2 === 0 ? "md:pl-12" : "md:pr-12"}`}>
                     {/* Enhanced timeline marker */}
                     <div
-                      className={`absolute top-6 w-6 h-6 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-full border-4 border-[#0B0B1E] hidden md:block shadow-lg ${
+                      className={`absolute top-6 w-6 h-6 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full border-4 border-slate-900 hidden md:block shadow-lg ${
                         index % 2 === 0 ? "left-0 -translate-x-1/2" : "right-0 translate-x-1/2"
                       }`}
                       style={{ zIndex: 2 }}
@@ -215,8 +213,8 @@ const AboutMe: React.FC = () => {
                     </div>
 
                     {/* Mobile timeline */}
-                    <div className="absolute left-0 top-6 bottom-0 ml-3 w-0.5 bg-gradient-to-b from-[#6366f1] to-[#a855f7] md:hidden opacity-50"></div>
-                    <div className="absolute left-0 top-6 w-6 h-6 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-full md:hidden">
+                    <div className="absolute left-0 top-6 bottom-0 ml-3 w-0.5 bg-gradient-to-b from-cyan-400 to-purple-500 md:hidden opacity-50"></div>
+                    <div className="absolute left-0 top-6 w-6 h-6 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full md:hidden">
                       <Briefcase className="w-3 h-3 text-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
                     </div>
 
@@ -281,13 +279,13 @@ const AboutMe: React.FC = () => {
         >
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Edu<span className="text-[#9b87f5]">cation</span>
+              Edu<span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">cation</span>
             </h2>
-            <div className="w-24 h-1.5 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-full mx-auto"></div>
+            <div className="w-24 h-1.5 bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 rounded-full mx-auto"></div>
           </div>
           
           <div className="relative">
-            <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-[#6366f1] to-[#a855f7] transform -translate-x-1/2 hidden md:block opacity-30"></div>
+            <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-cyan-400 via-purple-400 to-pink-400 transform -translate-x-1/2 hidden md:block opacity-30"></div>
 
             {educationHistory.map((edu, index) => (
               <motion.div
@@ -302,7 +300,7 @@ const AboutMe: React.FC = () => {
                   <div className={`relative ${index % 2 === 0 ? "md:pl-12" : "md:pr-12"}`}>
                     {/* Timeline marker */}
                     <div
-                      className={`absolute top-6 w-6 h-6 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-full border-4 border-[#0B0B1E] hidden md:block shadow-lg ${
+                      className={`absolute top-6 w-6 h-6 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full border-4 border-slate-900 hidden md:block shadow-lg ${
                         index % 2 === 0 ? "left-0 -translate-x-1/2" : "right-0 translate-x-1/2"
                       }`}
                     >
@@ -310,8 +308,8 @@ const AboutMe: React.FC = () => {
                     </div>
 
                     {/* Mobile timeline */}
-                    <div className="absolute left-0 top-6 bottom-0 ml-3 w-0.5 bg-gradient-to-b from-[#6366f1] to-[#a855f7] md:hidden opacity-50"></div>
-                    <div className="absolute left-0 top-6 w-6 h-6 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-full md:hidden">
+                    <div className="absolute left-0 top-6 bottom-0 ml-3 w-0.5 bg-gradient-to-b from-cyan-400 to-purple-500 md:hidden opacity-50"></div>
+                    <div className="absolute left-0 top-6 w-6 h-6 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full md:hidden">
                       <GraduationCap className="w-3 h-3 text-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
                     </div>
 

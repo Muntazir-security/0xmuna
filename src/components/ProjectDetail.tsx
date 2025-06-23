@@ -152,7 +152,7 @@ const ProjectDetail: React.FC = () => {
 
   if (!project) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#0B0B1E]">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
         <div className="text-center">
           <h1 className="text-2xl font-bold text-white mb-4">Project Not Found</h1>
           <Button 
@@ -189,11 +189,13 @@ const ProjectDetail: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen relative bg-[#0B0B1E]">
-      {/* Subtle background effects */}
-      <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-[#6366f1]/5 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-[#a855f7]/5 rounded-full blur-3xl"></div>
-      
+    <div 
+      className="min-h-screen relative"
+      style={{
+        background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%)',
+        color: 'white'
+      }}
+    >
       {/* Header Section */}
       <div className="relative pt-24 pb-12">
         <div className="container mx-auto px-6 md:px-8 lg:px-12 xl:px-16 relative z-10">
@@ -222,8 +224,8 @@ const ProjectDetail: React.FC = () => {
             className="mb-12"
           >
             <div className="flex items-start gap-6 mb-6">
-              <div className="bg-[#9b87f5]/20 p-4 rounded-xl border border-[#9b87f5]/30">
-                <IconComponent className="w-8 h-8 text-[#9b87f5]" />
+                              <div className="bg-cyan-400/20 p-4 rounded-xl border border-cyan-400/30">
+                  <IconComponent className="w-8 h-8 text-cyan-400" />
               </div>
               <div className="flex-1">
                 <span className="inline-block px-3 py-1 bg-white/10 text-white/70 rounded-full text-sm font-medium border border-white/20 mb-3">
@@ -311,7 +313,7 @@ const ProjectDetail: React.FC = () => {
               <div className="space-y-4">
                 {project.features.map((feature, index) => (
                   <div key={index} className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-[#9b87f5] rounded-full mt-2 flex-shrink-0"></div>
+                                            <div className="w-2 h-2 bg-cyan-400 rounded-full mt-2 flex-shrink-0"></div>
                     <span className="text-white/80 leading-relaxed">{feature}</span>
                   </div>
                 ))}
@@ -321,7 +323,7 @@ const ProjectDetail: React.FC = () => {
               <div className="mt-8 pt-6 border-t border-white/10 space-y-3">
                 <Button
                   onClick={handleBackToPortfolio}
-                  className="w-full bg-gradient-to-r from-[#6366f1] to-[#9b87f5] hover:from-[#5855eb] hover:to-[#8b5cf6] text-white border-0 py-3 rounded-xl transition-all duration-300"
+                  className="w-full bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-400 hover:to-purple-500 text-white border-0 py-3 rounded-xl transition-all duration-300"
                 >
                   <ArrowLeft className="w-4 h-4 mr-2" />
                   Back to Portfolio

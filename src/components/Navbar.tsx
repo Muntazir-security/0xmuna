@@ -120,7 +120,7 @@ const Navbar: React.FC = () => {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         isScrolled 
-          ? "bg-[#0B0B1E]/90 backdrop-blur-xl border-b border-white/10"
+          ? "bg-slate-900/90 backdrop-blur-xl border-b border-white/10"
           : "bg-transparent border-b border-transparent"
       )}
     >
@@ -133,7 +133,7 @@ const Navbar: React.FC = () => {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
-            <span className="bg-gradient-to-r from-[#6366f1] to-[#9b87f5] text-transparent bg-clip-text">
+            <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 text-transparent bg-clip-text">
               Muntazir Mehdi
             </span>
           </motion.button>
@@ -147,7 +147,7 @@ const Navbar: React.FC = () => {
                   className={cn(
                     "relative px-4 lg:px-6 py-2 rounded-full text-sm font-medium",
                     activeSection === item.id
-                      ? "bg-gradient-to-r from-[#6366f1] to-[#9b87f5] text-white shadow-lg"
+                      ? "bg-gradient-to-r from-cyan-500 to-purple-600 text-white shadow-lg"
                       : "text-white/70 hover:text-white hover:bg-white/5 transition-colors duration-200"
                   )}
                   onClick={() => handleSmoothScroll(item.id)}
@@ -216,7 +216,7 @@ const Navbar: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="absolute top-full left-4 right-4 mt-2 bg-[#0B0B1E]/95 backdrop-blur-xl border border-white/10 rounded-2xl p-2"
+              className="absolute top-full left-4 right-4 mt-2 bg-slate-900/95 backdrop-blur-xl border border-white/10 rounded-2xl p-2"
             >
               {navItems.map((item, index) => (
                 <motion.button
@@ -224,7 +224,7 @@ const Navbar: React.FC = () => {
                   className={cn(
                     "w-full text-left px-4 py-3 rounded-xl text-base font-medium",
                     activeSection === item.id
-                      ? "bg-gradient-to-r from-[#6366f1] to-[#9b87f5] text-white"
+                      ? "bg-gradient-to-r from-cyan-500 to-purple-600 text-white"
                       : "text-white/80 hover:text-white hover:bg-white/5 transition-colors duration-200"
                   )}
                   onClick={() => handleMobileLinkClick(item.id)}

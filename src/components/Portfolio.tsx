@@ -8,8 +8,8 @@ import {
 } from 'lucide-react';
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+
+
 import { 
   ProjectCardSkeleton, 
   CertificationCardSkeleton, 
@@ -92,8 +92,8 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({ project, index })
           
           {/* Header */}
           <div className="flex items-start justify-between mb-4">
-            <div className="bg-[#9b87f5]/20 p-3 rounded-xl border border-[#9b87f5]/30">
-              <IconComponent className="w-6 h-6 text-[#9b87f5]" />
+            <div className="bg-cyan-400/20 p-3 rounded-xl border border-cyan-400/30">
+              <IconComponent className="w-6 h-6 text-cyan-400" />
             </div>
             <span className="px-3 py-1 bg-white/10 text-white/70 rounded-full text-xs font-medium border border-white/20">
               {project.category || 'Development'}
@@ -102,7 +102,7 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({ project, index })
           
           {/* Content */}
           <div className="flex-1 space-y-4">
-            <h3 className="text-xl font-bold text-white group-hover:text-[#9b87f5] transition-colors duration-300 line-clamp-2">
+            <h3 className="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors duration-300 line-clamp-2">
               {project.title}
             </h3>
             
@@ -134,10 +134,10 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({ project, index })
           {/* Footer */}
           <div className="mt-6 pt-4 border-t border-white/10">
             <div className="flex items-center justify-between">
-              <span className="text-sm text-white/60 group-hover:text-[#9b87f5] transition-colors duration-300 font-medium">
+              <span className="text-sm text-white/60 group-hover:text-cyan-400 transition-colors duration-300 font-medium">
                 View Details
               </span>
-              <ArrowRight className="w-4 h-4 text-white/60 group-hover:text-[#9b87f5] group-hover:translate-x-1 transition-all duration-300" />
+              <ArrowRight className="w-4 h-4 text-white/60 group-hover:text-cyan-400 group-hover:translate-x-1 transition-all duration-300" />
             </div>
           </div>
         </div>
@@ -155,8 +155,6 @@ const Portfolio: React.FC = () => {
   const [projectsLoaded, setProjectsLoaded] = useState(false);
 
   useEffect(() => {
-    AOS.init({ once: true });
-    
     // Simulate initial loading
     const timer = setTimeout(() => {
       setIsLoading(false);
@@ -251,17 +249,16 @@ const Portfolio: React.FC = () => {
   ];
 
   return (
-    <section id="portfolio" className="py-20 md:py-32 relative bg-[#0B0B1E]">
-      {/* Subtle background effects */}
-      <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-[#6366f1]/5 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-[#a855f7]/5 rounded-full blur-3xl"></div>
-      
+    <section 
+      id="portfolio" 
+      className="py-20 md:py-32 relative"
+    >
       <div className="container mx-auto px-6 md:px-8 lg:px-12 xl:px-16 relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            My <span className="text-[#9b87f5]">Portfolio</span>
+            My <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">Portfolio</span>
           </h2>
-          <div className="w-24 h-1.5 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-full mx-auto mb-6"></div>
+          <div className="w-24 h-1.5 bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 rounded-full mx-auto mb-6"></div>
           <p className="text-white/85 text-lg max-w-2xl mx-auto leading-relaxed">
             Here's a collection of my work, certifications, and the technologies I work with.
           </p>
@@ -276,7 +273,7 @@ const Portfolio: React.FC = () => {
                 className={cn(
                   "relative px-4 lg:px-6 py-2 rounded-full text-sm font-medium transition-all duration-300",
                   activeSubSection === item.id
-                    ? "bg-gradient-to-r from-[#6366f1] to-[#9b87f5] text-white shadow-lg"
+                    ? "bg-gradient-to-r from-cyan-500 to-purple-600 text-white shadow-lg"
                     : "text-white/70 hover:text-white hover:bg-white/5"
                 )}
                 onClick={() => setActiveSubSection(item.id)}
@@ -333,7 +330,7 @@ const Portfolio: React.FC = () => {
                         />
                       </div>
                       <div className="p-6 flex flex-col flex-grow">
-                        <h4 className="text-lg font-semibold text-white mb-2 group-hover:text-[#9b87f5] transition-colors duration-300 line-clamp-2">
+                        <h4 className="text-lg font-semibold text-white mb-2 group-hover:text-cyan-400 transition-colors duration-300 line-clamp-2">
                           {cert.title}
                         </h4>
                         <p className="text-sm text-white/60 mt-auto">
