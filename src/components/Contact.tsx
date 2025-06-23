@@ -63,18 +63,18 @@ const Contact: React.FC = () => {
       const result = await response.json();
 
       if (result.success) {
-        toast({
-          title: "Message Sent Successfully!",
-          description: "Thank you for your message. I'll get back to you soon.",
-        });
+      toast({
+        title: "Message Sent Successfully!",
+        description: "Thank you for your message. I'll get back to you soon.",
+      });
 
-        // Reset form
-        setFormData({
-          name: '',
-          email: '',
-          subject: '',
-          message: ''
-        });
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+      });
       } else {
         throw new Error(result.error || 'Failed to send message');
       }
@@ -120,64 +120,64 @@ const Contact: React.FC = () => {
             
             <div className="relative z-10">
               <h3 className="text-2xl font-bold text-white mb-6">Send Message</h3>
-              
+            
               <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label htmlFor="name" className="text-white/85 text-sm font-medium">Name</label>
-                    <Input 
-                      id="name" 
-                      value={formData.name}
-                      onChange={handleInputChange}
-                      placeholder="Your full name" 
-                      required
-                      className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus-visible:ring-cyan-400 focus-visible:border-cyan-400 transition-all duration-300 hover:border-white/30" 
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label htmlFor="email" className="text-white/85 text-sm font-medium">Email</label>
-                    <Input 
-                      id="email" 
-                      type="email" 
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      placeholder="your.email@example.com" 
-                      required
-                      className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus-visible:ring-cyan-400 focus-visible:border-cyan-400 transition-all duration-300 hover:border-white/30" 
-                    />
-                  </div>
-                </div>
-                
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label htmlFor="subject" className="text-white/85 text-sm font-medium">Subject</label>
+                    <label htmlFor="name" className="text-white/85 text-sm font-medium">Name</label>
                   <Input 
-                    id="subject" 
-                    value={formData.subject}
+                    id="name" 
+                    value={formData.name}
                     onChange={handleInputChange}
-                    placeholder="What is this about?" 
+                      placeholder="Your full name" 
                     required
-                    className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus-visible:ring-cyan-400 focus-visible:border-cyan-400 transition-all duration-300 hover:border-white/30" 
+                      className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus-visible:ring-cyan-400 focus-visible:border-cyan-400 transition-all duration-300 hover:border-white/30" 
                   />
                 </div>
-                
+                <div className="space-y-2">
+                    <label htmlFor="email" className="text-white/85 text-sm font-medium">Email</label>
+                  <Input 
+                    id="email" 
+                    type="email" 
+                    value={formData.email}
+                    onChange={handleInputChange}
+                      placeholder="your.email@example.com" 
+                    required
+                      className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus-visible:ring-cyan-400 focus-visible:border-cyan-400 transition-all duration-300 hover:border-white/30" 
+                  />
+                </div>
+              </div>
+              
+              <div className="space-y-2">
+                  <label htmlFor="subject" className="text-white/85 text-sm font-medium">Subject</label>
+                <Input 
+                  id="subject" 
+                  value={formData.subject}
+                  onChange={handleInputChange}
+                    placeholder="What is this about?" 
+                  required
+                    className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus-visible:ring-cyan-400 focus-visible:border-cyan-400 transition-all duration-300 hover:border-white/30" 
+                />
+              </div>
+              
                 <div className="space-y-2">
                   <label htmlFor="message" className="text-white/85 text-sm font-medium">Message</label>
-                  <Textarea 
-                    id="message" 
-                    value={formData.message}
-                    onChange={handleInputChange}
+                <Textarea 
+                  id="message" 
+                  value={formData.message}
+                  onChange={handleInputChange}
                     placeholder="Your message here..." 
-                    required
+                  required
                     rows={6}
                     className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus-visible:ring-cyan-400 focus-visible:border-cyan-400 transition-all duration-300 hover:border-white/30 resize-none" 
-                  />
-                </div>
-                
-                <Button 
-                  type="submit" 
-                  disabled={isSubmitting}
+                />
+              </div>
+              
+              <Button 
+                type="submit" 
+                disabled={isSubmitting}
                   className="w-full bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-400 hover:to-purple-500 transition-all duration-400 text-white border-none disabled:opacity-50 h-12 text-base font-medium"
-                >
+              >
                   {isSubmitting ? (
                     <div className="flex items-center space-x-2">
                       <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
@@ -186,9 +186,9 @@ const Contact: React.FC = () => {
                   ) : (
                     "Send Message"
                   )}
-                </Button>
-              </form>
-            </div>
+              </Button>
+            </form>
+          </div>
           </motion.div>
 
           {/* Social Links Section */}
@@ -246,7 +246,7 @@ const Contact: React.FC = () => {
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                         </svg>
-                      </div>
+                    </div>
                     </div>
                   </motion.a>
                 ))}

@@ -87,7 +87,7 @@ const StatusBadge = memo(() => (
           <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
           <span className="bg-gradient-to-r from-cyan-400 to-purple-400 text-transparent bg-clip-text text-sm font-semibold">
             SECURITY SPECIALIST • ONLINE
-          </span>
+        </span>
           <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
         </div>
       </div>
@@ -104,22 +104,22 @@ const TryHackMeBadge = memo(() => (
           <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
           <span className="text-sm font-medium text-white/90">TryHackMe Profile</span>
           <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+          </div>
         </div>
-      </div>
-      
+        
       <div className="p-2">
         <div className="relative overflow-hidden rounded-xl bg-white/5 backdrop-blur-sm border border-white/10">
-          <iframe 
-            src="https://tryhackme.com/api/v2/badges/public-profile?userPublicId=996369" 
+            <iframe 
+              src="https://tryhackme.com/api/v2/badges/public-profile?userPublicId=996369" 
             className="w-full h-20 border-0 block"
-            title="TryHackMe Badge"
-            scrolling="no"
+              title="TryHackMe Badge"
+              scrolling="no"
             style={{
               minWidth: '280px',
               maxWidth: '280px',
               height: '80px'
             }}
-          />
+            />
         </div>
       </div>
     </HolographicCard>
@@ -151,9 +151,9 @@ const Hero: React.FC = () => {
               
               {/* Status Badge */}
               <div className="flex justify-center lg:justify-start">
-                <StatusBadge />
-              </div>
-              
+              <StatusBadge />
+            </div>
+
               {/* Main Heading with Holographic Effect */}
               <div className="space-y-6" data-aos="fade-up" data-aos-delay="600">
                 <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-tight">
@@ -192,7 +192,7 @@ const Hero: React.FC = () => {
                     />
                   </div>
                 </div>
-              </div>
+            </div>
 
               {/* Expertise Icons */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4" data-aos="fade-up" data-aos-delay="6500">
@@ -214,33 +214,33 @@ const Hero: React.FC = () => {
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start" data-aos="fade-up" data-aos-delay="8000">
-                <Button
-                  asChild
-                  size="lg"
+              <Button
+                asChild
+                size="lg"
                   className="group relative overflow-hidden bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-400 hover:to-purple-500 text-white px-8 py-4 rounded-xl shadow-2xl hover:shadow-cyan-500/25 transform transition-all duration-300 hover:scale-105"
-                >
+              >
                   <a href="#portfolio" className="flex items-center justify-center">
                     <span className="font-semibold">Explore My Work</span>
                     <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
-                  </a>
-                </Button>
-                
-                <Button
-                  asChild
-                  size="lg"
+                </a>
+              </Button>
+
+              <Button
+                asChild
+                size="lg"
                   className="group relative overflow-hidden bg-transparent border-2 border-cyan-400/50 text-white hover:bg-cyan-400/10 hover:border-cyan-400 px-8 py-4 rounded-xl transition-all duration-300"
-                >
+              >
                   <a href="#contact" className="flex items-center justify-center">
-                    <Mail className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform duration-300" />
+                  <Mail className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform duration-300" />
                     <span className="font-semibold">Connect</span>
-                  </a>
-                </Button>
-              </div>
+                </a>
+              </Button>
             </div>
-            
+          </div>
+
                          {/* Right Column - Interactive Elements */}
              <div className="lg:col-span-4 space-y-6">
-               <TryHackMeBadge />
+          <TryHackMeBadge />
              </div>
           </div>
         </div>

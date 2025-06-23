@@ -189,12 +189,12 @@ const ProjectDetail: React.FC = () => {
   };
 
   return (
-    <div 
+        <div 
       className="min-h-screen relative"
-      style={{
+          style={{
         background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%)',
         color: 'white'
-      }}
+          }}
     >
       {/* Header Section */}
       <div className="relative pt-24 pb-12">
@@ -214,8 +214,8 @@ const ProjectDetail: React.FC = () => {
               <ArrowLeft className="w-4 h-4 mr-2" />
               Back to Portfolio
             </Button>
-          </motion.div>
-
+              </motion.div>
+              
           {/* Project Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -229,14 +229,14 @@ const ProjectDetail: React.FC = () => {
               </div>
               <div className="flex-1">
                 <span className="inline-block px-3 py-1 bg-white/10 text-white/70 rounded-full text-sm font-medium border border-white/20 mb-3">
-                  {project.category}
-                </span>
+                      {project.category}
+                    </span>
                 <h1 className="text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">
-                  {project.title}
-                </h1>
-                <p className="text-xl text-white/80 leading-relaxed max-w-3xl">
-                  {project.description}
-                </p>
+                    {project.title}
+                  </h1>
+                  <p className="text-xl text-white/80 leading-relaxed max-w-3xl">
+                    {project.description}
+                  </p>
               </div>
             </div>
 
@@ -261,9 +261,9 @@ const ProjectDetail: React.FC = () => {
           {/* Main Content */}
           <div className="lg:col-span-8 space-y-8">
             {/* Overview */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
               className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl p-6 md:p-8"
             >
@@ -286,7 +286,7 @@ const ProjectDetail: React.FC = () => {
                   {project.problem}
                 </p>
               </motion.div>
-
+              
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -299,11 +299,11 @@ const ProjectDetail: React.FC = () => {
                 </p>
               </motion.div>
             </div>
-          </div>
+                </div>
 
           {/* Sidebar */}
           <div className="lg:col-span-4">
-            <motion.div
+          <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.5 }}
@@ -315,9 +315,9 @@ const ProjectDetail: React.FC = () => {
                   <div key={index} className="flex items-start gap-3">
                                             <div className="w-2 h-2 bg-cyan-400 rounded-full mt-2 flex-shrink-0"></div>
                     <span className="text-white/80 leading-relaxed">{feature}</span>
-                  </div>
-                ))}
-              </div>
+                </div>
+                  ))}
+                </div>
 
               {/* Action Buttons */}
               <div className="mt-8 pt-6 border-t border-white/10 space-y-3">
@@ -327,9 +327,9 @@ const ProjectDetail: React.FC = () => {
                 >
                   <ArrowLeft className="w-4 h-4 mr-2" />
                   Back to Portfolio
-                </Button>
-              </div>
-            </motion.div>
+                  </Button>
+                </div>
+          </motion.div>
           </div>
         </div>
       </div>

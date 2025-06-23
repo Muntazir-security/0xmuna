@@ -102,11 +102,11 @@ const AboutMe: React.FC = () => {
                 <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 rounded-full p-1">
                   <div className="w-full h-full bg-slate-900/80 rounded-full p-2 backdrop-blur-xl border border-white/20">
                     <div className="w-full h-full rounded-full overflow-hidden">
-                      <img
-                        src="/assets/images/profile.png"
-                        alt="Muntazir Mehdi - Profile Picture"
+                    <img
+                      src="/assets/images/profile.png"
+                      alt="Muntazir Mehdi - Profile Picture"
                         className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-                      />
+                    />
                     </div>
                   </div>
                 </div>
@@ -129,22 +129,22 @@ const AboutMe: React.FC = () => {
             <div className="space-y-6">
               <p className="text-white/85 leading-relaxed text-lg">
                 I'm Syed Muntazir Mehdi, a <span className="text-white font-medium">Cybersecurity Graduate</span> with hands-on experience 
-                in vulnerability assessment, SOC operations, and penetration testing. 
+              in vulnerability assessment, SOC operations, and penetration testing. 
                 I hold a dual-awarded B.Sc. (Hons) in Cybersecurity from both <span className="text-white font-medium">Asia Pacific University (Malaysia)</span> and <span className="text-white font-medium">De Montfort University (UK)</span>.
-              </p>
-              
+            </p>
+            
               <p className="text-white/85 leading-relaxed text-lg">
                 Throughout my academic and professional journey, I've worked on securing real-world systems, identifying <span className="text-white font-medium">critical vulnerabilities</span>, 
-                and deploying effective mitigation strategies. 
+            and deploying effective mitigation strategies. 
                 My focus areas include <span className="text-white font-medium">Network Defense</span>, <span className="text-white font-medium">Ethical Hacking</span>, <span className="text-white font-medium">SIEM analysis</span>,
-                and building proactive security measures across infrastructures.
-              </p>
+            and building proactive security measures across infrastructures.
+            </p>
 
               <p className="text-white/85 leading-relaxed text-lg">
-                I'm passionate about staying ahead of threats, learning new tools, and turning security knowledge into practical solutions. 
+            I'm passionate about staying ahead of threats, learning new tools, and turning security knowledge into practical solutions. 
                 Whether I'm writing automation scripts, monitoring logs, or breaking down attack vectors — I approach cybersecurity with a <span className="text-white font-medium">problem-solver's 
                 mindset</span> and a defender's responsibility.
-              </p>
+            </p>
             </div>
 
             <motion.div

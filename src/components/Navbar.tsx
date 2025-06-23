@@ -141,23 +141,23 @@ const Navbar: React.FC = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center">
             <div className="flex items-center space-x-1 bg-white/5 backdrop-blur-md border border-white/10 rounded-full p-1">
-              {navItems.map((item) => (
+            {navItems.map((item) => (
                 <motion.button 
-                  key={item.id}
-                  className={cn(
+                key={item.id}
+                className={cn(
                     "relative px-4 lg:px-6 py-2 rounded-full text-sm font-medium",
-                    activeSection === item.id
+                  activeSection === item.id
                       ? "bg-gradient-to-r from-cyan-500 to-purple-600 text-white shadow-lg"
                       : "text-white/70 hover:text-white hover:bg-white/5 transition-colors duration-200"
-                  )}
+                )}
                   onClick={() => handleSmoothScroll(item.id)}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
                   layout
-                >
+              >
                   {item.label}
                 </motion.button>
-              ))}
+            ))}
             </div>
           </div>
           
@@ -218,24 +218,24 @@ const Navbar: React.FC = () => {
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
               className="absolute top-full left-4 right-4 mt-2 bg-slate-900/95 backdrop-blur-xl border border-white/10 rounded-2xl p-2"
             >
-              {navItems.map((item, index) => (
+                {navItems.map((item, index) => (
                 <motion.button
-                  key={item.id}
-                  className={cn(
+                    key={item.id}
+                    className={cn(
                     "w-full text-left px-4 py-3 rounded-xl text-base font-medium",
-                    activeSection === item.id
+                      activeSection === item.id
                       ? "bg-gradient-to-r from-cyan-500 to-purple-600 text-white"
                       : "text-white/80 hover:text-white hover:bg-white/5 transition-colors duration-200"
-                  )}
+                    )}
                   onClick={() => handleMobileLinkClick(item.id)}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.05 }}
                   layout
-                >
-                  {item.label}
+                  >
+                    {item.label}
                 </motion.button>
-              ))}
+                ))}
             </motion.div>
           </>
         )}

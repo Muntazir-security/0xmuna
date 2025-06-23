@@ -1,5 +1,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import AboutMe from "@/components/About";
@@ -120,6 +122,13 @@ const Index: React.FC = () => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
+    AOS.init({
+      duration: 800,
+      easing: 'ease-out-cubic',
+      once: true,
+      offset: 100,
+    });
+    
     // Ensure background is ready
     setIsLoaded(true);
   }, []);
@@ -137,8 +146,6 @@ const Index: React.FC = () => {
       
       {/* Navigation */}
       <Navbar />
-      
-
       
       {/* Main Content - NO individual section backgrounds */}
       <main className="relative" style={{ zIndex: 10 }}>

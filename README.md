@@ -119,8 +119,8 @@ A modern, responsive portfolio website showcasing cybersecurity expertise, profe
 
 4. **Start development server**
    ```bash
-   npm run dev
-   ```
+npm run dev
+```
 
 5. **Run email server** (optional)
    ```bash
