@@ -9,89 +9,51 @@ const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const isManuallyNavigating = useRef(false);
   
+  // Effect for handling navbar background visibility on scroll
   useEffect(() => {
-    // Force home state multiple times to ensure it sticks
-    setActiveSection("home");
-    
-    const forceHomeState = () => {
-      setActiveSection("home");
-    };
-    
-    // Force home immediately
-    forceHomeState();
-    
-    // Force home after DOM is ready
-    setTimeout(forceHomeState, 50);
-    setTimeout(forceHomeState, 200);
-    setTimeout(forceHomeState, 500);
-    
     const handleScroll = () => {
-      // Update scrolled state
       setIsScrolled(window.scrollY > 50);
-      
-      // Skip section detection if user is manually navigating
-      if (isManuallyNavigating.current) {
-        return;
-      }
-      
-      const scrollY = window.scrollY;
-      const windowHeight = window.innerHeight;
-      
-      // Always default to home at the top
-      if (scrollY < 200) {
-        setActiveSection("home");
-        return;
-      }
-      
-      // Check for about section
-      const aboutElement = document.getElementById("about");
-      if (aboutElement) {
-        const aboutRect = aboutElement.getBoundingClientRect();
-        const aboutTop = scrollY + aboutRect.top;
-        if (scrollY >= aboutTop - 200 && scrollY < aboutTop + aboutElement.offsetHeight - 200) {
-          setActiveSection("about");
-          return;
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Effect for observing which section is in view
+  useEffect(() => {
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      // Do not update section if user is clicking a nav link
+      if (isManuallyNavigating.current) return;
+
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          console.log(`Active section is: ${entry.target.id}`);
+          setActiveSection(entry.target.id);
         }
-      }
-      
-      // Check for portfolio section
-      const portfolioElement = document.getElementById("portfolio");
-      if (portfolioElement) {
-        const portfolioRect = portfolioElement.getBoundingClientRect();
-        const portfolioTop = scrollY + portfolioRect.top;
-        if (scrollY >= portfolioTop - 200 && scrollY < portfolioTop + portfolioElement.offsetHeight - 200) {
-          setActiveSection("portfolio");
-          return;
-        }
-      }
-      
-      // Check for contact section - only at the very bottom
-      const contactElement = document.getElementById("contact");
-      if (contactElement) {
-        const contactRect = contactElement.getBoundingClientRect();
-        const contactTop = scrollY + contactRect.top;
-        const documentHeight = document.documentElement.scrollHeight;
-        
-        // Only activate contact if we're in the last 400px of the page or actively in contact section
-        if (scrollY + windowHeight >= documentHeight - 100 || 
-            (scrollY >= contactTop - 200 && scrollY < contactTop + contactElement.offsetHeight)) {
-          setActiveSection("contact");
-          return;
-        }
-      }
-      
-      // Default to home if no other section matches
-      setActiveSection("home");
+      });
     };
     
-    // Add scroll listener
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    
+    // This root margin creates a horizontal "line" across the screen center.
+    // A section is considered "active" when it crosses this line.
+    const observer = new IntersectionObserver(observerCallback, {
+      rootMargin: "-40% 0px -60% 0px",
+      threshold: 0,
+    });
+
+    const sections = ['home', 'about', 'portfolio', 'contact'];
+    sections.forEach(id => {
+      const element = document.getElementById(id);
+      if (element) observer.observe(element);
+    });
+
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      sections.forEach(id => {
+        const element = document.getElementById(id);
+        if (element) observer.unobserve(element);
+      });
     };
   }, []);
 
+  // Effect to handle body scroll when mobile menu is open
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = 'hidden';
@@ -111,80 +73,36 @@ const Navbar: React.FC = () => {
   ];
 
   const handleSmoothScroll = (sectionId: string) => {
-    console.log(`Attempting to scroll to: ${sectionId}`);
-    
-    // Close mobile menu if open
     if (isMobileMenuOpen) {
       setIsMobileMenuOpen(false);
     }
     
-    // Temporarily disable scroll detection
-    isManuallyNavigating.current = true;
-    
-    // Immediately update active state for visual feedback
-    setActiveSection(sectionId);
-    
-    // Find the target element
     const element = document.getElementById(sectionId);
-    console.log(`Found element:`, element);
-    
-    if (element) {
-      try {
-        // Method 1: Try scrollIntoView first
-        element.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-        });
-        
-        // Adjust for navbar after scrolling
-        setTimeout(() => {
-          const navbarHeight = 80;
-          const currentScroll = window.scrollY;
-          window.scrollTo({
-            top: currentScroll - navbarHeight,
-            behavior: 'smooth'
-          });
-        }, 100);
-        
-        console.log(`Successfully scrolled to ${sectionId} using scrollIntoView`);
-      } catch (error) {
-        console.error('scrollIntoView failed, trying fallback method:', error);
-        
-        // Method 2: Fallback to manual calculation
-        const rect = element.getBoundingClientRect();
-        const absoluteTop = window.scrollY + rect.top;
-        const navbarHeight = 80;
-        const targetPosition = absoluteTop - navbarHeight;
-        
-        window.scrollTo({
-          top: Math.max(0, targetPosition),
-          behavior: 'smooth'
-        });
-        
-        console.log(`Fallback scroll to ${sectionId} at position ${targetPosition}`);
-      }
-    } else {
-      console.error(`Element with id '${sectionId}' not found!`);
-      
-      // List all available IDs for debugging
-      const allIds = Array.from(document.querySelectorAll('[id]')).map(el => el.id);
-      console.log('Available element IDs:', allIds);
+    if (!element) {
+      console.error(`Error: Element with ID '${sectionId}' not found.`);
+      return;
     }
     
-    // Re-enable scroll detection after animation
+    isManuallyNavigating.current = true;
+    setActiveSection(sectionId);
+
+    // The 'scroll-section' class on each section component handles the offset via CSS.
+    element.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
+
     setTimeout(() => {
       isManuallyNavigating.current = false;
-      console.log(`Re-enabled scroll detection for ${sectionId}`);
-    }, 1500);
+    }, 1000);
   };
 
   const handleMobileLinkClick = (sectionId: string) => {
-    console.log(`Mobile menu clicked: ${sectionId}`);
     setIsMobileMenuOpen(false);
-    // Small delay to let menu close before scrolling
+    // Add a small delay to allow the menu to start closing before scroll
     setTimeout(() => {
       handleSmoothScroll(sectionId);
-    }, 200);
+    }, 100);
   };
 
   const handleLogoClick = () => {
@@ -210,7 +128,7 @@ const Navbar: React.FC = () => {
             whileTap={{ scale: 0.98 }}
           >
             <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 text-transparent bg-clip-text">
-              Muntazir Mehdi
+              Muntazir
             </span>
           </motion.button>
           

@@ -86,9 +86,9 @@ const StatusBadge = memo(() => (
       <div className="relative px-6 py-3 rounded-full bg-slate-900/90 backdrop-blur-xl border border-cyan-400/30">
         <div className="flex items-center gap-3">
           <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-          <span className="bg-gradient-to-r from-cyan-400 to-purple-400 text-transparent bg-clip-text text-sm font-semibold">
-            SECURITY SPECIALIST • ONLINE
-        </span>
+          <span className="bg-gradient-to-r from-cyan-400 to-purple-400 text-transparent bg-clip-text text-sm font-semibold tracking-wider">
+          PENETRATION TESTER TURNED ENGINEER
+          </span>
           <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
         </div>
       </div>
@@ -149,7 +149,7 @@ const TryHackMeBadge = memo(() => (
             </div>
             <div className="flex items-center gap-2 text-white/60">
               <div className="w-1.5 h-1.5 bg-purple-400 rounded-full"></div>
-              <span>Streak: 17 days</span>
+              <span>Badges: 17</span>
             </div>
           </div>
         </div>
@@ -164,7 +164,7 @@ const Hero: React.FC = () => {
   return (
     <section 
       id="home" 
-      className="relative min-h-screen flex items-center overflow-hidden"
+      className="relative min-h-screen flex items-center overflow-hidden scroll-section"
     >
       {/* Ambient Background Effects */}
       <div className="absolute inset-0" style={{ zIndex: 2 }}>
@@ -221,24 +221,16 @@ const Hero: React.FC = () => {
                   </motion.div>
                 </h1>
                 
-                <div className="space-y-4">
-                  <motion.div 
-                    className="text-xl md:text-2xl font-semibold"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.9 }}
-                  >
-                    <span className="text-white/90">IT Engineer at Neotek</span>
-                  </motion.div>
-                  <motion.div 
-                    className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto lg:mx-0"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 1.1 }}
-                  >
-                    <span>Passionate cybersecurity engineer specializing in threat detection, network defense, and building resilient security infrastructures. I transform complex security challenges into robust, scalable solutions.</span>
-                  </motion.div>
-                </div>
+                <motion.div 
+                  className="max-w-3xl mx-auto lg:mx-0"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 1.1 }}
+                >
+                  <p className="text-lg md:text-xl text-slate-300/90 leading-relaxed text-justify">
+                    As an IT Engineer at <span className="font-bold text-white">Neotek</span>, my mission is to build the systems that drive business forward. My approach is grounded in a strong academic foundation from <span className="font-bold text-white">De Montfort University</span> and sharpened by hands-on experience in <span className="font-semibold text-cyan-300">penetration testing</span> and <span className="font-semibold text-cyan-300">security analysis</span>. This allows me to see infrastructure through an attacker's eyes and engineer solutions that are not just functional, but fortified by design.
+                  </p>
+                </motion.div>
               </motion.div>
 
               {/* Expertise Icons */}

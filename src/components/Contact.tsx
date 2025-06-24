@@ -122,7 +122,10 @@ const Contact: React.FC = () => {
   return (
     <section 
       id="contact" 
-      className="py-16 md:py-24 relative"
+      className="py-20 lg:py-32 relative scroll-section"
+      style={{
+        background: 'radial-gradient(circle at 50% 0%, rgba(6, 182, 212, 0.1), transparent 40%)',
+      }}
     >
       <div className="container mx-auto px-6 md:px-8 lg:px-12 xl:px-16 relative z-10">
         <div className="text-center mb-16">

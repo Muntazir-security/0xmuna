@@ -207,3 +207,8 @@
     @apply bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg;
   }
 }
+
+/* Add this rule to offset for the fixed navbar during scroll navigation */
+.scroll-section {
+  scroll-margin-top: 80px; /* Adjust this value to match your navbar's height */
+}

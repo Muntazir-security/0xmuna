@@ -6,6 +6,18 @@ import { Button } from "@/components/ui/button";
 const workExperience = [
   {
     id: 1,
+    title: "IT Engineer",
+    institution: "Neotek",
+    location: "Dammam, Saudi Arabia",
+    dateRange: "June 2025 - Present",
+    type: "Full-time",
+    responsibilities: [
+      "Design and implement secure network infrastructures with built-in security controls and monitoring capabilities.",
+      "Conduct security assessments of IT systems and infrastructure to identify vulnerabilities and implement remediation strategies.",
+    ],
+  },
+  {
+    id: 2,
     title: "Security Analyst",
     institution: "Asia Pacific University of Technology & Innovation",
     location: "Kuala Lumpur, Malaysia",
@@ -14,26 +26,24 @@ const workExperience = [
     responsibilities: [
       "Conducted vulnerability assessments and penetration testing on university lab devices.",
       "Identified and resolved two critical vulnerabilities, preventing potential disruptions.",
-      "Formulated strategic recommendations to mitigate identified vulnerabilities.",
       "Compiled detailed reports documenting findings and suggested remediation actions.",
     ],
   },
   {
-    id: 2,
+    id: 3,
     title: "IT Intern - LAB Security Analyst",
     institution: "Asia Pacific University of Technology & Innovation",
     location: "Kuala Lumpur, Malaysia",
     dateRange: "Sep 2023 - Jan 2024",
     type: "Internship",
     responsibilities: [
-      "Collaborated with teams to deeply understand products for precise documentation.",
-      "Wrote easy-to-understand user interface text, online help, and developer guides.",
       "Conducted penetration testing on APU technology lab environment.",
-      "Provided suggestion and improvement within APU technology lab environment.",
+      "Collaborated with teams to deeply understand products for precise documentation.",
+      "Provided suggestions and improvements within APU technology lab environment.",
     ],
   },
   {
-    id: 3,
+    id: 4,
     title: "Security Operations Center (SOC) Analyst",
     institution: "Asia Pacific University of Technology & Innovation",
     location: "Kuala Lumpur, Malaysia",
@@ -42,7 +52,6 @@ const workExperience = [
     responsibilities: [
       "Monitored event logs across networks, systems, and devices for unusual activity.",
       "Reviewed and categorized security alerts and potential threats.",
-      "Conducted active monitoring and collaborated with team leads and SOC Manager.",
       "Experienced with SIEM (MSSGard), including content creation and reporting.",
     ],
   },
@@ -84,7 +93,10 @@ const AboutMe: React.FC = () => {
   return (
     <section 
       id="about" 
-      className="py-20 md:py-32 relative overflow-hidden"
+      className="py-20 lg:py-32 relative scroll-section"
+      style={{
+        background: 'radial-gradient(circle at 10% 20%, rgba(148, 163, 184, 0.05), transparent 30%), radial-gradient(circle at 80% 70%, rgba(59, 130, 246, 0.05), transparent 30%)',
+      }}
     >
       <div className="container mx-auto px-6 md:px-8 lg:px-12 xl:px-16 relative z-10">
         {/* About Me Section */}
@@ -127,24 +139,17 @@ const AboutMe: React.FC = () => {
             <div className="w-24 h-1.5 bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 rounded-full mb-8"></div>
 
             <div className="space-y-6">
-              <p className="text-white/85 leading-relaxed text-lg">
-                I'm Syed Muntazir Mehdi, a <span className="text-white font-medium">Cybersecurity Graduate</span> with hands-on experience 
-              in vulnerability assessment, SOC operations, and penetration testing. 
-                I hold a dual-awarded B.Sc. (Hons) in Cybersecurity from both <span className="text-white font-medium">Asia Pacific University (Malaysia)</span> and <span className="text-white font-medium">De Montfort University (UK)</span>.
-            </p>
-            
-              <p className="text-white/85 leading-relaxed text-lg">
-                Throughout my academic and professional journey, I've worked on securing real-world systems, identifying <span className="text-white font-medium">critical vulnerabilities</span>, 
-            and deploying effective mitigation strategies. 
-                My focus areas include <span className="text-white font-medium">Network Defense</span>, <span className="text-white font-medium">Ethical Hacking</span>, <span className="text-white font-medium">SIEM analysis</span>,
-            and building proactive security measures across infrastructures.
-            </p>
+              <p className="text-white/85 leading-relaxed text-lg text-justify">
+                As an IT Engineer at <span className="font-bold text-white">Neotek</span>, I apply my cybersecurity expertise to infrastructure development and management. My background in <span className="font-semibold text-cyan-300">penetration testing</span> and <span className="font-semibold text-cyan-300">security analysis</span> allows me to approach engineering challenges with a security-first mindset, ensuring the systems I build are inherently secure.
+              </p>
+              
+              <p className="text-white/85 leading-relaxed text-lg text-justify">
+                My dual-degree background from <span className="font-bold text-white">De Montfort University</span> and <span className="font-bold text-white">Asia Pacific University</span> provided me with a strong theoretical foundation in cybersecurity, which I continue to strengthen through hands-on experience in <span className="font-semibold text-cyan-300">SOC operations</span>, <span className="font-semibold text-cyan-300">vulnerability assessments</span>, and real-world <span className="font-semibold text-cyan-300">threat hunting</span>. I stay sharp by continuously learning through platforms like <span className="font-bold text-white">HackTheBox</span> & <span className="font-bold text-white">TryHackMe</span>, where I practice advanced penetration testing techniques.
+              </p>
 
-              <p className="text-white/85 leading-relaxed text-lg">
-            I'm passionate about staying ahead of threats, learning new tools, and turning security knowledge into practical solutions. 
-                Whether I'm writing automation scripts, monitoring logs, or breaking down attack vectors — I approach cybersecurity with a <span className="text-white font-medium">problem-solver's 
-                mindset</span> and a defender's responsibility.
-            </p>
+              <p className="text-white/85 leading-relaxed text-lg text-justify">
+                Whether I'm designing secure network architectures, implementing robust security measures, or analyzing potential vulnerabilities, I remain deeply passionate about cybersecurity. My goal is to bridge the gap between security and engineering, creating technology solutions that are both functional and fortified against evolving threats.
+              </p>
             </div>
 
             <motion.div

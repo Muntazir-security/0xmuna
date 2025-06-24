@@ -253,7 +253,10 @@ const Portfolio: React.FC = () => {
   return (
     <section 
       id="portfolio" 
-      className="py-20 md:py-32 relative"
+      className="py-20 lg:py-32 relative scroll-section"
+      style={{
+        background: 'radial-gradient(circle at 90% 10%, rgba(168, 85, 247, 0.05), transparent 30%), radial-gradient(circle at 20% 80%, rgba(236, 72, 153, 0.05), transparent 30%)',
+      }}
     >
       <div className="container mx-auto px-6 md:px-8 lg:px-12 xl:px-16 relative z-10">
         <div className="text-center mb-16">
