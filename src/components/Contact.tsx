@@ -132,7 +132,7 @@ const Contact: React.FC = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Get In <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">Touch</span>
           </h2>
-          <div className="w-16 h-1 bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 rounded-full mx-auto mb-6"></div>
+          <div className="w-24 h-1.5 bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 rounded-full mx-auto mb-6"></div>
           <p className="text-white/85 text-lg max-w-2xl mx-auto">
             Have a question or want to work together? I'd love to hear from you.
           </p>
@@ -208,16 +208,16 @@ const Contact: React.FC = () => {
               <Button 
                 type="submit" 
                 disabled={isSubmitting}
-                  className="w-full bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-400 hover:to-purple-500 transition-all duration-400 text-white border-none disabled:opacity-50 h-12 text-base font-medium"
+                className="w-full bg-gradient-to-r from-cyan-400 to-purple-500 hover:from-cyan-300 hover:to-purple-400 transition-all duration-400 text-white border-none disabled:opacity-50 h-12 text-base font-medium"
               >
-                  {isSubmitting ? (
-                    <div className="flex items-center space-x-2">
-                      <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                      <span>Sending...</span>
-                    </div>
-                  ) : (
-                    "Send Message"
-                  )}
+                {isSubmitting ? (
+                  <div className="flex items-center space-x-2">
+                    <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                    <span>Sending...</span>
+                  </div>
+                ) : (
+                  "Send Message"
+                )}
               </Button>
             </form>
           </div>
@@ -230,8 +230,8 @@ const Contact: React.FC = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <div className="absolute -top-20 -right-20 w-40 h-40 bg-[#a855f7]/10 rounded-full blur-3xl"></div>
-            <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-[#6366f1]/10 rounded-full blur-3xl"></div>
+            <div className="absolute -top-20 -right-20 w-40 h-40 bg-[#9b87f5]/10 rounded-full blur-3xl"></div>
+            <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-cyan-400/10 rounded-full blur-3xl"></div>
             
             <div className="relative z-10 h-full flex flex-col">
               <div className="text-center mb-8">
@@ -248,7 +248,7 @@ const Contact: React.FC = () => {
                     href={platform.url} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="group relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 transition-all duration-400 hover:scale-[1.02] hover:border-white/20 hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-[#6366f1] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0B1E] outline-none flex items-center"
+                    className="group relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 transition-all duration-400 hover:scale-[1.02] hover:border-white/20 hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-[#9b87f5] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0B1E] outline-none flex items-center"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 + 0.4, duration: 0.5 }}
@@ -289,7 +289,7 @@ const Contact: React.FC = () => {
                   Or email me directly at{" "}
                   <a 
                     href="mailto:info@muntazirmehdi.com" 
-                    className="text-[#6366f1] hover:text-[#a855f7] transition-colors font-medium"
+                    className="text-[#9b87f5] hover:text-[#9b87f5]/80 transition-colors font-medium"
                   >
                     info@muntazirmehdi.com
                   </a>

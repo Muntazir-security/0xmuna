@@ -180,7 +180,7 @@ Git Workflow      // Structured commit history and branching
 4. **Start development servers**
    ```bash
    # Frontend development server (port 3000)
-   npm run dev
+npm run dev
    
    # Backend email server (port 5000) - optional
    python email_server.py

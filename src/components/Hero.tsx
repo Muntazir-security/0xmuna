@@ -227,7 +227,7 @@ const Hero: React.FC = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 1.1 }}
                 >
-                  <p className="text-lg md:text-xl text-slate-300/90 leading-relaxed text-justify">
+                  <p className="text-lg md:text-xl text-white/85 leading-relaxed text-justify">
                     As an IT Engineer at <span className="font-bold text-white">Neotek</span>, my mission is to build the systems that drive business forward. My approach is grounded in a strong academic foundation from <span className="font-bold text-white">De Montfort University</span> and sharpened by hands-on experience in <span className="font-semibold text-cyan-300">penetration testing</span> and <span className="font-semibold text-cyan-300">security analysis</span>. This allows me to see infrastructure through an attacker's eyes and engineer solutions that are not just functional, but fortified by design.
                   </p>
                 </motion.div>
