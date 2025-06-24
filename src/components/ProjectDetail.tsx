@@ -22,11 +22,7 @@ interface Project {
   solution: string;
 }
 
-interface ProjectDetailProps {
-  onBackToPortfolio: () => void;
-}
-
-const ProjectDetail: React.FC<ProjectDetailProps> = ({ onBackToPortfolio }) => {
+const ProjectDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   
@@ -162,7 +158,15 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ onBackToPortfolio }) => {
           <Button 
             variant="outline" 
             className="border-white/20 text-white hover:bg-white/10"
-            onClick={onBackToPortfolio}
+            onClick={() => {
+              navigate('/');
+              setTimeout(() => {
+                const portfolioElement = document.getElementById('portfolio');
+                if (portfolioElement) {
+                  portfolioElement.scrollIntoView({ behavior: 'smooth' });
+                }
+              }, 100);
+            }}
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Portfolio
@@ -174,16 +178,26 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ onBackToPortfolio }) => {
 
   const IconComponent = iconMap[project.iconName] || Briefcase;
 
+  const handleBackToPortfolio = () => {
+    navigate('/');
+    setTimeout(() => {
+      const portfolioElement = document.getElementById('portfolio');
+      if (portfolioElement) {
+        portfolioElement.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
+  };
+
   return (
-    <div 
-      className="relative"
-      style={{
+        <div 
+      className="min-h-screen relative"
+          style={{
         background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%)',
         color: 'white'
-      }}
+          }}
     >
       {/* Header Section */}
-      <div className="relative pt-20 pb-12">
+      <div className="relative pt-32 pb-12">
         <div className="container mx-auto px-6 md:px-8 lg:px-12 xl:px-16 relative z-10">
           {/* Back Button */}
           <motion.div
@@ -195,7 +209,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ onBackToPortfolio }) => {
             <Button 
               variant="outline" 
               className="bg-white/5 border-white/20 text-white hover:bg-white/10 hover:border-white/30 transition-all duration-300"
-              onClick={onBackToPortfolio}
+              onClick={handleBackToPortfolio}
             >
               <ArrowLeft className="w-4 h-4 mr-2" />
               Back to Portfolio
@@ -210,19 +224,19 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ onBackToPortfolio }) => {
             className="mb-12"
           >
             <div className="flex items-start gap-6 mb-6">
-              <div className="bg-cyan-400/20 p-4 rounded-xl border border-cyan-400/30">
-                <IconComponent className="w-8 h-8 text-cyan-400" />
+                              <div className="bg-cyan-400/20 p-4 rounded-xl border border-cyan-400/30">
+                  <IconComponent className="w-8 h-8 text-cyan-400" />
               </div>
               <div className="flex-1">
                 <span className="inline-block px-3 py-1 bg-white/10 text-white/70 rounded-full text-sm font-medium border border-white/20 mb-3">
-                  {project.category}
-                </span>
+                      {project.category}
+                    </span>
                 <h1 className="text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">
-                  {project.title}
-                </h1>
-                <p className="text-xl text-white/80 leading-relaxed max-w-3xl">
-                  {project.description}
-                </p>
+                    {project.title}
+                  </h1>
+                  <p className="text-xl text-white/80 leading-relaxed max-w-3xl">
+                    {project.description}
+                  </p>
               </div>
             </div>
 
@@ -247,9 +261,9 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ onBackToPortfolio }) => {
           {/* Main Content */}
           <div className="lg:col-span-8 space-y-8">
             {/* Overview */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
               className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl p-6 md:p-8"
             >
@@ -285,11 +299,11 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ onBackToPortfolio }) => {
                 </p>
               </motion.div>
             </div>
-          </div>
+                </div>
 
           {/* Sidebar */}
           <div className="lg:col-span-4">
-            <motion.div 
+          <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.5 }}
@@ -299,23 +313,23 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ onBackToPortfolio }) => {
               <div className="space-y-4">
                 {project.features.map((feature, index) => (
                   <div key={index} className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-cyan-400 rounded-full mt-2 flex-shrink-0"></div>
+                                            <div className="w-2 h-2 bg-cyan-400 rounded-full mt-2 flex-shrink-0"></div>
                     <span className="text-white/80 leading-relaxed">{feature}</span>
-                  </div>
-                ))}
-              </div>
+                </div>
+                  ))}
+                </div>
 
               {/* Action Buttons */}
               <div className="mt-8 pt-6 border-t border-white/10 space-y-3">
                 <Button
-                  onClick={onBackToPortfolio}
-                  className="w-full bg-gradient-to-r from-cyan-400 to-purple-500 hover:from-cyan-300 hover:to-purple-400 text-white border-0 py-3 rounded-xl transition-all duration-300"
+                  onClick={handleBackToPortfolio}
+                  className="w-full bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-400 hover:to-purple-500 text-white border-0 py-3 rounded-xl transition-all duration-300"
                 >
                   <ArrowLeft className="w-4 h-4 mr-2" />
                   Back to Portfolio
-                </Button>
-              </div>
-            </motion.div>
+                  </Button>
+                </div>
+          </motion.div>
           </div>
         </div>
       </div>

@@ -142,8 +142,6 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({ project, index })
   const colors = colorSchemes[index % colorSchemes.length];
 
   const handleCardClick = () => {
-    // Ensure we scroll to top before navigation
-    window.scrollTo(0, 0);
     navigate(`/project/${project.id}`);
   };
 

@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef, useState } from "react";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -130,20 +131,6 @@ const Index: React.FC = () => {
     
     // Ensure background is ready
     setIsLoaded(true);
-
-    const handleHashNavigation = () => {
-      if (window.location.hash === '#portfolio') {
-        const element = document.getElementById('portfolio');
-        if (element) {
-          // Use a timeout to ensure the element is ready after navigation
-          setTimeout(() => {
-            element.scrollIntoView({ behavior: 'auto', block: 'start' });
-          }, 0);
-        }
-      }
-    };
-
-    handleHashNavigation();
   }, []);
 
   return (
