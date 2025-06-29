@@ -1,14 +1,70 @@
+# Robots.txt for Muntazir Mehdi Portfolio
+# Professional cybersecurity engineer website
+
+# Google Search Bot
 User-agent: Googlebot
 Allow: /
+Allow: /project/
+Allow: /assets/documents/Muntazir Mehdi CV.pdf
+Crawl-delay: 1
 
+# Bing Search Bot
 User-agent: Bingbot
 Allow: /
+Allow: /project/
+Allow: /assets/documents/Muntazir Mehdi CV.pdf
+Crawl-delay: 1
 
+# Twitter Bot for Card Generation
 User-agent: Twitterbot
 Allow: /
+Allow: /assets/images/profile.png
+Allow: /project/
 
+# Facebook Link Preview Bot
 User-agent: facebookexternalhit
 Allow: /
+Allow: /assets/images/profile.png
+Allow: /project/
 
+# LinkedIn Bot
+User-agent: LinkedInBot
+Allow: /
+Allow: /assets/images/profile.png
+Allow: /project/
+Allow: /assets/documents/Muntazir Mehdi CV.pdf
+
+# WhatsApp Link Preview
+User-agent: WhatsApp
+Allow: /
+Allow: /assets/images/profile.png
+
+# General Rules for All Bots
 User-agent: *
 Allow: /
+Allow: /project/
+Allow: /assets/
+Disallow: /src/
+Disallow: *.tsx
+Disallow: *.ts
+Disallow: *.js.map
+Disallow: /node_modules/
+Disallow: /.git/
+Disallow: /package.json
+Disallow: /vite.config.ts
+Disallow: /tsconfig.json
+Disallow: /tailwind.config.ts
+Disallow: /postcss.config.js
+Disallow: /eslint.config.js
+Disallow: /components.json
+Disallow: /.env
+Disallow: /dist/
+Disallow: /temp/
+Disallow: /tmp/
+Crawl-delay: 2
+
+# Sitemap Location
+Sitemap: https://muntazirmehdi.com/sitemap.xml
+
+# Host Declaration
+Host: https://muntazirmehdi.com
