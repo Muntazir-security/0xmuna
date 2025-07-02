@@ -1,18 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Link, useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 import {
   Shield, Building2, GraduationCap, Database as DatabaseIcon,
-  ShoppingCart, CheckSquare, Car, Home, Briefcase, ArrowRight, X as XIcon, ExternalLink
+  ShoppingCart, CheckSquare, Car, Home, Briefcase
 } from 'lucide-react';
-import { motion, AnimatePresence } from "framer-motion";
-import { cn } from "@/lib/utils";
-import { 
-  ProjectCardSkeleton, 
-  CertificationCardSkeleton, 
-  TechStackSkeleton 
-} from "@/components/ui/loading-skeleton";
+import { ProjectCardSkeleton } from "@/components/ui/loading-skeleton";
+import ModernProjectCard from "@/components/portfolio/ModernProjectCard";
+import CertificationGrid from "@/components/portfolio/CertificationGrid";
+import TechStackGrid from "@/components/portfolio/TechStackGrid";
+import ImageLightbox from "@/components/portfolio/ImageLightbox";
 
 interface Project {
   id: number;
@@ -70,137 +67,6 @@ const techStackData = [
   { id: 18, name: "Fortinet", logoSrc: "/assets/images/fortinet.svg" },
 ];
 
-interface ModernProjectCardProps {
-  project: Project;
-  index: number;
-}
-
-const ModernProjectCard: React.FC<ModernProjectCardProps> = ({ project, index }) => {
-  const navigate = useNavigate();
-  const IconComponent = project.icon || Shield;
-  
-  // Use the exact same color scheme as the About section to maintain consistency
-  const colorSchemes = [
-    {
-      iconBg: "from-cyan-400 to-purple-500", // Matches your timeline gradient
-      iconColor: "text-white",
-      categoryBg: "bg-[#9b87f5]/20", // Matches your date badges
-      categoryText: "text-[#9b87f5]", // Matches your primary accent
-      categoryBorder: "border-[#9b87f5]/30",
-      hoverText: "group-hover:text-[#9b87f5]", // Matches your hover effects
-      hoverArrow: "group-hover:text-[#9b87f5]"
-    },
-    {
-      iconBg: "from-blue-400 to-blue-600", // Matches your location text color
-      iconColor: "text-white",
-      categoryBg: "bg-blue-500/20", // Matches your job type badges
-      categoryText: "text-blue-300",
-      categoryBorder: "border-blue-500/30",
-      hoverText: "group-hover:text-blue-300",
-      hoverArrow: "group-hover:text-blue-300"
-    },
-    {
-      iconBg: "from-green-400 to-green-600", // Matches your grade badges
-      iconColor: "text-white",
-      categoryBg: "bg-green-500/20",
-      categoryText: "text-green-300",
-      categoryBorder: "border-green-500/30",
-      hoverText: "group-hover:text-green-300",
-      hoverArrow: "group-hover:text-green-300"
-    },
-    {
-      iconBg: "from-orange-400 to-orange-600", // Matches your internship badges
-      iconColor: "text-white",
-      categoryBg: "bg-orange-500/20",
-      categoryText: "text-orange-300",
-      categoryBorder: "border-orange-500/30",
-      hoverText: "group-hover:text-orange-300",
-      hoverArrow: "group-hover:text-orange-300"
-    },
-    {
-      iconBg: "from-cyan-400 to-cyan-600", // Additional variation using your cyan
-      iconColor: "text-white",
-      categoryBg: "bg-cyan-500/20",
-      categoryText: "text-cyan-300",
-      categoryBorder: "border-cyan-500/30",
-      hoverText: "group-hover:text-cyan-300",
-      hoverArrow: "group-hover:text-cyan-300"
-    },
-    {
-      iconBg: "from-purple-400 to-purple-600", // Matches your gradient end
-      iconColor: "text-white",
-      categoryBg: "bg-purple-500/20",
-      categoryText: "text-purple-300",
-      categoryBorder: "border-purple-500/30",
-      hoverText: "group-hover:text-purple-300",
-      hoverArrow: "group-hover:text-purple-300"
-    }
-  ];
-  
-  const colors = colorSchemes[index % colorSchemes.length];
-
-  const handleCardClick = () => {
-    navigate(`/project/${project.id}`);
-  };
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, delay: index * 0.1 }}
-      className="group cursor-pointer h-full"
-      onClick={handleCardClick}
-    >
-      <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl p-6 md:p-8 h-full transition-all duration-300 hover:bg-white/8 hover:border-white/20 hover:scale-[1.02] flex flex-col">
-        <div className="flex items-start justify-between mb-4">
-          <div className={`p-3 rounded-xl bg-gradient-to-r ${colors.iconBg} shadow-lg`}>
-            <IconComponent className={`w-6 h-6 ${colors.iconColor}`} />
-          </div>
-          {project.category && (
-            <span className={`px-3 py-1 ${colors.categoryBg} ${colors.categoryText} rounded-full text-xs font-medium border ${colors.categoryBorder}`}>
-              {project.category}
-            </span>
-          )}
-        </div>
-        
-        <h3 className={`text-xl font-bold text-white mb-2 ${colors.hoverText} transition-colors duration-300 line-clamp-2`}>
-          {project.title}
-        </h3>
-        
-        <p className="text-white/85 leading-relaxed line-clamp-3 group-hover:text-white/90 transition-colors duration-300">
-          {project.description}
-        </p>
-        
-        <div className="mt-auto space-y-3">
-          <p className="text-xs font-medium text-white/60 uppercase tracking-wider">Technologies</p>
-          
-          <div className="flex flex-wrap gap-1.5">
-            {project.tags.slice(0, 3).map((tag, tagIndex) => (
-              <span 
-                key={tagIndex}
-                className="px-2.5 py-1 bg-white/10 text-white/80 rounded-md text-xs border border-white/20"
-              >
-                {tag}
-              </span>
-            ))}
-            {project.tags.length > 3 && (
-              <span className="px-2.5 py-1 bg-white/10 text-white/70 rounded-md text-xs border border-white/20">
-                +{project.tags.length - 3}
-              </span>
-            )}
-          </div>
-          
-          <div className="flex items-center justify-between pt-3 border-t border-white/10">
-            <span className={`text-sm text-white/80 ${colors.hoverText} transition-colors duration-300 font-medium`}>
-              View Details
-            </span>
-            <ArrowRight className={`w-4 h-4 text-white/80 ${colors.hoverArrow} group-hover:translate-x-1 transition-all duration-300`} />
-          </div>
-        </div>
-      </div>
-    </motion.div>
-  );
-};
 
 const Portfolio: React.FC = () => {
   const [activeSubSection, setActiveSubSection] = useState('projects');
@@ -323,14 +189,14 @@ const Portfolio: React.FC = () => {
           </p>
         </div>
 
-        {/* Modern Navigation Tabs */}
+        {/* Modern Navigation Tabs - Enhanced for Mobile */}
         <div className="flex justify-center mb-16">
-          <div className="flex items-center space-x-1 bg-white/5 backdrop-blur-md border border-white/10 rounded-full p-1">
+          <div className="flex items-center space-x-1 bg-white/5 backdrop-blur-md border border-white/10 rounded-full p-1 w-full max-w-md md:max-w-none md:w-auto overflow-x-auto">
             {subNavItems.map((item) => (
               <motion.button
                 key={item.id}
                 className={cn(
-                  "relative px-4 lg:px-6 py-2 rounded-full text-sm font-medium transition-all duration-300",
+                  "relative px-4 lg:px-6 py-2.5 md:py-2 rounded-full text-sm font-medium transition-all duration-300 whitespace-nowrap min-h-[44px] md:min-h-auto touch-manipulation",
                   activeSubSection === item.id
                     ? "bg-gradient-to-r from-cyan-500 to-purple-600 text-white shadow-lg"
                     : "text-white/80 hover:text-white hover:bg-white/5"
@@ -361,123 +227,24 @@ const Portfolio: React.FC = () => {
         )}
 
         {activeSubSection === 'certifications' && (
-          <div className="space-y-8">
-            {!imagesLoaded ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {[...Array(6)].map((_, index) => (
-                  <CertificationCardSkeleton key={index} />
-                ))}
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 transition-opacity duration-300 opacity-100">
-                {certificationsData.map((cert, index) => (
-                  <motion.div
-                    key={cert.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: index * 0.05 }}
-                    onClick={() => setSelectedCertImage(cert.imageSrc)}
-                    className="group cursor-pointer"
-                  >
-                    <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden transition-all duration-300 hover:bg-white/8 hover:border-white/20 hover:scale-[1.02] h-full flex flex-col">
-                      <div className="aspect-video overflow-hidden border-b border-white/10 bg-white/5">
-                        <img
-                          src={cert.imageSrc}
-                          alt={`${cert.title} Certificate`}
-                          className="w-full h-full object-contain p-4 transition-transform duration-300 group-hover:scale-105"
-                          loading="eager"
-                        />
-                      </div>
-                      <div className="p-6 flex flex-col flex-grow">
-                        <h4 className="text-lg font-semibold text-white mb-2 group-hover:text-cyan-400 transition-colors duration-300 line-clamp-2">
-                          {cert.title}
-                        </h4>
-                        <p className="text-sm text-white/70 mt-auto">
-                          {cert.issuingBody}
-                        </p>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            )}
-          </div>
+          <CertificationGrid
+            certificationsData={certificationsData}
+            onImageClick={setSelectedCertImage}
+          />
         )}
 
         {activeSubSection === 'techstack' && (
-          <div className="space-y-8">
-            <h4 className="text-xl font-bold text-white text-center">Technologies & Tools</h4>
-            
-            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4">
-              {techStackData.map((tech, index) => (
-                <motion.div
-                  key={tech.id}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={techStackVisible ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-                  transition={{ duration: 0.3, delay: index * 0.05 }}
-                  className="group relative"
-                >
-                  <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 text-center transition-all duration-300 hover:bg-white/10 hover:border-white/20 hover:scale-105">
-                    <div className="w-12 h-12 mx-auto mb-3 flex items-center justify-center">
-                      <img 
-                        src={tech.logoSrc} 
-                        alt={tech.name}
-                        className="w-full h-full object-contain"
-                        loading="lazy"
-                        onError={(e) => {
-                          const img = e.target as HTMLImageElement;
-                          img.style.display = 'none';
-                          const parent = img.parentElement;
-                          if (parent) {
-                            parent.innerHTML = `<div class="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center text-white/60 text-xs font-bold">${tech.name.charAt(0)}</div>`;
-                          }
-                        }}
-                      />
-                    </div>
-                    <span className="text-white/85 text-xs font-medium group-hover:text-white transition-colors duration-300">
-                      {tech.name}
-                    </span>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
+          <TechStackGrid
+            techStackData={techStackData}
+            techStackVisible={techStackVisible}
+          />
         )}
       </div>
 
-      {/* Lightbox for Certificate Images */}
-      {selectedCertImage && (
-        <motion.div
-          className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-[100] p-4"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          onClick={() => setSelectedCertImage(null)}
-        >
-          <motion.div
-            className="relative max-w-3xl max-h-[80vh] bg-white/10 p-2 rounded-lg shadow-2xl"
-            initial={{ scale: 0.7, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.7, opacity: 0 }}
-            transition={{ type: "spring", stiffness: 300, damping: 25 }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <img
-              src={selectedCertImage}
-              alt="Selected Certificate - Full View"
-              className="block max-w-full max-h-[calc(80vh-1rem)] object-contain rounded-md"
-            />
-            <Button
-              variant="ghost"
-              size="icon"
-              className="absolute -top-3 -right-3 md:-top-5 md:-right-5 bg-white/20 hover:bg-white/30 text-white rounded-full w-8 h-8 md:w-10 md:h-10"
-              onClick={() => setSelectedCertImage(null)}
-            >
-              <XIcon className="w-4 h-4 md:w-5 md:h-5" />
-            </Button>
-          </motion.div>
-        </motion.div>
-      )}
+      <ImageLightbox
+        selectedImage={selectedCertImage}
+        onClose={() => setSelectedCertImage(null)}
+      />
     </section>
   );
 };

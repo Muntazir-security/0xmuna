@@ -233,9 +233,9 @@ const Hero: React.FC = () => {
                 </motion.div>
               </motion.div>
 
-              {/* Expertise Icons */}
+              {/* Expertise Icons - Enhanced for Mobile */}
               <motion.div 
-                className="flex flex-wrap justify-center lg:justify-start gap-2"
+                className="flex flex-wrap justify-center lg:justify-start gap-2 md:gap-3"
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 1.3 }}
@@ -250,22 +250,23 @@ const Hero: React.FC = () => {
                   return (
                     <motion.div 
                       key={skill.name} 
-                      className="relative group inline-flex items-center gap-2 px-3 py-1.5 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full hover:border-cyan-400/30 transition-all duration-300 hover:scale-105"
+                      className="relative group inline-flex items-center gap-2 px-3 py-2 md:px-4 md:py-2.5 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full hover:border-cyan-400/30 transition-all duration-300 hover:scale-105 min-h-[44px] md:min-h-[48px]"
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.5, delay: 1.5 + (index * 0.1) }}
                       whileHover={{ scale: 1.05, y: -2 }}
+                      whileTap={{ scale: 0.95 }}
                     >
-                      <div className={`w-4 h-4 ${skill.color} transition-transform duration-300 group-hover:scale-110 flex-shrink-0`}>
+                      <div className={`w-4 h-4 md:w-5 md:h-5 ${skill.color} transition-transform duration-300 group-hover:scale-110 flex-shrink-0`}>
                         <IconComponent className="w-full h-full" />
                       </div>
-                      <span className="text-white text-xs font-medium leading-none">{skill.name}</span>
+                      <span className="text-white text-xs md:text-sm font-medium leading-none">{skill.name}</span>
                     </motion.div>
                   );
                 })}
               </motion.div>
 
-              {/* CTA Buttons */}
+              {/* CTA Buttons - Enhanced for Mobile */}
               <motion.div 
                 className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
                 initial={{ opacity: 0, y: 30 }}
@@ -275,22 +276,22 @@ const Hero: React.FC = () => {
               <Button
                 asChild
                 size="lg"
-                  className="group relative overflow-hidden bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-400 hover:to-purple-500 text-white px-8 py-4 rounded-xl shadow-2xl hover:shadow-cyan-500/25 transform transition-all duration-300 hover:scale-105"
+                  className="group relative overflow-hidden bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-400 hover:to-purple-500 text-white px-8 py-4 md:px-10 md:py-5 rounded-xl shadow-2xl hover:shadow-cyan-500/25 transform transition-all duration-300 hover:scale-105 min-h-[48px] md:min-h-[56px] touch-manipulation"
               >
                   <a href="#portfolio" className="flex items-center justify-center">
-                    <span className="font-semibold">Explore My Work</span>
-                    <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+                    <span className="font-semibold text-base md:text-lg">Explore My Work</span>
+                    <ArrowRight className="w-5 h-5 md:w-6 md:h-6 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
                 </a>
               </Button>
 
               <Button
                 asChild
                 size="lg"
-                  className="group relative overflow-hidden bg-transparent border-2 border-cyan-400/50 text-white hover:bg-cyan-400/10 hover:border-cyan-400 px-8 py-4 rounded-xl transition-all duration-300"
+                  className="group relative overflow-hidden bg-transparent border-2 border-cyan-400/50 text-white hover:bg-cyan-400/10 hover:border-cyan-400 px-8 py-4 md:px-10 md:py-5 rounded-xl transition-all duration-300 min-h-[48px] md:min-h-[56px] touch-manipulation"
               >
                   <a href="#contact" className="flex items-center justify-center">
-                  <Mail className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform duration-300" />
-                    <span className="font-semibold">Connect</span>
+                  <Mail className="w-5 h-5 md:w-6 md:h-6 mr-2 group-hover:rotate-12 transition-transform duration-300" />
+                    <span className="font-semibold text-base md:text-lg">Connect</span>
                 </a>
               </Button>
             </motion.div>
