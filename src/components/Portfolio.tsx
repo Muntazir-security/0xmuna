@@ -8,8 +8,6 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
-import AOS from 'aos';
-import 'aos/dist/aos.css';
 import { 
   ProjectCardSkeleton, 
   CertificationCardSkeleton, 
@@ -213,8 +211,6 @@ const Portfolio: React.FC = () => {
   const [projectsLoaded, setProjectsLoaded] = useState(false);
 
   useEffect(() => {
-    AOS.init({ once: true });
-    
     // Simulate initial loading
     const timer = setTimeout(() => {
       setIsLoading(false);
