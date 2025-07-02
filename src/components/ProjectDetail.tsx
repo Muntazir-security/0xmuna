@@ -189,13 +189,7 @@ const ProjectDetail: React.FC = () => {
   };
 
   return (
-        <div 
-      className="min-h-screen relative"
-          style={{
-        background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%)',
-        color: 'white'
-          }}
-    >
+    <div className="min-h-screen relative">
       {/* Header Section */}
       <div className="relative pt-32 pb-12">
         <div className="container mx-auto px-6 md:px-8 lg:px-12 xl:px-16 relative z-10">
