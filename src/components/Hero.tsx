@@ -86,9 +86,9 @@ const StatusBadge = memo(() => (
       <div className="relative px-6 py-3 rounded-full bg-slate-900/90 backdrop-blur-xl border border-cyan-400/30">
         <div className="flex items-center gap-3">
           <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-          <span className="bg-gradient-to-r from-cyan-400 to-purple-400 text-transparent bg-clip-text text-sm font-semibold tracking-wider">
-          PENETRATION TESTER TURNED ENGINEER
-          </span>
+           <span className="bg-gradient-to-r from-cyan-400 to-purple-400 text-transparent bg-clip-text text-sm font-semibold tracking-wider">
+           CYBERSECURITY SPECIALIST & SOC ANALYST
+           </span>
           <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
         </div>
       </div>
